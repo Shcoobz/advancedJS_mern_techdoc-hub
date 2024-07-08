@@ -96,7 +96,7 @@ const deleteNote = asyncHandler(async (req, res) => {
   }
 
   const noteTitle = note.title;
-  const noteId = note_id;
+  const noteId = note._id;
 
   await note.deleteOne();
 
