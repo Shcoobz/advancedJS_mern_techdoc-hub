@@ -8,22 +8,16 @@ import { selectUserById } from './usersApiSlice';
 function User({ userId }) {
   const user = useSelector((state) => selectUserById(state, userId));
 
-  let content;
-
   const navigate = useNavigate();
 
-  function handleEdit() {
-    return navigate(`/dash/users/${userId}`);
-  }
-
   if (user) {
-    handleEdit();
+    const handleEdit = () => navigate(`/dash/users/${userId}`);
 
     const userRolesString = user.roles.toString().replaceAll(',', ', ');
 
     const cellStatus = user.active ? '' : 'table__cell--inactive';
 
-    content = (
+    return (
       <tr className='table__row user'>
         <td className={`table__cell ${cellStatus}`}>{user.username}</td>
         <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
@@ -34,8 +28,6 @@ function User({ userId }) {
         </td>
       </tr>
     );
-
-    return content;
   } else return null;
 }
 

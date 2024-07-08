@@ -71,11 +71,13 @@ function EditUserForm({ user }) {
   }
 
   const options = Object.values(ROLES).map((role) => {
-    return (
+    const option = (
       <option key={role} value={role}>
         {role}
       </option>
     );
+
+    return option;
   });
 
   let canSave;
