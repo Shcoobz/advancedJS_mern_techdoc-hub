@@ -10,9 +10,11 @@ function User({ userId }) {
 
   const navigate = useNavigate();
 
-  if (user) {
-    const handleEdit = () => navigate(`/dash/users/${userId}`);
+  function handleEdit() {
+    return navigate(`/dash/users/${userId}`);
+  }
 
+  if (user) {
     const userRolesString = user.roles.toString().replaceAll(',', ', ');
 
     const cellStatus = user.active ? '' : 'table__cell--inactive';

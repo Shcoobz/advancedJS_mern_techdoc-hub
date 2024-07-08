@@ -8,8 +8,6 @@ import { selectNoteById } from './notesApiSlice';
 function Note({ noteId }) {
   const note = useSelector((state) => selectNoteById(state, noteId));
 
-  let content;
-
   const navigate = useNavigate();
 
   function handleEdit() {
@@ -17,7 +15,6 @@ function Note({ noteId }) {
   }
 
   if (note) {
-    /* TODO: think about replacing month long with numeric for possible sorting functionality*/
     const created = new Date(note.createdAt)
       .toLocaleString('de-AT', {
         day: 'numeric',
@@ -26,7 +23,6 @@ function Note({ noteId }) {
       })
       .replace(/\.\s/, ' ');
 
-    /* TODO: think about replacing month long with numeric for possible sorting functionality*/
     const updated = new Date(note.updatedAt)
       .toLocaleString('de-AT', {
         day: 'numeric',
@@ -35,9 +31,7 @@ function Note({ noteId }) {
       })
       .replace(/\.\s/, ' ');
 
-    handleEdit();
-
-    content = (
+    return (
       <tr className='table__row'>
         <td className='table__cell note__status'>
           {note.completed ? (
@@ -58,8 +52,6 @@ function Note({ noteId }) {
         </td>
       </tr>
     );
-
-    return content;
   } else return null;
 }
 
