@@ -1,11 +1,11 @@
-# general
+# GENERAL
 TODO.md
 
 node_modules
 package-lock.json
-
-# backend
-logs
 .env
 
-# frontend
+# BACKEND
+logs
+
+# FRONTEND
