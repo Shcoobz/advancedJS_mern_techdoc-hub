@@ -12,10 +12,12 @@ function User({ userId }) {
 
   const navigate = useNavigate();
 
+  function handleEdit() {
+    return navigate(`/dash/users/${userId}`);
+  }
+
   if (user) {
-    function handleEdit() {
-      return navigate(`/dash/users/${userId}`);
-    }
+    handleEdit();
 
     const userRolesString = user.roles.toString().replaceAll(',', ', ');
 

@@ -12,6 +12,10 @@ function Note({ noteId }) {
 
   const navigate = useNavigate();
 
+  function handleEdit() {
+    return navigate(`/dash/notes/${noteId}`);
+  }
+
   if (note) {
     /* TODO: think about replacing month long with numeric for possible sorting functionality*/
     const created = new Date(note.createdAt)
@@ -31,9 +35,7 @@ function Note({ noteId }) {
       })
       .replace(/\.\s/, ' ');
 
-    function handleEdit() {
-      return navigate(`/dash/notes/${noteId}`);
-    }
+    handleEdit();
 
     content = (
       <tr className='table__row'>
