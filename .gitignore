@@ -1,8 +1,11 @@
 # general
-checklist.md
+TODO.md
 
-# backend
 node_modules
 package-lock.json
+
+# backend
+logs
+.env
 
 # frontend
