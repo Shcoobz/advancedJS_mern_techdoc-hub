@@ -6,11 +6,9 @@ import NewNoteForm from './NewNoteForm';
 function NewNote() {
   const users = useSelector(selectAllUsers);
 
-  const content = users ? (
-    <NewNoteForm users={users} />
-  ) : (
-    <p>Loading...</p>
-  ); /* TODO: replace with spinner */
+  if (!users?.length) return <p>Currently Not Available</p>;
+
+  const content = <NewNoteForm users={users} />;
 
   return content;
 }
