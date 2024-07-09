@@ -19,13 +19,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await queryFulfilled;
-          console.log(data); /* TODO: remove for deployment */
-
+          //const data =
+          await queryFulfilled;
+          //console.log(data) TODO: remove for deployment
           dispatch(logOut());
           dispatch(apiSlice.util.resetApiState());
         } catch (err) {
           console.log(err);
+          console.error('Detailed error:', err.message);
         }
       },
     }),
