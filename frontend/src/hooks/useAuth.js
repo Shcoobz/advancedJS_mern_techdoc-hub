@@ -9,6 +9,7 @@ function useAuth() {
   let isAdmin = false;
   let status = 'Employee';
 
+  // shows highest status only
   if (token) {
     const decoded = jwtDecode(token);
     const { username, roles } = decoded.UserInfo;
