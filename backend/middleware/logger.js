@@ -4,9 +4,8 @@ import { v4 as uuid } from 'uuid'; // v4: just random ID
 import fs from 'fs';
 import { promises as fsPromises } from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { __dirname } from '../config/utils.js';
 
 async function logEvents(message, logFileName) {
   const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss');

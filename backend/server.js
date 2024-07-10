@@ -8,17 +8,17 @@ import cors from 'cors';
 import corsOptions from './config/corsOptions.js';
 import connectDB from './config/dbConn.js';
 import mongoose from 'mongoose';
-import { fileURLToPath } from 'url';
+
+import { __dirname } from './config/utils.js';
 
 import rootRouter from './routes/root.js';
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import noteRouter from './routes/noteRoutes.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3500;
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL;
-const LOCAL_URL = `${BACKEND_BASE_URL}:${PORT}`;
+const HTTP_LOCALHOST = process.env.HTTP_LOCALHOST;
+const LOCAL_URL = `${HTTP_LOCALHOST}:${PORT}`;
 
 const app = express();
 
