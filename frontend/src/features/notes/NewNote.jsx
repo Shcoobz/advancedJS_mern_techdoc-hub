@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import NewNoteForm from './NewNoteForm';
 
 function NewNote() {
-  const { isManager, isAdmin } = useAuth();
+  const { status } = useAuth();
 
   const { users } = useGetUsersQuery('usersList', {
     selectFromResult: ({ data }) => ({
@@ -15,8 +15,8 @@ function NewNote() {
 
   if (!users?.length) return <PulseLoader color={'#FFF'} />;
 
-  if (!isManager && !isAdmin) {
-    return <p className='errmsg'>No access</p>; 
+  if (!status) {
+    return <p className='errmsg'>No access</p>;
   }
 
   const content = <NewNoteForm users={users} />;
