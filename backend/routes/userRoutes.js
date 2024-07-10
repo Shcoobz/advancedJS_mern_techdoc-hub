@@ -1,15 +1,22 @@
-const express = require('express');
+import express from 'express';
+import {
+  getAllUsers,
+  createNewUser,
+  updateUser,
+  deleteUser,
+} from '../controllers/usersController.js';
+
+import verifyJWT from '../middleware/verifyJWT.js';
+
 const router = express.Router();
-const usersController = require('../controllers/usersController');
-const verifyJWT = require('../middleware/verifyJWT');
 
 router.use(verifyJWT);
 
 router
   .route('/')
-  .get(usersController.getAllUsers)
-  .post(usersController.createNewUser)
-  .patch(usersController.updateUser)
-  .delete(usersController.deleteUser);
+  .get(getAllUsers)
+  .post(createNewUser)
+  .patch(updateUser)
+  .delete(deleteUser);
 
-module.exports = router;
+export default router;

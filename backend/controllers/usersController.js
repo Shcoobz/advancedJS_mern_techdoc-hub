@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const Note = require('../models/Note');
-const asyncHandler = require('express-async-handler');
-const bcrypt = require('bcrypt');
+import User from '../models/User.js';
+import Note from '../models/Note.js';
+import asyncHandler from 'express-async-handler';
+import bcrypt from 'bcrypt';
 
 // @desc Get all users
 // @route GET /users
@@ -128,9 +128,4 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-module.exports = {
-  getAllUsers,
-  createNewUser,
-  updateUser,
-  deleteUser,
-};
+export { getAllUsers, createNewUser, updateUser, deleteUser };

@@ -1,9 +1,12 @@
-const { format } = require('date-fns');
-const { v4: uuid } = require('uuid'); // v4: just random ID
+import { format } from 'date-fns';
+import { v4 as uuid } from 'uuid'; // v4: just random ID
 
-const fs = require('fs');
-const fsPromises = require('fs').promises;
-const path = require('path');
+import fs from 'fs';
+import { promises as fsPromises } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function logEvents(message, logFileName) {
   const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss');
@@ -28,4 +31,4 @@ function logger(req, res, next) {
   next();
 }
 
-module.exports = { logEvents, logger };
+export { logEvents, logger };

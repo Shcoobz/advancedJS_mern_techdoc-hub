@@ -1,18 +1,26 @@
-require('dotenv').config();
+import 'dotenv/config';
+import express from 'express';
+import path from 'path';
+import { logger, logEvents } from './middleware/logger.js';
+import errorHandler from './middleware/errorHandler.js';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import corsOptions from './config/corsOptions.js';
+import connectDB from './config/dbConn.js';
+import mongoose from 'mongoose';
+import { fileURLToPath } from 'url';
 
-const express = require('express');
-const app = express();
-const path = require('path');
-const { logger, logEvents } = require('./middleware/logger');
-const errorHandler = require('./middleware/errorHandler');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
-const connectDB = require('./config/dbConn');
-const mongoose = require('mongoose');
+import rootRouter from './routes/root.js';
+import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
+import noteRouter from './routes/noteRoutes.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3500;
 const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL;
 const LOCAL_URL = `${BACKEND_BASE_URL}:${PORT}`;
+
+const app = express();
 
 connectDB();
 
@@ -26,10 +34,10 @@ app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/root'));
-app.use('/auth', require('./routes/authRoutes'));
-app.use('/users', require('./routes/userRoutes'));
-app.use('/notes', require('./routes/noteRoutes'));
+app.use('/', rootRouter);
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+app.use('/notes', noteRouter);
 
 app.all('*', (req, res) => {
   res.status(404);

@@ -1,6 +1,6 @@
-const Note = require('../models/Note');
-const User = require('../models/User');
-const asyncHandler = require('express-async-handler');
+import Note from '../models/Note.js';
+import User from '../models/User.js';
+import asyncHandler from 'express-async-handler';
 
 // @desc Get all notes
 // @route GET /notes
@@ -111,9 +111,4 @@ const deleteNote = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-module.exports = {
-  getAllNotes,
-  createNewNote,
-  updateNote,
-  deleteNote,
-};
+export { getAllNotes, createNewNote, updateNote, deleteNote };

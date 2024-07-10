@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const asyncHandler = require('express-async-handler');
+import User from '../models/User.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import asyncHandler from 'express-async-handler';
 
 // @desc Login
 // @route POST /auth
@@ -100,8 +100,4 @@ const logout = (req, res) => {
   res.json({ message: 'Cookie cleared' });
 };
 
-module.exports = {
-  login,
-  refresh,
-  logout,
-};
+export { login, refresh, logout };
