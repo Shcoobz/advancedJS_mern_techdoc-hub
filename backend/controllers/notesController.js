@@ -33,7 +33,7 @@ const createNewNote = asyncHandler(async (req, res) => {
   }
 
   const duplicate = await Note.findOne({ title })
-    .collation({ locale: 'de-AT', strength: 2 })
+    .collation({ locale: 'de_AT', strength: 2 })
     .lean()
     .exec();
 
@@ -67,7 +67,7 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 
   const duplicate = await Note.findOne({ title })
-    .collation({ locale: 'de-AT', strength: 2 })
+    .collation({ locale: 'de_AT', strength: 2 })
     .lean()
     .exec();
 
