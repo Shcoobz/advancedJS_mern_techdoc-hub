@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 function Welcome() {
+  const { username, isManager, isAdmin } = useAuth();
+
   const date = new Date();
   const today = new Intl.DateTimeFormat('de-AT', {
     dateStyle: 'full',
@@ -13,7 +16,7 @@ function Welcome() {
     <section className='welcome'>
       <p>{today}</p>
 
-      <h1>Welcome!</h1>
+      <h1>Welcome {username}!</h1>
 
       <p>
         <Link to='/dash/notes/new'>Add new tech note</Link>
@@ -23,13 +26,18 @@ function Welcome() {
         <Link to='/dash/notes'>View tech notes</Link>
       </p>
 
-      <p>
-        <Link to='/dash/users'>View User settings</Link>
-      </p>
+      {/* protected links for specific roles */}
+      {(isManager || isAdmin) && (
+        <p>
+          <Link to='/dash/users'>View User Settings</Link>
+        </p>
+      )}
 
-      <p>
-        <Link to='/dash/users/new'>Add new user</Link>
-      </p>
+      {(isManager || isAdmin) && (
+        <p>
+          <Link to='/dash/users/new'>Add New User</Link>
+        </p>
+      )}
     </section>
   );
 
