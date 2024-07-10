@@ -26,7 +26,10 @@ const createNewUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
-  const duplicate = await User.findOne({ username }).lean().exec();
+  const duplicate = await User.findOne({ username })
+    .collation({ locale: 'de-AT', strength: 2 })
+    .lean()
+    .exec();
 
   if (duplicate) {
     return res.status(409).json({ message: 'Duplicate username' });
@@ -58,7 +61,9 @@ const updateUser = asyncHandler(async (req, res) => {
     !roles.length ||
     typeof active !== 'boolean'
   ) {
-    return res.status(400).json({ message: 'All fields except password are required' });
+    return res
+      .status(400)
+      .json({ message: 'All fields except password are required' });
   }
 
   const user = await User.findById(id).exec();
@@ -67,7 +72,10 @@ const updateUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: 'User not found' });
   }
 
-  const duplicate = await User.findOne({ username }).lean().exec();
+  const duplicate = await User.findOne({ username })
+    .collation({ locale: 'de-AT', strength: 2 })
+    .lean()
+    .exec();
 
   if (duplicate && duplicate?._id.toString() !== id) {
     return res.status(409).json({ message: 'Duplicate username' });
