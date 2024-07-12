@@ -1,7 +1,6 @@
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import asyncHandler from 'express-async-handler';
 import { CONFIG } from '../config/common/constants.js';
 
 export function createAccessToken(user) {
@@ -23,9 +22,9 @@ export function createRefreshToken(username) {
   });
 }
 
-export const verifyToken = asyncHandler(async (token, secret, callback) => {
+export const verifyToken = async (token, secret, callback) => {
   jwt.verify(token, secret, callback);
-});
+};
 
 export async function findActiveUserByUsername(username) {
   const user = await User.findOne({ username }).exec();

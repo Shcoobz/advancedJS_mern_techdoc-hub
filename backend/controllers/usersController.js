@@ -1,6 +1,5 @@
 import User from '../models/User.js';
 import Note from '../models/Note.js';
-import asyncHandler from 'express-async-handler';
 import {
   sendSpecificFieldsRequired,
   sendUserAllFieldsRequired,
@@ -23,18 +22,18 @@ import {
 // @desc Get all users
 // @route GET /users
 // @access Private
-const getAllUsers = asyncHandler(async (req, res) => {
+const getAllUsers = async (req, res) => {
   const users = await User.find().select('-password').lean();
 
   if (!users?.length) return sendUserNotFound(res);
 
   res.json(users);
-});
+};
 
 // @desc Create new user
 // @route POST /users
 // @access Private
-const createNewUser = asyncHandler(async (req, res) => {
+const createNewUser = async (req, res) => {
   const { username, password, roles } = req.body;
   if (!username || !password) return sendUserAllFieldsRequired(res);
 
@@ -52,12 +51,12 @@ const createNewUser = asyncHandler(async (req, res) => {
   } else {
     return sendUserInvalidData(res);
   }
-});
+};
 
 // @desc Update a user
 // @route PATCH /users
 // @access Private
-const updateUser = asyncHandler(async (req, res) => {
+const updateUser = async (req, res) => {
   const { id, username, roles, active, password } = req.body;
 
   if (!isUserValid({ id, username, roles, active }))
@@ -79,12 +78,12 @@ const updateUser = asyncHandler(async (req, res) => {
   const updatedUser = await user.save();
 
   sendUserUpdatedResponse(res, updatedUser.username);
-});
+};
 
 // @desc Delete a user
 // @route DELETE /users
 // @access Private
-const deleteUser = asyncHandler(async (req, res) => {
+const deleteUser = async (req, res) => {
   const { id } = req.body;
   if (!id) return sendUserIdRequired(res);
 
@@ -99,6 +98,6 @@ const deleteUser = asyncHandler(async (req, res) => {
   await user.deleteOne();
 
   sendUserDeleted(res, username, userId);
-});
+};
 
 export { getAllUsers, createNewUser, updateUser, deleteUser };

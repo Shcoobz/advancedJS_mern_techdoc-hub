@@ -1,5 +1,4 @@
 import Note from '../models/Note.js';
-import asyncHandler from 'express-async-handler';
 import {
   sendNoteAllFieldsRequired,
   sendNoteNotFound,
@@ -23,18 +22,18 @@ import { sendNoteUpdated } from '../helpers/response/notes.js';
 // @desc Get all notes
 // @route GET /notes
 // @access Private
-const getAllNotes = asyncHandler(async (req, res) => {
+const getAllNotes = async (req, res) => {
   const notes = await findNotes();
   if (!notes?.length) return sendNoteNotFound(res);
 
   const notesWithUser = await enrichNotesWithUsers(notes);
   res.json(notesWithUser);
-});
+};
 
 // @desc Create new note
 // @route POST /notes
 // @access Private
-const createNewNote = asyncHandler(async (req, res) => {
+const createNewNote = async (req, res) => {
   const { user, title, text } = req.body;
   if (!user || !title || !text) return sendNoteAllFieldsRequired(res);
 
@@ -47,12 +46,12 @@ const createNewNote = asyncHandler(async (req, res) => {
   } else {
     return sendNoteCreatedError(res);
   }
-});
+};
 
 // @desc Update a note
 // @route PATCH /notes
 // @access Private
-const updateNote = asyncHandler(async (req, res) => {
+const updateNote = async (req, res) => {
   const { id, user, title, text, completed } = req.body;
   if (!isNoteValid(req.body)) return sendNoteAllFieldsRequired(res);
 
@@ -67,12 +66,12 @@ const updateNote = asyncHandler(async (req, res) => {
   const updatedNote = await note.save();
 
   sendNoteUpdated(res, updatedNote.title);
-});
+};
 
 // @desc Delete a note
 // @route DELETE /notes
 // @access Private
-const deleteNote = asyncHandler(async (req, res) => {
+const deleteNote = async (req, res) => {
   const { id } = req.body;
   if (!id) return sendNoteIdRequired(res);
 
@@ -84,6 +83,6 @@ const deleteNote = asyncHandler(async (req, res) => {
   await note.deleteOne();
 
   sendNoteDeleted(res, noteTitle, noteId);
-});
+};
 
 export { getAllNotes, createNewNote, updateNote, deleteNote };

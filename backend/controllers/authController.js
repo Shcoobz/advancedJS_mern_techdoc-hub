@@ -1,7 +1,5 @@
 import User from '../models/User.js';
-import asyncHandler from 'express-async-handler';
 import { clearJwtCookie, sendTokenResponse } from '../helpers/response/cookie.js';
-
 import {
   sendAuthForbidden,
   sendAuthNoContent,
@@ -18,7 +16,7 @@ import {
 // @desc Login
 // @route POST /auth
 // @access Public
-const login = asyncHandler(async (req, res) => {
+const login = async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return sendBadRequestForMissingFields(res);
 
@@ -32,7 +30,7 @@ const login = asyncHandler(async (req, res) => {
   const refreshToken = createRefreshToken(foundUser.username);
 
   sendTokenResponse(res, refreshToken, accessToken);
-});
+};
 
 // @desc Refresh
 // @route GET /auth/refresh
