@@ -13,6 +13,13 @@ export const CONFIG = {
   },
   LOG_FILES: {
     ERROR: 'errLog.log',
+    REQUEST: 'reqLog.log',
+  },
+  PATH: {
+    LOGS_DIR: ['..', '..', 'logs'],
+  },
+  DATE_SETTING: {
+    FORMAT: 'ddMMyyyy\tHH:mm:ss',
   },
 };
 

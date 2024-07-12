@@ -1,22 +1,25 @@
-import { format } from 'date-fns';
-import { v4 as uuid } from 'uuid'; // v4: just random ID
-
 import fs from 'fs';
-import { promises as fsPromises } from 'fs';
 import path from 'path';
 
+import { format } from 'date-fns';
+import { v4 as uuid } from 'uuid'; // v4: just random ID
+import { promises as fsPromises } from 'fs';
+
 import { __dirname } from '../../config/common/utils.js';
+import { CONFIG } from '../../config/common/constants.js';
 
 async function logEvents(message, logFileName) {
-  const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss');
+  const dateTime = format(new Date(), CONFIG.DATE_SETTING.FORMAT);
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
+  const logDirPath = path.join(__dirname, ...CONFIG.PATH.LOGS_DIR);
+
   try {
-    if (!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
-      await fsPromises.mkdir(path.join(__dirname, '..', 'logs'));
+    if (!fs.existsSync(logDirPath)) {
+      await fsPromises.mkdir(logDirPath);
     }
 
-    await fsPromises.appendFile(path.join(__dirname, '..', 'logs', logFileName), logItem);
+    await fsPromises.appendFile(path.join(logDirPath, logFileName), logItem);
   } catch (err) {
     console.log(err);
   }
@@ -25,7 +28,7 @@ async function logEvents(message, logFileName) {
 function logger(req, res, next) {
   // TODO: add conditionals for not logging own url before deployment
 
-  logEvents(`${req.method}\t${req.url}\t${req.headers.origin}`, 'reqLog.log');
+  logEvents(`${req.method}\t${req.url}\t${req.headers.origin}`, CONFIG.LOG_FILES.REQUEST);
   console.log(`${req.method} ${req.path}`);
   next();
 }
