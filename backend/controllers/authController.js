@@ -2,21 +2,21 @@ import User from '../models/User.js';
 import asyncHandler from 'express-async-handler';
 
 import {
-  clearJwtCookie,
-  sendForbiddenResponse,
-  sendNoContentResponse,
-  sendUnauthorizedResponse,
-} from '../helpers/responseHelpers.js';
+  sendAuthForbidden,
+  sendAuthNoContent,
+  sendAuthUnauthorized,
+} from '../helpers/response/auth.js';
 import {
   findActiveUserByUsername,
   validateUserPassword,
-} from '../services/userService.js';
+} from '../services/authService.js';
 import {
   createAccessToken,
   createRefreshToken,
   verifyToken,
 } from '../utils/authUtils.js';
-import { sendTokenResponse } from '../helpers/authHelpers.js';
+
+import { clearJwtCookie, sendTokenResponse } from '../helpers/response/cookie.js';
 
 // @desc Login
 // @route POST /auth
@@ -26,10 +26,10 @@ const login = asyncHandler(async (req, res) => {
   if (!username || !password) return sendBadRequestForMissingFields(res);
 
   const foundUser = await findActiveUserByUsername(username);
-  if (!foundUser || !foundUser.active) return sendUnauthorizedResponse(res);
+  if (!foundUser || !foundUser.active) return sendAuthUnauthorized(res);
 
   const match = await validateUserPassword(password, foundUser.password);
-  if (!match) return sendUnauthorizedResponse(res);
+  if (!match) return sendAuthUnauthorized(res);
 
   const accessToken = createAccessToken(foundUser);
   const refreshToken = createRefreshToken(foundUser.username);
@@ -43,15 +43,15 @@ const login = asyncHandler(async (req, res) => {
 const refresh = (req, res) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return sendUnauthorizedResponse(res);
+  if (!cookies?.jwt) return sendAuthUnauthorized(res);
 
   const refreshToken = cookies.jwt;
 
   verifyToken(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
-    if (err) return sendForbiddenResponse(res);
+    if (err) return sendAuthForbidden(res);
 
     const foundUser = await User.findOne({ username: decoded.username }).exec();
-    if (!foundUser) return sendUnauthorizedResponse(res);
+    if (!foundUser) return sendAuthUnauthorized(res);
 
     const accessToken = createAccessToken(foundUser);
     res.json({ accessToken });
@@ -64,7 +64,7 @@ const refresh = (req, res) => {
 const logout = (req, res) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return sendNoContentResponse(res);
+  if (!cookies?.jwt) return sendAuthNoContent(res);
 
   clearJwtCookie(res);
 };

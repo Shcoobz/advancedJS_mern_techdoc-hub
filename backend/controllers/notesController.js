@@ -1,24 +1,31 @@
 import Note from '../models/Note.js';
-import User from '../models/User.js';
+import { MSG } from '../config/common/constants.js';
 import asyncHandler from 'express-async-handler';
+import {
+  sendNoteAllFieldsRequired,
+  sendNoteNotFound,
+  sendNoteDuplicateTitle,
+  sendNoteCreatedSuccess,
+  sendNoteCreatedError,
+  sendNoteIdRequired,
+  sendNoteDeleted,
+} from '../helpers/response/note.js';
+import {
+  enrichNotesWithUsers,
+  findNoteByTitle,
+  findNotes,
+  isNoteValid,
+  updateNoteFields,
+} from '../services/noteService.js';
 
 // @desc Get all notes
 // @route GET /notes
 // @access Private
 const getAllNotes = asyncHandler(async (req, res) => {
-  const notes = await Note.find().lean();
+  const notes = await findNotes();
+  if (!notes?.length) return sendNoteNotFound(res);
 
-  if (!notes?.length) {
-    return res.status(400).json({ message: 'No notes found' });
-  }
-
-  const notesWithUser = await Promise.all(
-    notes.map(async (note) => {
-      const user = await User.findById(note.user).lean().exec();
-      return { ...note, username: user.username };
-    })
-  );
-
+  const notesWithUser = await enrichNotesWithUsers(notes);
   res.json(notesWithUser);
 });
 
@@ -27,26 +34,16 @@ const getAllNotes = asyncHandler(async (req, res) => {
 // @access Private
 const createNewNote = asyncHandler(async (req, res) => {
   const { user, title, text } = req.body;
+  if (!user || !title || !text) return sendNoteAllFieldsRequired(res);
 
-  if (!user || !title || !text) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
-
-  const duplicate = await Note.findOne({ title })
-    .collation({ locale: 'de_AT', strength: 2 })
-    .lean()
-    .exec();
-
-  if (duplicate) {
-    return res.status(409).json({ message: 'Duplicate note title' });
-  }
+  const duplicate = await findNoteByTitle(title);
+  if (duplicate) return sendNoteDuplicateTitle(res);
 
   const note = await Note.create({ user, title, text });
-
   if (note) {
-    return res.status(201).json({ message: 'New note created' });
+    return sendNoteCreatedSuccess(res);
   } else {
-    return res.status(400).json({ message: 'Invalid note data received' });
+    return sendNoteCreatedError(res);
   }
 });
 
@@ -55,34 +52,18 @@ const createNewNote = asyncHandler(async (req, res) => {
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
   const { id, user, title, text, completed } = req.body;
-
-  if (!id || !user || !title || !text || typeof completed !== 'boolean') {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
+  if (!isNoteValid(req.body)) return sendNoteAllFieldsRequired(res);
 
   const note = await Note.findById(id).exec();
+  if (!note) return sendNoteNotFound(res);
 
-  if (!note) {
-    return res.status(400).json({ message: 'Note not found' });
-  }
+  const duplicate = await findNoteByTitle(title);
+  if (duplicate && duplicate?._id.toString() !== id) return sendNoteDuplicateTitle(res);
 
-  const duplicate = await Note.findOne({ title })
-    .collation({ locale: 'de_AT', strength: 2 })
-    .lean()
-    .exec();
-
-  if (duplicate && duplicate?._id.toString() !== id) {
-    return res.status(409).json({ message: 'Duplicate note title' });
-  }
-
-  note.user = user;
-  note.title = title;
-  note.text = text;
-  note.completed = completed;
+  updateNoteFields(note, { user, title, text, completed });
 
   const updatedNote = await note.save();
-
-  res.json(`'${updatedNote.title}' updated`);
+  res.json(MSG.NOTE.SUCCESS.UPDATED(updatedNote.title));
 });
 
 // @desc Delete a note
@@ -90,25 +71,14 @@ const updateNote = asyncHandler(async (req, res) => {
 // @access Private
 const deleteNote = asyncHandler(async (req, res) => {
   const { id } = req.body;
-
-  if (!id) {
-    return res.status(400).json({ message: 'Note ID required' });
-  }
+  if (!id) return sendNoteIdRequired(res);
 
   const note = await Note.findById(id).exec();
-
-  if (!note) {
-    return res.status(400).json({ message: 'Note not found' });
-  }
-
-  const noteTitle = note.title;
-  const noteId = note._id;
+  if (!note) return sendNoteNotFound(res);
 
   await note.deleteOne();
 
-  const reply = `Note '${noteTitle}' with ID ${noteId} deleted`;
-
-  res.json(reply);
+  sendNoteDeleted(res, note);
 });
 
 export { getAllNotes, createNewNote, updateNote, deleteNote };

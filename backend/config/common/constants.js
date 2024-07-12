@@ -4,6 +4,10 @@ export const CONFIG = {
     REFRESH: { EXPIRES_IN: '7d' },
     BEARER: { PREFIX: 'Bearer ' },
   },
+  LOCALE_SETTINGS: {
+    DEFAULT_LOCALE: 'de_AT',
+    DEFAULT_STRENGTH: 2,
+  },
 };
 
 // TODO: find better name
@@ -80,7 +84,7 @@ export const MSG = {
       ALL_FIELDS_REQUIRED: 'All fields are required',
       DUPLICATE_TITLE: 'Duplicate note title',
       INVALID_DATA: 'Invalid note data received',
-      NOTE_ID_REQUIRED: 'Note ID required',
+      ID_REQUIRED: 'Note ID required',
     },
     SUCCESS: {
       UPDATED: (title) => `'${title}' updated`,
