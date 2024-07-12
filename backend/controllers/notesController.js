@@ -1,5 +1,4 @@
 import Note from '../models/Note.js';
-import { MSG } from '../config/common/constants.js';
 import asyncHandler from 'express-async-handler';
 import {
   sendNoteAllFieldsRequired,
@@ -9,7 +8,7 @@ import {
   sendNoteCreatedError,
   sendNoteIdRequired,
   sendNoteDeleted,
-} from '../helpers/response/note.js';
+} from '../helpers/response/notes.js';
 import {
   enrichNotesWithUsers,
   findNoteByTitle,
@@ -17,6 +16,7 @@ import {
   isNoteValid,
   updateNoteFields,
 } from '../services/noteService.js';
+import { sendNoteUpdated } from '../helpers/response/note.js';
 
 // @desc Get all notes
 // @route GET /notes
@@ -63,7 +63,8 @@ const updateNote = asyncHandler(async (req, res) => {
   updateNoteFields(note, { user, title, text, completed });
 
   const updatedNote = await note.save();
-  res.json(MSG.NOTE.SUCCESS.UPDATED(updatedNote.title));
+
+  sendNoteUpdated(res, updatedNote.title);
 });
 
 // @desc Delete a note

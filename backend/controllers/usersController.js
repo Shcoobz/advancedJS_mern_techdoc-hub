@@ -2,6 +2,24 @@ import User from '../models/User.js';
 import Note from '../models/Note.js';
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcrypt';
+import { CONFIG, HTTP_STATUS_CODES, MSG } from '../config/common/constants.js';
+import {
+  sendSpecificFieldsRequired,
+  sendUserAllFieldsRequired,
+  sendUserCreated,
+  sendUserDeleted,
+  sendUserDuplicateUsername,
+  sendUserHasAssignedNotes,
+  sendUserIdRequired,
+  sendUserInvalidData,
+  sendUserNotFound,
+} from '../helpers/response/user.js';
+import {
+  createUserObject,
+  findUserById,
+  findUserByName,
+  hashPassword,
+} from '../services/userService.js';
 
 // @desc Get all users
 // @route GET /users
@@ -9,9 +27,7 @@ import bcrypt from 'bcrypt';
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find().select('-password').lean();
 
-  if (!users?.length) {
-    return res.status(400).json({ message: 'No users found' });
-  }
+  if (!users?.length) return sendUserNotFound(res);
 
   res.json(users);
 });
@@ -21,33 +37,21 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @access Private
 const createNewUser = asyncHandler(async (req, res) => {
   const { username, password, roles } = req.body;
+  if (!username || !password) return sendUserAllFieldsRequired(res);
 
-  if (!username || !password) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
+  const duplicate = await findUserByName(username);
+  if (duplicate) return sendUserDuplicateUsername(res);
 
-  const duplicate = await User.findOne({ username })
-    .collation({ locale: 'de_AT', strength: 2 })
-    .lean()
-    .exec();
+  const hashedPwd = await hashPassword(password);
 
-  if (duplicate) {
-    return res.status(409).json({ message: 'Duplicate username' });
-  }
+  const userObject = createUserObject(username, hashedPwd, roles);
 
-  const hashedPwd = await bcrypt.hash(password, 10); // salt rounds
+  const newUser = await User.create(userObject);
 
-  const userObject =
-    !Array.isArray(roles) || !roles.length
-      ? { username, password: hashedPwd }
-      : { username, password: hashedPwd, roles };
-
-  const user = await User.create(userObject);
-
-  if (user) {
-    res.status(201).json({ message: `New user ${username} created` });
+  if (newUser) {
+    return sendUserCreated(res, newUser.username);
   } else {
-    res.status(400).json({ message: 'Invalid user data received' });
+    return sendUserInvalidData(res);
   }
 });
 
@@ -57,43 +61,25 @@ const createNewUser = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const { id, username, roles, active, password } = req.body;
 
-  if (
-    !id ||
-    !username ||
-    !Array.isArray(roles) ||
-    !roles.length ||
-    typeof active !== 'boolean'
-  ) {
-    return res.status(400).json({ message: 'All fields except password are required' });
-  }
+  if (!isUserValid({ id, username, roles, active }))
+    return sendSpecificFieldsRequired(res);
 
   const user = await User.findById(id).exec();
 
-  if (!user) {
-    return res.status(400).json({ message: 'User not found' });
-  }
+  if (!user) return sendUserNotFound(res);
 
-  const duplicate = await User.findOne({ username })
-    .collation({ locale: 'de_AT', strength: 2 })
-    .lean()
-    .exec();
+  const duplicate = await findUserByName(username);
 
-  if (duplicate && duplicate?._id.toString() !== id) {
-    return res.status(409).json({ message: 'Duplicate username' });
-  }
+  if (duplicate && duplicate?._id.toString() !== id)
+    return sendUserDuplicateUsername(res);
 
-  user.username = username;
-  user.roles = roles;
-  user.active = active;
+  updateUser(user, { username, roles, active });
 
-  if (password) {
-    // Hash password
-    user.password = await bcrypt.hash(password, 10); // salt rounds
-  }
+  if (password) user.password = await hashPassword(password);
 
   const updatedUser = await user.save();
 
-  res.json({ message: `${updatedUser.username} updated` });
+  sendUserUpdatedResponse(res, updatedUser.username);
 });
 
 // @desc Delete a user
@@ -101,31 +87,17 @@ const updateUser = asyncHandler(async (req, res) => {
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.body;
-
-  if (!id) {
-    return res.status(400).json({ message: 'User ID Required' });
-  }
+  if (!id) return sendUserIdRequired(res);
 
   const note = await Note.findOne({ user: id }).lean().exec();
+  if (note) return sendUserHasAssignedNotes(res);
 
-  if (note) {
-    return res.status(400).json({ message: 'User has assigned notes' });
-  }
-
-  const user = await User.findById(id).exec();
-
-  if (!user) {
-    return res.status(400).json({ message: 'User not found' });
-  }
-
-  const username = user.username;
-  const userId = user._id;
+  const user = await findUserById(id);
+  if (!user) return sendUserNotFound(res);
 
   await user.deleteOne();
 
-  const reply = `Username ${username} with ID ${userId} deleted`;
-
-  res.json(reply);
+  sendUserDeleted(res, user);
 });
 
 export { getAllUsers, createNewUser, updateUser, deleteUser };

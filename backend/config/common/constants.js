@@ -8,6 +8,9 @@ export const CONFIG = {
     DEFAULT_LOCALE: 'de_AT',
     DEFAULT_STRENGTH: 2,
   },
+  BCRYPT: {
+    SALT_ROUNDS: 10,
+  },
 };
 
 // TODO: find better name
@@ -61,9 +64,17 @@ export const HTTP_STATUS_CODES = {
 };
 
 export const MSG = {
+  AUTH: {
+    ERROR: {
+      ALL_FIELDS_REQUIRED: 'All fields are required',
+      UNAUTHORIZED: 'Unauthorized',
+      FORBIDDEN: 'Forbidden',
+    },
+  },
   USER: {
     ERROR: {
       ALL_FIELDS_REQUIRED: 'All fields are required',
+      FIELDS_REQUIRED: 'All fields except password are required',
       UNAUTHORIZED: 'Unauthorized',
       FORBIDDEN: 'Forbidden',
       NOT_FOUND: 'No users found',

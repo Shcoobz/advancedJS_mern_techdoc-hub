@@ -44,3 +44,9 @@ export function sendNoteDeleted(res, note) {
     message: MSG.NOTE.ERROR.DELETED(noteTitle, noteId),
   });
 }
+
+export function sendNoteUpdated(res, noteTitle) {
+  return res.json({
+    message: MSG.NOTE.SUCCESS.UPDATED(noteTitle),
+  });
+}
