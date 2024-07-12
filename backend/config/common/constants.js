@@ -11,6 +11,9 @@ export const CONFIG = {
   BCRYPT: {
     SALT_ROUNDS: 10,
   },
+  LOG_FILES: {
+    ERROR: 'errLog.log',
+  },
 };
 
 // TODO: find better name
