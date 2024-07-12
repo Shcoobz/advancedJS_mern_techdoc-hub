@@ -1,18 +1,15 @@
 import rateLimit from 'express-rate-limit';
 import { logEvents } from '../logging/logger.js';
+import { CONFIG, MSG } from '../../config/common/constants.js';
 
 const loginLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 5, // Limit each IP to 5 login requests per `window` per minute
+  windowMs: CONFIG.RATE_LIMIT.LOGIN_RATE,
+  max: CONFIG.RATE_LIMIT.LOGIN_MAX_ATTEMPTS,
   message: {
-    message:
-      'Too many login attempts from this IP, please try again after a 60 second pause',
+    message: MSG.LOG.ERROR.TOO_MANY_ATTEMPTS,
   },
   handler: (req, res, next, options) => {
-    logEvents(
-      `Too Many Requests: ${options.message.message}\t${req.method}\t${req.url}\t${req.headers.origin}`,
-      'errLog.log'
-    );
+    logEvents(MSG.LOG.ERROR.TOO_MANY_REQUESTS(options, req), CONFIG.LOG_FILES.ERROR);
     res.status(options.statusCode).send(options.message);
   },
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers

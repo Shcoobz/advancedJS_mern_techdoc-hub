@@ -21,6 +21,10 @@ export const CONFIG = {
   DATE_SETTING: {
     FORMAT: 'ddMMyyyy\tHH:mm:ss',
   },
+  RATE_LIMIT: {
+    LOGIN_RATE: 60 * 1000,
+    LOGIN_MAX_ATTEMPTS: 5,
+  },
 };
 
 // TODO: find better name
