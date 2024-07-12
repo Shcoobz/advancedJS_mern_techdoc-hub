@@ -6,6 +6,10 @@ export async function findNotes() {
   return Note.find().lean();
 }
 
+export async function findNoteById(id) {
+  return await Note.findById(id).exec();
+}
+
 export async function findUserForNote(userId) {
   const user = await User.findById(userId).lean().exec();
   return user;

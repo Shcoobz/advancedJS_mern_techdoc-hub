@@ -12,6 +12,7 @@ import {
 import {
   enrichNotesWithUsers,
   extractNoteDetails,
+  findNoteById,
   findNoteByTitle,
   findNotes,
   isNoteValid,
@@ -75,7 +76,7 @@ const deleteNote = asyncHandler(async (req, res) => {
   const { id } = req.body;
   if (!id) return sendNoteIdRequired(res);
 
-  const note = await Note.findById(id).exec();
+  const note = await findNoteById(id);
   if (!note) return sendNoteNotFound(res);
 
   const { noteTitle, noteId } = extractNoteDetails(note);
