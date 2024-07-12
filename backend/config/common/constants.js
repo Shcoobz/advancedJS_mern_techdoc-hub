@@ -1,3 +1,10 @@
+export const MONGO_EVENTS = {
+  OPEN: 'open',
+  ERROR: 'error',
+  DISCONNECTED: 'disconnected',
+  RECONNECTED: 'reconnected',
+};
+
 export const INDEX = {
   NOT_FOUND: -1,
   START: 1,
@@ -28,6 +35,12 @@ export const CONTENT_TYPES = {
 };
 
 export const ROUTE = {
+  SERVER: {
+    ROOT: '/',
+    AUTH: '/auth',
+    USERS: '/users',
+    NOTES: '/notes',
+  },
   AUTH: {
     ROOT: '/',
     REFRESH: '/refresh',
@@ -57,11 +70,14 @@ export const CONFIG = {
   LOG_FILES: {
     ERROR: 'errLog.log',
     REQUEST: 'reqLog.log',
+    MONGO_ERROR: 'mongoErrLog.log',
   },
   PATH: {
     LOGS_DIR: ['..', '..', 'logs'],
     VIEWS_DIR: ['..', '..', 'views'],
+    PUBLIC_DIR: ['..', '..', 'public'],
     INDEX_HTML: 'index.html',
+    ERROR_HTML: '404.html',
   },
   DATE_SETTING: {
     FORMAT: 'ddMMyyyy\tHH:mm:ss',
@@ -157,9 +173,28 @@ export const MSG = {
       FORBIDDEN: 'Forbidden',
     },
   },
-  ERROR: {
-    PAGE_NOT_FOUND: '404 Not Found',
-    RESOURCE_NOT_EXIST:
-      '<h1>Sorry!</h1><p>The resource you have requested does not exist.</p>',
+  SERVER: {
+    LOG: {
+      START: (PORT, LOCAL_URL) => `
+    ========================================
+    🚀 Connected to MongoDB!
+    ----------------------------------------
+    🌐 Server running on port ${PORT}.
+    
+    🔗 Visit: ${LOCAL_URL}
+    ========================================
+`,
+      DISCONNECTED: `
+    ========================================
+    ❌ MongoDB Disconnected!
+    ========================================
+`,
+      RECONNECTED: `
+    ========================================
+    🔄 MongoDB Reconnected!
+    ========================================
+`,
+    },
+    NOT_FOUND: '404 Not found',
   },
 };
