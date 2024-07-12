@@ -1,5 +1,6 @@
 import User from '../models/User.js';
 import asyncHandler from 'express-async-handler';
+import { clearJwtCookie, sendTokenResponse } from '../helpers/response/cookie.js';
 
 import {
   sendAuthForbidden,
@@ -9,14 +10,10 @@ import {
 import {
   findActiveUserByUsername,
   validateUserPassword,
-} from '../services/authService.js';
-import {
   createAccessToken,
   createRefreshToken,
   verifyToken,
-} from '../utils/authUtils.js';
-
-import { clearJwtCookie, sendTokenResponse } from '../helpers/response/cookie.js';
+} from '../services/authService.js';
 
 // @desc Login
 // @route POST /auth

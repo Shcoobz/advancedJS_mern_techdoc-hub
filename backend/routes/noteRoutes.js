@@ -6,7 +6,7 @@ import {
   deleteNote,
 } from '../controllers/notesController.js';
 
-import verifyJWT from '../middleware/verifyJWT.js';
+import verifyJWT from '../middleware/security/verifyJWT.js';
 
 const router = express.Router();
 

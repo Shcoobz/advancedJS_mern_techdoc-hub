@@ -16,7 +16,7 @@ import {
   isNoteValid,
   updateNoteFields,
 } from '../services/noteService.js';
-import { sendNoteUpdated } from '../helpers/response/note.js';
+import { sendNoteUpdated } from '../helpers/response/notes.js';
 
 // @desc Get all notes
 // @route GET /notes

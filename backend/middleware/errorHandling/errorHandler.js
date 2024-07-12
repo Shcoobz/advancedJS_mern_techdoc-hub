@@ -1,5 +1,5 @@
-import { CONFIG, HTTP_STATUS_CODES } from '../config/common/constants.js';
-import { logEvents } from './logger.js';
+import { CONFIG, HTTP_STATUS_CODES } from '../../config/common/constants.js';
+import { logEvents } from '../logging/logger.js';
 
 function errorHandler(err, req, res, next) {
   logEvents(

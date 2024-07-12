@@ -13,7 +13,7 @@ import {
   sendUserIdRequired,
   sendUserInvalidData,
   sendUserNotFound,
-} from '../helpers/response/user.js';
+} from '../helpers/response/users.js';
 import {
   createUserObject,
   findUserById,

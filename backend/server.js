@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import path from 'path';
-import { logger, logEvents } from './middleware/logger.js';
-import errorHandler from './middleware/errorHandler.js';
+import { logger, logEvents } from './middleware/logging/logger.js';
+import errorHandler from './middleware/errorHandling/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import corsOptions from './config/security/corsOptions.js';
