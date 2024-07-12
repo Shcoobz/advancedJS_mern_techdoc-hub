@@ -1,21 +1,15 @@
-import jwt from 'jsonwebtoken';
+
+import { CONFIG, INDEX } from '../../config/common/constants.js';
+import { sendSecurityUnauthorized } from '../../helpers/response/verifyJwt.js';
 
 const verifyJWT = (req, res, next) => {
   const authHeader = req.headers.authorization || req.headers.Authorization;
 
-  if (!authHeader?.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
+  if (!authHeader?.startsWith(CONFIG.BEARER.PREFIX)) return sendSecurityUnauthorized(res);
 
-  const token = authHeader.split(' ')[1];
+  const token = authHeader.split(CONFIG.AUTH_HEADER.SEPARATOR)[INDEX.START];
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-    if (err) return res.status(403).json({ message: 'Forbidden' });
-
-    req.user = decoded.UserInfo.username;
-    req.roles = decoded.UserInfo.roles;
-    next();
-  });
+  verifyAccessToken(token, res, req, next);
 };
 
 export default verifyJWT;

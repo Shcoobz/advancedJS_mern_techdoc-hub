@@ -25,11 +25,16 @@ export const CONFIG = {
     LOGIN_RATE: 60 * 1000,
     LOGIN_MAX_ATTEMPTS: 5,
   },
+  BEARER: {
+    PREFIX: 'Bearer ',
+  },
+  AUTH_HEADER: { SEPARATOR: ' ' },
 };
 
 // TODO: find better name
-export const CONSTANTS = {
+export const INDEX = {
   NOT_FOUND: -1,
+  START: 1,
 };
 
 export const COOKIE_NAME = {
@@ -130,6 +135,12 @@ export const MSG = {
   },
   COOKIE: {
     CLEARED: 'Cookie cleared',
+  },
+  SECURITY: {
+    ERROR: {
+      UNAUTHORIZED: 'Unauthorized',
+      FORBIDDEN: 'Forbidden',
+    },
   },
   ERROR: {
     PAGE_NOT_FOUND: '404 Not Found',
