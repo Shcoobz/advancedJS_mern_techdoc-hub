@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setCredentials } from '../../features/auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3500',
+  baseUrl: import.meta.env.VITE_API_BASE_URL,
   credentials: 'include' /* !important: always send cookie */,
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
@@ -16,24 +16,14 @@ const baseQuery = fetchBaseQuery({
 });
 
 async function baseQueryWithReauth(args, api, extraOptions) {
-  /** TODO: remove for deployment */
-  // console.log(args); // request url, method, body
-  // console.log(api); // signal, dispatch, getState()
-  // console.log(extraOptions); //custom like {shout: true}
   let result = await baseQuery(args, api, extraOptions);
 
-  // Could handle other status codes as well
   if (result?.error?.status === 403) {
-    console.log('sending refresh token');
-
-    // send refresh token to get new access token
     const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
 
     if (refreshResult?.data) {
-      // store the new token
       api.dispatch(setCredentials({ ...refreshResult.data }));
 
-      // retry original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
       if (refreshResult?.error?.status === 403) {
@@ -50,5 +40,10 @@ async function baseQueryWithReauth(args, api, extraOptions) {
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['Note', 'User'],
-  endpoints: (builder) => ({}),
+
+  endpoints: (builder) => ({
+    placeholder: builder.query({
+      query: () => '/placeholder',
+    }),
+  }),
 });
