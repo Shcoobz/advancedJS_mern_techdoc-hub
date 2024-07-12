@@ -5,11 +5,11 @@ import { logger, logEvents } from './middleware/logger.js';
 import errorHandler from './middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import corsOptions from './config/corsOptions.js';
-import connectDB from './config/dbConn.js';
+import corsOptions from './config/security/corsOptions.js';
+import connectDB from './config/database/dbConn.js';
 import mongoose from 'mongoose';
 
-import { __dirname } from './config/utils.js';
+import { __dirname } from './config/common/utils.js';
 
 import rootRouter from './routes/root.js';
 import authRouter from './routes/authRoutes.js';

@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 
-import { __dirname } from '../config/utils.js';
+import { __dirname } from '../config/common/utils.js';
 
 const router = express.Router();
 

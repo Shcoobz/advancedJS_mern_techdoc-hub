@@ -9,9 +9,8 @@
     "server": "nodemon backend/server.js",
     "client": "vite --config frontend/vite.config.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "render-start": "npm run build && npm start",
-    "lint": "npm run lint --prefix frontend"
+    "build": "npm install && npm install --prefix frontend && vite build --config frontend/vite.config.js",
+    "render-start": "npm run build && npm start"
   },
   "keywords": [],
   "author": "",

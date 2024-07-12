@@ -5,7 +5,7 @@ import fs from 'fs';
 import { promises as fsPromises } from 'fs';
 import path from 'path';
 
-import { __dirname } from '../config/utils.js';
+import { __dirname } from '../config/common/utils.js';
 
 async function logEvents(message, logFileName) {
   const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss');
