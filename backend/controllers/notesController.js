@@ -11,6 +11,7 @@ import {
 } from '../helpers/response/notes.js';
 import {
   enrichNotesWithUsers,
+  extractNoteDetails,
   findNoteByTitle,
   findNotes,
   isNoteValid,
@@ -77,9 +78,11 @@ const deleteNote = asyncHandler(async (req, res) => {
   const note = await Note.findById(id).exec();
   if (!note) return sendNoteNotFound(res);
 
+  const { noteTitle, noteId } = extractNoteDetails(note);
+
   await note.deleteOne();
 
-  sendNoteDeleted(res, note);
+  sendNoteDeleted(res, noteTitle, noteId);
 });
 
 export { getAllNotes, createNewNote, updateNote, deleteNote };

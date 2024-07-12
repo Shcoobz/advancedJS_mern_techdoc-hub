@@ -1,8 +1,6 @@
 import User from '../models/User.js';
 import Note from '../models/Note.js';
 import asyncHandler from 'express-async-handler';
-import bcrypt from 'bcrypt';
-import { CONFIG, HTTP_STATUS_CODES, MSG } from '../config/common/constants.js';
 import {
   sendSpecificFieldsRequired,
   sendUserAllFieldsRequired,
@@ -16,6 +14,7 @@ import {
 } from '../helpers/response/users.js';
 import {
   createUserObject,
+  extractUserDetails,
   findUserById,
   findUserByName,
   hashPassword,
@@ -95,9 +94,11 @@ const deleteUser = asyncHandler(async (req, res) => {
   const user = await findUserById(id);
   if (!user) return sendUserNotFound(res);
 
+  const { username, userId } = extractUserDetails(user);
+
   await user.deleteOne();
 
-  sendUserDeleted(res, user);
+  sendUserDeleted(res, username, userId);
 });
 
 export { getAllUsers, createNewUser, updateUser, deleteUser };

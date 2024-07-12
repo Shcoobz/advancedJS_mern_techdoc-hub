@@ -1,5 +1,4 @@
 import { HTTP_STATUS_CODES, MSG } from '../../config/common/constants.js';
-import { extractNoteDetails } from '../../services/noteService.js';
 
 export function sendNoteNotFound(res) {
   return res
@@ -37,11 +36,9 @@ export function sendNoteIdRequired(res) {
     .json({ message: MSG.NOTE.ERROR.ID_REQUIRED });
 }
 
-export function sendNoteDeleted(res, note) {
-  const { noteTitle, noteId } = extractNoteDetails(note);
-
-  res.status(HTTP_STATUS_CODES.CLIENT.SUCCESS.OK).json({
-    message: MSG.NOTE.ERROR.DELETED(noteTitle, noteId),
+export function sendNoteDeleted(res, noteTitle, noteId) {
+  return res.status(HTTP_STATUS_CODES.CLIENT.SUCCESS.OK).json({
+    message: MSG.NOTE.SUCCESS.DELETED(noteTitle, noteId),
   });
 }
 

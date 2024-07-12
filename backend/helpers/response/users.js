@@ -53,9 +53,7 @@ export function sendUserHasAssignedNotes(res) {
     .json({ message: MSG.USER.ERROR.HAS_ASSIGNED_NOTES });
 }
 
-export function sendUserDeleted(res, user) {
-  const { username, userId } = extractUserDetails(user);
-
+export function sendUserDeleted(res, username, userId) {
   res.status(HTTP_STATUS_CODES.CLIENT.SUCCESS.OK).json({
     message: MSG.USER.SUCCESS.DELETED(username, userId),
   });
