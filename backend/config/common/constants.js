@@ -1,37 +1,3 @@
-export const CONFIG = {
-  TOKEN: {
-    ACCESS: { EXPIRES_IN: '15m' },
-    REFRESH: { EXPIRES_IN: '7d' },
-    BEARER: { PREFIX: 'Bearer ' },
-  },
-  LOCALE_SETTINGS: {
-    DEFAULT_LOCALE: 'de_AT',
-    DEFAULT_STRENGTH: 2,
-  },
-  BCRYPT: {
-    SALT_ROUNDS: 10,
-  },
-  LOG_FILES: {
-    ERROR: 'errLog.log',
-    REQUEST: 'reqLog.log',
-  },
-  PATH: {
-    LOGS_DIR: ['..', '..', 'logs'],
-  },
-  DATE_SETTING: {
-    FORMAT: 'ddMMyyyy\tHH:mm:ss',
-  },
-  RATE_LIMIT: {
-    LOGIN_RATE: 60 * 1000,
-    LOGIN_MAX_ATTEMPTS: 5,
-  },
-  BEARER: {
-    PREFIX: 'Bearer ',
-  },
-  AUTH_HEADER: { SEPARATOR: ' ' },
-};
-
-// TODO: find better name
 export const INDEX = {
   NOT_FOUND: -1,
   START: 1,
@@ -59,6 +25,55 @@ export const CONTENT_TYPES = {
   HTML: 'html',
   JSON: 'json',
   TEXT: 'txt',
+};
+
+export const ROUTE = {
+  AUTH: {
+    ROOT: '/',
+    REFRESH: '/refresh',
+    LOGOUT: '/logout',
+  },
+  NOTE: {
+    ROOT: '/',
+  },
+  USER: {
+    ROOT: '/',
+  },
+};
+
+export const CONFIG = {
+  TOKEN: {
+    ACCESS: { EXPIRES_IN: '15m' },
+    REFRESH: { EXPIRES_IN: '7d' },
+    BEARER: { PREFIX: 'Bearer ' },
+  },
+  LOCALE_SETTINGS: {
+    DEFAULT_LOCALE: 'de_AT',
+    DEFAULT_STRENGTH: 2,
+  },
+  BCRYPT: {
+    SALT_ROUNDS: 10,
+  },
+  LOG_FILES: {
+    ERROR: 'errLog.log',
+    REQUEST: 'reqLog.log',
+  },
+  PATH: {
+    LOGS_DIR: ['..', '..', 'logs'],
+    VIEWS_DIR: ['..', '..', 'views'],
+    INDEX_HTML: 'index.html',
+  },
+  DATE_SETTING: {
+    FORMAT: 'ddMMyyyy\tHH:mm:ss',
+  },
+  RATE_LIMIT: {
+    LOGIN_RATE: 60 * 1000,
+    LOGIN_MAX_ATTEMPTS: 5,
+  },
+  BEARER: {
+    PREFIX: 'Bearer ',
+  },
+  AUTH_HEADER: { SEPARATOR: ' ' },
 };
 
 export const HTTP_STATUS_CODES = {

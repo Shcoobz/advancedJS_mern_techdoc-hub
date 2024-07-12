@@ -1,4 +1,6 @@
 import express from 'express';
+import verifyJWT from '../middleware/security/verifyJWT.js';
+import { ROUTE } from '../config/common/constants.js';
 import {
   getAllNotes,
   createNewNote,
@@ -6,14 +8,12 @@ import {
   deleteNote,
 } from '../controllers/notesController.js';
 
-import verifyJWT from '../middleware/security/verifyJWT.js';
-
 const router = express.Router();
 
 router.use(verifyJWT);
 
 router
-  .route('/')
+  .route(ROUTE.NOTE.ROOT)
   .get(getAllNotes)
   .post(createNewNote)
   .patch(updateNote)
