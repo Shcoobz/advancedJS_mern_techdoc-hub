@@ -1,24 +1,22 @@
 import { defineConfig } from 'vite';
+import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  root: __dirname, // Set the root to the frontend directory
+  root: __dirname,
   plugins: [react()],
   resolve: {
     alias: {
-      // Assuming your source code is within `frontend/src`
-      '@': path.resolve(__dirname, 'frontend/src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   server: {
     proxy: {
-      // setup proxy here if your backend and frontend are served on different ports
       '/api': {
-        target: 'http://localhost:3500',
+        target: import.meta.env.VITE_API_BASE_URL,
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),
@@ -26,7 +24,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: path.join(__dirname, 'dist'), // Output directory for production build
-    emptyOutDir: true, // Optionally clear the output directory on build
+    outDir: path.join(__dirname, 'dist'),
+    emptyOutDir: true,
   },
 });

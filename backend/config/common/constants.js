@@ -40,6 +40,7 @@ export const ROUTE = {
     AUTH: '/auth',
     USERS: '/users',
     NOTES: '/notes',
+    WILDCARD: '*',
   },
   AUTH: {
     ROOT: '/',
@@ -55,6 +56,8 @@ export const ROUTE = {
 };
 
 export const CONFIG = {
+  PORT: process.env.PORT || 3500,
+  HTTP_LOCALHOST: process.env.HTTP_LOCALHOST,
   TOKEN: {
     ACCESS: { EXPIRES_IN: '15m' },
     REFRESH: { EXPIRES_IN: '7d' },
@@ -76,6 +79,7 @@ export const CONFIG = {
     LOGS_DIR: ['..', '..', 'logs'],
     VIEWS_DIR: ['..', '..', 'views'],
     PUBLIC_DIR: ['..', '..', 'public'],
+    FRONTEND_DIR: ['..', '..', 'frontend', 'dist'],
     INDEX_HTML: 'index.html',
     ERROR_HTML: '404.html',
   },
@@ -98,6 +102,7 @@ export const HTTP_STATUS_CODES = {
       BAD_REQUEST: 400,
       UNAUTHORIZED: 401,
       FORBIDDEN: 403,
+      NOT_FOUND: 404,
       CONFLICT: 409,
     },
     SUCCESS: {
