@@ -15,8 +15,8 @@ import NewNote from './features/notes/NewNote';
 import Prefetch from './features/auth/Prefetch';
 import PersistLogin from './features/auth/PersistLogin';
 import RequireAuth from './features/auth/RequireAuth';
-import { ROLES } from './config/roles';
 import useTitle from './hooks/useTitle';
+import { CONFIG } from './config/constants.js';
 
 function App() {
   useTitle('[Company Name]');
@@ -30,13 +30,18 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
+          <Route
+            element={<RequireAuth allowedRoles={[...Object.values(CONFIG.ROLES)]} />}>
             <Route element={<Prefetch />}>
               <Route path='dash' element={<DashLayout />}>
                 <Route index element={<Welcome />} />
 
                 <Route
-                  element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
+                  element={
+                    <RequireAuth
+                      allowedRoles={[CONFIG.ROLES.Manager, CONFIG.ROLES.Admin]}
+                    />
+                  }>
                   <Route path='users'>
                     <Route index element={<UsersList />} />
                     <Route path=':id' element={<EditUser />} />

@@ -5,6 +5,11 @@ export const CONFIG = {
     getAuthScheme: (token) => `Bearer ${token}`,
   },
   TAG_TYPES: ['Note', 'User'],
+  ROLES: {
+    Employee: 'Employee',
+    Manager: 'Manager',
+    Admin: 'Admin',
+  },
 };
 
 export const ROUTE = {
