@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { CONFIG, HTTP_STATUS_CODES, ROUTE } from '../../config/constants';
+import { CONFIG, HTTP_STATUS_CODES, PATH } from '../../config/constants.js';
 import {
   getToken,
   prepareRequestHeaders,
   refreshToken,
-} from '../../../service/tokenService';
+} from '../../service/tokenService.js';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
@@ -38,7 +38,7 @@ export const apiSlice = createApi({
 
   endpoints: (builder) => ({
     placeholder: builder.query({
-      query: () => ROUTE.PLACEHOLDER,
+      query: () => PATH.PLACEHOLDER,
     }),
   }),
 });

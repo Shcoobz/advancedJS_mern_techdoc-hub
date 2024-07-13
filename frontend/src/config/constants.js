@@ -1,7 +1,7 @@
 export const CONFIG = {
   CREDENTIALS: 'include' /* !important: always send cookie */,
   HEADER: {
-    NAME: 'authorization',
+    name: 'authorization',
     getAuthScheme: (token) => `Bearer ${token}`,
   },
   TAG_TYPES: ['Note', 'User'],
@@ -12,10 +12,18 @@ export const CONFIG = {
   },
 };
 
-export const ROUTE = {
+export const UI_TEXT = {
+  currentUser: 'Current User: ',
+  status: 'Status: ',
+};
+
+export const PATH = {
   PLACEHOLDER: '/placeholder',
   AUTH: {
     REFRESH: '/auth/refresh',
+  },
+  DASH: {
+    ROOT: '/dash',
   },
   NOTE: {},
   USER: {},
