@@ -1,37 +1,32 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setCredentials } from '../../features/auth/authSlice';
+import { CONFIG, HTTP_STATUS_CODES, ROUTE } from '../../config/constants';
+import {
+  getToken,
+  prepareRequestHeaders,
+  refreshToken,
+} from '../../../service/tokenService';
 
-const baseQuery = fetchBaseQuery({
+export const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
-  credentials: 'include' /* !important: always send cookie */,
+  credentials: CONFIG.CREDENTIALS,
   prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
+    const token = getToken(getState());
 
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`);
-    }
-
-    return headers;
+    return prepareRequestHeaders(headers, token);
   },
 });
 
 async function baseQueryWithReauth(args, api, extraOptions) {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 403) {
-    const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
+  if (result?.error?.status === HTTP_STATUS_CODES.CLIENT.ERROR.FORBIDDEN) {
+    const refreshResult = await refreshToken(api, extraOptions);
 
-    if (refreshResult?.data) {
-      api.dispatch(setCredentials({ ...refreshResult.data }));
-
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      if (refreshResult?.error?.status === 403) {
-        refreshResult.error.data.message = 'Your login has expired.';
-      }
-
-      return refreshResult;
+    if (!refreshResult) {
+      return await baseQuery(args, api, extraOptions);
     }
+
+    return refreshResult;
   }
 
   return result;
@@ -39,11 +34,11 @@ async function baseQueryWithReauth(args, api, extraOptions) {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Note', 'User'],
+  tagTypes: CONFIG.TAG_TYPES,
 
   endpoints: (builder) => ({
     placeholder: builder.query({
-      query: () => '/placeholder',
+      query: () => ROUTE.PLACEHOLDER,
     }),
   }),
 });
