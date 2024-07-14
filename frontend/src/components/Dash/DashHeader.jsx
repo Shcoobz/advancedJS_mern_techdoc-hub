@@ -22,7 +22,7 @@ function DashHeader() {
 
   const renderedButtons = getButtonsConfig(pathname, navigate, isManager, isAdmin);
 
-  const errClass = isError ? CLASS_NAME.ErrorMsg : CLASS_NAME.offscreen;
+  const errClass = isError ? CLASS_NAME.errorMsg : CLASS_NAME.offscreen;
   const logoutButton = <LogoutButton onClick={sendLogout} />;
 
   const buttonsAndLogout = (

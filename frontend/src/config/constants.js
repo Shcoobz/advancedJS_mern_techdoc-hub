@@ -1,6 +1,7 @@
 export const CONFIG = {
   credentials: 'include' /* !important: always send cookie */,
   tagTypes: ['Note', 'User'],
+  emptyString: '',
   TIMEOUT: {
     apiReset: 1000,
   },
@@ -28,10 +29,11 @@ export const REGEX = {
   dash: /^\/dash(\/)?$/,
   notes: /^\/dash\/notes(\/)?$/,
   users: /^\/dash\/users(\/)?$/,
+  emptyString: '',
 };
 
 export const CLASS_NAME = {
-  ErrorMsg: 'errmsg',
+  errorMsg: 'errmsg',
   offscreen: 'offscreen',
 };
 
@@ -103,12 +105,27 @@ export const MSG = {
     },
     SUCCESS: {},
   },
-  SERVER: {},
+  SERVER: {
+    noResponse: 'No Server Response',
+    missingData: 'Missing Username or Password',
+    unauthorized: 'Unauthorized',
+    unknownError: 'Something went terribly wrong! No idea, to be honest :O',
+  },
+};
+
+export const FORM_FIELDS = {
+  LOGIN: {
+    username: 'Username:',
+    password: 'Password:',
+    button: 'Sign In!',
+    trustDevice: 'Remember Me!',
+  },
 };
 
 export const UI = {
   PUBLIC: {
     login: 'Employee Login',
+    backHome: 'Back to Home',
     COMPANY: {
       HEADER: {
         name: '[ Company Name ]!',

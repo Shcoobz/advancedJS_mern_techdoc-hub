@@ -1,33 +1,32 @@
 import { useRef, useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import { setCredentials } from '../state/authSlice';
-import { useLoginMutation } from '../api/authApiSlice.js';
-import PulseLoader from 'react-spinners/PulseLoader';
+import { useLoginMutation } from '../api/authApiSlice';
+import { CLASS_NAME, PATH, REGEX } from '../../../config/constants';
 
-import usePersist from '../../../hooks/usePersist.js';
+import useFormData from '../../../hooks/useFormData';
+import getErrorMessage from '../utils/handleLoginErr';
+import Spinner from '../../../components/common/Spinner';
+import LoginUI from './LoginUI';
 
 function Login() {
+  const { username, password, persist, handleUserInput, handlePwdInput, handleToggle } =
+    useFormData();
+  const [errMsg, setErrMsg] = useState(REGEX.emptyString);
+  const [login, { isLoading }] = useLoginMutation();
   const userRef = useRef();
   const errRef = useRef();
-
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-  const [persist, setPersist] = usePersist();
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [login, { isLoading }] = useLoginMutation();
+  const errClass = errMsg ? CLASS_NAME.errorMsg : CLASS_NAME.offscreen;
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
   useEffect(() => {
-    setErrMsg('');
+    setErrMsg(REGEX.emptyString);
   }, [username, password]);
 
   async function handleSubmit(e) {
@@ -37,91 +36,31 @@ function Login() {
       const { accessToken } = await login({ username, password }).unwrap();
 
       dispatch(setCredentials({ accessToken }));
-      setUsername('');
-      setPassword('');
-      navigate('/dash');
+      navigate(PATH.DASH.baseUrl);
     } catch (err) {
-      if (!err.status) {
-        setErrMsg('No Server Response');
-      } else if (err.status === 400) {
-        setErrMsg('Missing Username or Password');
-      } else if (err.status === 401) {
-        setErrMsg('Unauthorized');
-      } else {
-        setErrMsg(err.data?.message);
-      }
+      const message = getErrorMessage(err);
 
+      setErrMsg(message);
       errRef.current.focus();
     }
   }
 
-  function handleUserInput(e) {
-    return setUsername(e.target.value);
-  }
-
-  function handlePwdInput(e) {
-    return setPassword(e.target.value);
-  }
-
-  function handleToggle() {
-    return setPersist((prev) => !prev);
-  }
-
-  const errClass = errMsg ? 'errmsg' : 'offscreen';
-
-  if (isLoading) return <PulseLoader color={'#FFF'} />;
+  if (isLoading) return <Spinner />;
 
   const content = (
-    <section className='public'>
-      <header>
-        <h1>Employee Login</h1>
-      </header>
-      <main className='login'>
-        <p ref={errRef} className={errClass} aria-live='assertive'>
-          {errMsg}
-        </p>
-
-        <form className='form' onSubmit={handleSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input
-            className='form__input'
-            type='text'
-            id='username'
-            ref={userRef}
-            value={username}
-            onChange={handleUserInput}
-            autoComplete='off'
-            required
-          />
-
-          <label htmlFor='password'>Password:</label>
-          <input
-            className='form__input'
-            type='password'
-            id='password'
-            onChange={handlePwdInput}
-            value={password}
-            required
-          />
-
-          <button className='form__submit-button'>Sign In</button>
-
-          <label htmlFor='persist' className='form__persist'>
-            <input
-              type='checkbox'
-              className='form__checkbox'
-              id='persist'
-              onChange={handleToggle}
-              checked={persist}
-            />
-            Trust This Device
-          </label>
-        </form>
-      </main>
-      <footer>
-        <Link to='/'>Back to Home</Link>
-      </footer>
-    </section>
+    <LoginUI
+      username={username}
+      password={password}
+      errMsg={errMsg}
+      errRef={errRef}
+      userRef={userRef}
+      errClass={errClass}
+      persist={persist}
+      handleUserInput={handleUserInput}
+      handlePwdInput={handlePwdInput}
+      handleToggle={handleToggle}
+      handleSubmit={handleSubmit}
+    />
   );
 
   return content;

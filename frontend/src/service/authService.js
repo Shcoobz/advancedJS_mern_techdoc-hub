@@ -6,14 +6,14 @@ export async function handleQueryError(queryFulfilled, dispatch, successCallback
   try {
     const { data } = await queryFulfilled;
     if (successCallback) {
-      successCallback(data);
+      successCallback(data, dispatch);
     }
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function handleLogoutQueryStarted({ dispatch, queryFulfilled }) {
+export async function handleLogoutQueryStarted(arg, { dispatch, queryFulfilled }) {
   await handleQueryError(queryFulfilled, dispatch, () => {
     dispatch(logOut());
     setTimeout(() => {
@@ -22,7 +22,7 @@ export async function handleLogoutQueryStarted({ dispatch, queryFulfilled }) {
   });
 }
 
-export async function handleRefreshQueryStarted({ dispatch, queryFulfilled }) {
+export async function handleRefreshQueryStarted(arg, { dispatch, queryFulfilled }) {
   await handleQueryError(queryFulfilled, dispatch, (data) => {
     const { accessToken } = data;
     dispatch(setCredentials({ accessToken }));
