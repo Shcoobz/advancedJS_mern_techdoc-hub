@@ -12,13 +12,28 @@ export const CONFIG = {
   },
 };
 
+export const LOADER_COLOR = '#FFF';
+
 export const UI_TEXT = {
   currentUser: 'Current User: ',
   status: 'Status: ',
+  headerTitle: 'Tech Documentation',
+};
+
+export const REGEX = {
+  dash: /^\/dash(\/)?$/,
+  notes: /^\/dash\/notes(\/)?$/,
+  users: /^\/dash\/users(\/)?$/,
+};
+
+export const CLASS_NAME = {
+  ErrorMsg: 'errmsg',
+  offscreen: 'offscreen',
 };
 
 export const PATH = {
   PLACEHOLDER: '/placeholder',
+  ROOT: '/',
   AUTH: {
     REFRESH: '/auth/refresh',
   },
