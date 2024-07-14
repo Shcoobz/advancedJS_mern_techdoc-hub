@@ -8,7 +8,7 @@ import {
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
-  credentials: CONFIG.CREDENTIALS,
+  credentials: CONFIG.credentials,
   prepareHeaders: (headers, { getState }) => {
     const token = getToken(getState());
 
@@ -19,7 +19,7 @@ export const baseQuery = fetchBaseQuery({
 async function baseQueryWithReauth(args, api, extraOptions) {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === HTTP_STATUS_CODES.CLIENT.ERROR.FORBIDDEN) {
+  if (result?.error?.status === HTTP_STATUS_CODES.CLIENT.ERROR.forbidden) {
     const refreshResult = await refreshToken(api, extraOptions);
 
     if (!refreshResult) {
@@ -34,11 +34,11 @@ async function baseQueryWithReauth(args, api, extraOptions) {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: CONFIG.TAG_TYPES,
+  tagTypes: CONFIG.tagTypes,
 
   endpoints: (builder) => ({
     placeholder: builder.query({
-      query: () => PATH.PLACEHOLDER,
+      query: () => PATH.placeholder,
     }),
   }),
 });

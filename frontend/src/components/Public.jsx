@@ -61,7 +61,7 @@ function Public() {
       {headerContent}
       {mainContent}
       <footer>
-        <Link to={PATH.LOGIN}>{UI.PUBLIC.LOGIN}</Link>
+        <Link to={PATH.login}>{UI.PUBLIC.login}</Link>
       </footer>
     </section>
   );

@@ -4,17 +4,17 @@ import Layout from './components/Layout';
 import Public from './components/Public';
 import DashLayout from './components/Dash/DashLayout';
 
-import Login from './features/auth/Login';
-import Welcome from './features/auth/Welcome';
+import Login from './features/auth/components/Login.jsx';
+import Welcome from './features/auth/components/Welcome.jsx';
 import NotesList from './features/notes/NotesList';
 import UsersList from './features/users/UsersList';
 import EditUser from './features/users/EditUser';
 import NewUserForm from './features/users/NewUserForm';
 import EditNote from './features/notes/EditNote';
 import NewNote from './features/notes/NewNote';
-import Prefetch from './features/auth/Prefetch';
-import PersistLogin from './features/auth/PersistLogin';
-import RequireAuth from './features/auth/RequireAuth';
+import Prefetch from './features/auth/utils/Prefetch';
+import PersistLogin from './features/auth/state/PersistLogin.jsx';
+import RequireAuth from './features/auth/components/RequireAuth';
 import useTitle from './hooks/useTitle';
 import { CONFIG } from './config/constants.js';
 

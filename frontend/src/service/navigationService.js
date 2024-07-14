@@ -11,7 +11,7 @@ export function goToRoot(navigate) {
 }
 
 export function goHome(navigate) {
-  return navigateTo(navigate, PATH.DASH.ROOT);
+  return navigateTo(navigate, PATH.DASH.baseUrl);
 }
 
 export function goToNewNotePage(navigate) {

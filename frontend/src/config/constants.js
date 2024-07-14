@@ -1,14 +1,24 @@
 export const CONFIG = {
-  CREDENTIALS: 'include' /* !important: always send cookie */,
+  credentials: 'include' /* !important: always send cookie */,
+  tagTypes: ['Note', 'User'],
+  TIMEOUT: {
+    apiReset: 1000,
+  },
   HEADER: {
     name: 'authorization',
     getAuthScheme: (token) => `Bearer ${token}`,
   },
-  TAG_TYPES: ['Note', 'User'],
   ROLES: {
     Employee: 'Employee',
     Manager: 'Manager',
     Admin: 'Admin',
+  },
+  HTTP_METHODS: {
+    post: 'POST',
+    get: 'GET',
+    put: 'PUT',
+    delete: 'DELETE',
+    patch: 'PATCH',
   },
 };
 
@@ -26,14 +36,16 @@ export const CLASS_NAME = {
 };
 
 export const PATH = {
-  PLACEHOLDER: '/placeholder',
-  ROOT: '/',
-  LOGIN: '/login',
+  placeholder: '/placeholder',
+  root: '/',
+  login: '/login',
   AUTH: {
-    REFRESH: '/auth/refresh',
+    baseUrl: '/auth',
+    refresh: '/auth/refresh',
+    logout: '/auth/logout',
   },
   DASH: {
-    ROOT: '/dash',
+    baseUrl: '/dash',
   },
   NOTE: {},
   USER: {},
@@ -42,21 +54,21 @@ export const PATH = {
 export const HTTP_STATUS_CODES = {
   CLIENT: {
     ERROR: {
-      BAD_REQUEST: 400,
-      UNAUTHORIZED: 401,
-      FORBIDDEN: 403,
-      NOT_FOUND: 404,
-      CONFLICT: 409,
+      badRequest: 400,
+      unauthorized: 401,
+      forbidden: 403,
+      notFound: 404,
+      conflict: 409,
     },
     SUCCESS: {
-      OK: 200,
-      CREATED: 201,
-      NO_CONTENT: 204,
+      ok: 200,
+      created: 201,
+      noContent: 204,
     },
   },
   SERVER: {
     ERROR: {
-      INTERNAL: 500,
+      internal: 500,
     },
   },
 };
@@ -64,30 +76,30 @@ export const HTTP_STATUS_CODES = {
 export const MSG = {
   API: {
     ERROR: {
-      LOGIN_EXPIRED: 'Your login has expired.',
+      loginExpired: 'Your login has expired.',
     },
   },
   USER: {
     ERROR: {
-      ALL_FIELDS_REQUIRED: 'All fields are required',
-      FIELDS_REQUIRED: 'All fields except password are required',
-      UNAUTHORIZED: 'Unauthorized',
-      FORBIDDEN: 'Forbidden',
-      NOT_FOUND: 'No users found',
-      DUPLICATE_USERNAME: 'Duplicate username',
-      INVALID_DATA: 'Invalid user data received',
-      ID_REQUIRED: 'User ID Required',
-      HAS_ASSIGNED_NOTES: 'User has assigned notes',
+      allFieldsRequired: 'All fields are required',
+      fieldsRequired: 'All fields except password are required',
+      unauthorized: 'Unauthorized',
+      forbidden: 'Forbidden',
+      notFound: 'No users found',
+      duplicateUsername: 'Duplicate username',
+      invalidData: 'Invalid user data received',
+      idRequired: 'User ID Required',
+      hasAssignedNotes: 'User has assigned notes',
     },
     SUCCESS: {},
   },
   NOTE: {
     ERROR: {
-      NOT_FOUND: 'No notes found',
-      ALL_FIELDS_REQUIRED: 'All fields are required',
-      DUPLICATE_TITLE: 'Duplicate note title',
-      INVALID_DATA: 'Invalid note data received',
-      ID_REQUIRED: 'Note ID required',
+      notFound: 'No notes found',
+      allFieldsRequired: 'All fields are required',
+      duplicateTitle: 'Duplicate note title',
+      invalidData: 'Invalid note data received',
+      idRequired: 'Note ID required',
     },
     SUCCESS: {},
   },
@@ -96,6 +108,7 @@ export const MSG = {
 
 export const UI = {
   PUBLIC: {
+    login: 'Employee Login',
     COMPANY: {
       HEADER: {
         name: '[ Company Name ]!',
@@ -138,7 +151,6 @@ export const UI = {
       nulla laboris anim sit mollit eiusmod ex velit commodo et ex minim. Dolor Lorem
       est amet pariatur quis do exercitation.`,
     },
-    LOGIN: 'Employee Login',
   },
   DASH: {
     currentUser: 'Current User: ',

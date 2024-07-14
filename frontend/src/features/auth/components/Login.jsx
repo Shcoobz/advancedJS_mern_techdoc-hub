@@ -2,11 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { setCredentials } from './authSlice';
-import { useLoginMutation } from './authApiSlice';
+import { setCredentials } from '../state/authSlice';
+import { useLoginMutation } from '../api/authApiSlice.js';
 import PulseLoader from 'react-spinners/PulseLoader';
 
-import usePersist from '../../hooks/usePersist';
+import usePersist from '../../../hooks/usePersist.js';
 
 function Login() {
   const userRef = useRef();

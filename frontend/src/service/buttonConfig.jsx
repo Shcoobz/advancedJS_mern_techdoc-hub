@@ -28,12 +28,12 @@ export function getButtonsConfig(pathname, navigate, isManager, isAdmin) {
     {
       key: 'user',
       condition: isManager || isAdmin,
-      subCondition: !REGEX.users.test(pathname) && pathname.includes(PATH.DASH.ROOT),
+      subCondition: !REGEX.users.test(pathname) && pathname.includes(PATH.DASH.baseUrl),
       element: <UserButton onClick={goToUsersPage(navigate)} />,
     },
     {
       key: 'notes',
-      condition: !REGEX.notes.test(pathname) && pathname.includes(PATH.DASH.ROOT),
+      condition: !REGEX.notes.test(pathname) && pathname.includes(PATH.DASH.baseUrl),
       element: <NotesButton onClick={goToNotesPage(navigate)} />,
     },
   ];

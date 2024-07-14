@@ -1,6 +1,6 @@
 import { baseQuery } from '../app/api/apiSlice';
 import { CONFIG, HTTP_STATUS_CODES, MSG, PATH } from '../config/constants';
-import { setCredentials } from '../features/auth/authSlice';
+import { setCredentials } from '../features/auth/state/authSlice';
 
 export const getToken = (state) => state.auth.token;
 
@@ -13,7 +13,7 @@ export const prepareRequestHeaders = (headers, token) => {
 };
 
 export async function refreshToken(api, extraOptions) {
-  const refreshResult = await baseQuery(PATH.AUTH.REFRESH, api, extraOptions);
+  const refreshResult = await baseQuery(PATH.AUTH.refresh, api, extraOptions);
   if (refreshResult?.data) {
     api.dispatch(setCredentials({ ...refreshResult.data }));
 

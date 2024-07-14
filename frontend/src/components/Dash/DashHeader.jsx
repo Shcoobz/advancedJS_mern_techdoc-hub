@@ -1,6 +1,6 @@
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 
-import { useSendLogoutMutation } from '../../features/auth/authApiSlice.js';
+import { useSendLogoutMutation } from '../../features/auth/api/authApiSlice.js';
 import { LogoutButton } from '../common/Buttons.jsx';
 import { getDashClass, useLogoutEffect } from '../../service/utils.js';
 import { getButtonsConfig } from '../../service/buttonConfig.jsx';
@@ -40,7 +40,7 @@ function DashHeader() {
 
       <header className='dash-header'>
         <div className={`dash-header__container ${dashClass}`}>
-          <Link to={PATH.DASH.ROOT}>
+          <Link to={PATH.DASH.baseUrl}>
             <h1 className='dash-header__title'>{UI.DASH.headerTitle}</h1>
           </Link>
           <nav className='dash-header__nav'>{buttonContent}</nav>

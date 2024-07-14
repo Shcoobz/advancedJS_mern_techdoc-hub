@@ -11,7 +11,7 @@ function DashFooter() {
 
   let goHomeButton = null;
 
-  if (pathname !== PATH.DASH.ROOT) {
+  if (pathname !== PATH.DASH.baseUrl) {
     goHomeButton = <HomeButton onClick={goHome(navigate)} />;
   }
 

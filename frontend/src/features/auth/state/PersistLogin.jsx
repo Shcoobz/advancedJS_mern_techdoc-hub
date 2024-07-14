@@ -1,12 +1,12 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-import { selectCurrentToken } from './authSlice';
-import { useRefreshMutation } from './authApiSlice';
 import PulseLoader from 'react-spinners/PulseLoader';
 
-import usePersist from '../../hooks/usePersist';
+import { selectCurrentToken } from './authSlice.js';
+import { useRefreshMutation } from '../api/authApiSlice.js';
+
+import usePersist from '../../../hooks/usePersist.js';
 
 function PersistLogin() {
   const [persist] = usePersist();
