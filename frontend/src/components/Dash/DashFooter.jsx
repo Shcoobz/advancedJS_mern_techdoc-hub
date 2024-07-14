@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { PATH, UI_TEXT } from '../../config/constants';
+import { PATH, UI } from '../../config/constants';
 import { HomeButton } from '../common/Buttons';
 import { goHome } from '../../service/navigationService';
 import useAuth from '../../hooks/useAuth';
@@ -19,10 +19,10 @@ function DashFooter() {
     <footer className='dash-footer'>
       {goHomeButton}
       <p>
-        {UI_TEXT.currentUser} {username}
+        {UI.DASH.currentUser} {username}
       </p>
       <p>
-        {UI_TEXT.status} {status}
+        {UI.DASH.status} {status}
       </p>
     </footer>
   );

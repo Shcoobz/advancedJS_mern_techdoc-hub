@@ -4,7 +4,7 @@ import { useSendLogoutMutation } from '../../features/auth/authApiSlice.js';
 import { LogoutButton } from '../common/Buttons.jsx';
 import { getDashClass, useLogoutEffect } from '../../service/utils.js';
 import { getButtonsConfig } from '../../service/buttonConfig.jsx';
-import { CLASS_NAME, PATH, UI_TEXT } from '../../config/constants.js';
+import { CLASS_NAME, PATH, UI } from '../../config/constants.js';
 
 import useAuth from '../../hooks/useAuth.js';
 import Spinner from '../common/Spinner.jsx';
@@ -41,7 +41,7 @@ function DashHeader() {
       <header className='dash-header'>
         <div className={`dash-header__container ${dashClass}`}>
           <Link to={PATH.DASH.ROOT}>
-            <h1 className='dash-header__title'>{UI_TEXT.headerTitle}</h1>
+            <h1 className='dash-header__title'>{UI.DASH.headerTitle}</h1>
           </Link>
           <nav className='dash-header__nav'>{buttonContent}</nav>
         </div>
