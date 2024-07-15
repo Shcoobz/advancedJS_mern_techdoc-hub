@@ -1,6 +1,9 @@
 export const CONFIG = {
   credentials: 'include' /* !important: always send cookie */,
   tagTypes: ['Note', 'User'],
+  SLICE: {
+    name: 'auth',
+  },
   DATE: {
     locale: 'de-AT',
     dateStyle: 'full',
