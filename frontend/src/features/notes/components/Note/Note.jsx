@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetNotesQuery } from './notesApiSlice';
+import { useGetNotesQuery } from '../../api/notesApiSlice';
 import { memo } from 'react';
 
 function Note({ noteId }) {

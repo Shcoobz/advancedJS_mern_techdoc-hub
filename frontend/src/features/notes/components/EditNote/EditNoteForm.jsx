@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useUpdateNoteMutation, useDeleteNoteMutation } from './notesApiSlice';
+import { useUpdateNoteMutation, useDeleteNoteMutation } from '../../api/notesApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../../hooks/useAuth';
 
 function EditNoteForm({ note, users }) {
   const { isManager, isAdmin } = useAuth();
 
-  const [updateNote, { isLoading, isSuccess, isError, error }] =
-    useUpdateNoteMutation();
+  const [updateNote, { isLoading, isSuccess, isError, error }] = useUpdateNoteMutation();
 
-  const [
-    deleteNote,
-    { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
-  ] = useDeleteNoteMutation();
+  const [deleteNote, { isSuccess: isDelSuccess, isError: isDelError, error: delerror }] =
+    useDeleteNoteMutation();
 
   const navigate = useNavigate();
 
@@ -97,10 +94,7 @@ function EditNoteForm({ note, users }) {
   let deleteButton = null;
   if (isManager || isAdmin) {
     deleteButton = (
-      <button
-        className='icon-button'
-        title='Delete'
-        onClick={onDeleteNoteClicked}>
+      <button className='icon-button' title='Delete' onClick={onDeleteNoteClicked}>
         <FontAwesomeIcon icon={faTrashCan} />
       </button>
     );

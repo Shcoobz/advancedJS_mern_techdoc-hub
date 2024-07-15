@@ -1,6 +1,6 @@
-import { useGetUsersQuery } from '../users/usersApiSlice';
+import { useGetUsersQuery } from '../../../users/usersApiSlice';
 import PulseLoader from 'react-spinners/PulseLoader';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../../hooks/useAuth';
 
 import NewNoteForm from './NewNoteForm';
 

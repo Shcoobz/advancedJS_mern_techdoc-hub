@@ -1,9 +1,8 @@
 import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
-import { apiSlice } from '../../app/api/apiSlice';
+import { apiSlice } from '../../../app/api/apiSlice';
 
 const notesAdapter = createEntityAdapter({
-  sortComparer: (a, b) =>
-    a.completed === b.completed ? 0 : a.completed ? 1 : -1,
+  sortComparer: (a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1),
 });
 
 const initialState = notesAdapter.getInitialState();
@@ -88,6 +87,4 @@ export const {
   selectById: selectNoteById,
   selectIds: selectNoteIds,
   // Pass in a selector that returns the notes slice of state
-} = notesAdapter.getSelectors(
-  (state) => selectNotesData(state) ?? initialState
-);
+} = notesAdapter.getSelectors((state) => selectNotesData(state) ?? initialState);

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useGetNotesQuery } from './notesApiSlice';
-import { useGetUsersQuery } from '../users/usersApiSlice';
-import useAuth from '../../hooks/useAuth';
+import { useGetNotesQuery } from '../../api/notesApiSlice';
+import { useGetUsersQuery } from '../../../users/usersApiSlice';
+import useAuth from '../../../../hooks/useAuth';
 import PulseLoader from 'react-spinners/PulseLoader';
 
 import EditNoteForm from './EditNoteForm';
