@@ -1,25 +1,22 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import PulseLoader from 'react-spinners/PulseLoader';
-
 import { selectCurrentToken } from './authSlice.js';
 import { useRefreshMutation } from '../api/authApiSlice.js';
-
+import { CONFIG, PATH, UI } from '../../../config/constants.js';
 import usePersist from '../../../hooks/usePersist.js';
+import Spinner from '../../../components/common/Spinner.jsx';
 
 function PersistLogin() {
   const [persist] = usePersist();
+  const [trueSuccess, setTrueSuccess] = useState(false);
+  const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
+    useRefreshMutation();
   const token = useSelector(selectCurrentToken);
   const effectRan = useRef(false);
 
-  const [trueSuccess, setTrueSuccess] = useState(false);
-
-  const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
-    useRefreshMutation();
-
   useEffect(() => {
-    if (effectRan.current === true || import.meta.env.VITE_NODE_ENV !== 'development') {
+    if (effectRan.current === true || import.meta.env.VITE_NODE_ENV !== CONFIG.NODE.env) {
       // React 18 Strict Mode
       verifyRefreshToken();
 
@@ -32,11 +29,8 @@ function PersistLogin() {
   }, []);
 
   async function verifyRefreshToken() {
-    console.log('PersistLogin: verifying refresh token');
     try {
-      //const response =
       await refresh();
-      //const { accessToken } = response.data
       setTrueSuccess(true); // extra time for setting credentials
     } catch (err) {
       console.error(err);
@@ -44,7 +38,6 @@ function PersistLogin() {
   }
 
   function cleanup() {
-    console.log('PersistLogin: cleanup');
     effectRan.current = true;
   }
 
@@ -55,24 +48,20 @@ function PersistLogin() {
     content = <Outlet />;
   } else if (isLoading) {
     //persist: yes, token: no
-    content = <PulseLoader color={'#FFF'} />;
+    content = <Spinner />;
   } else if (isError) {
     //persist: yes, token: no
-    console.log('error');
-
     content = (
       <p className='errmsg'>
         {`${error?.data?.message} - `}
-        <Link to='/login'>Please login again</Link>.
+        <Link to={PATH.login}>{UI.PUBLIC.loginAgain}</Link>.
       </p>
     );
   } else if (isSuccess && trueSuccess) {
     //persist: yes, token: yes
-    console.log('PersistLogin: success');
     content = <Outlet />;
   } else if (token && isUninitialized) {
     //persist: yes, token: yes
-    console.log('PersistLogin: token and uninit');
     console.log(isUninitialized);
     content = <Outlet />;
   }

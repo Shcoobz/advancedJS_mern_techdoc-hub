@@ -4,6 +4,9 @@ export const CONFIG = {
   SLICE: {
     name: 'auth',
   },
+  NODE: {
+    env: 'development',
+  },
   DATE: {
     locale: 'de-AT',
     dateStyle: 'full',
@@ -147,6 +150,7 @@ export const FORM_FIELDS = {
 export const UI = {
   PUBLIC: {
     login: 'Employee Login',
+    loginAgain: 'Please login again!',
     backHome: 'Back to Home',
     COMPANY: {
       HEADER: {
