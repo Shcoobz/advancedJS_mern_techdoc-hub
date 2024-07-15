@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { REGEX } from '../config/constants';
+import { REPLACEMENT } from '../config/constants';
 
 function useFormData(
-  initialUsername = REGEX.emptyString,
-  initialPassword = REGEX.emptyString,
+  initialUsername = REPLACEMENT.emptyString,
+  initialPassword = REPLACEMENT.emptyString,
   initialPersist = false
 ) {
   const [username, setUsername] = useState(initialUsername);

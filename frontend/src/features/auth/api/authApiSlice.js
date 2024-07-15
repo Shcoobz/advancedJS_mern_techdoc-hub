@@ -4,7 +4,6 @@ import {
   handleLogoutQueryStarted,
   handleRefreshQueryStarted,
 } from '../../../service/authService.js';
-import { logOut, setCredentials } from '../state/authSlice.js';
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

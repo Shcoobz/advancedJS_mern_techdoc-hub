@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../state/authSlice';
 import { useLoginMutation } from '../api/authApiSlice';
-import { CLASS_NAME, PATH, REGEX } from '../../../config/constants';
+import { CLASS_NAME, PATH, REPLACEMENT } from '../../../config/constants';
 
 import useFormData from '../../../hooks/useFormData';
 import getErrorMessage from '../utils/handleLoginErr';
@@ -13,7 +13,7 @@ import LoginUI from './LoginUI';
 function Login() {
   const { username, password, persist, handleUserInput, handlePwdInput, handleToggle } =
     useFormData();
-  const [errMsg, setErrMsg] = useState(REGEX.emptyString);
+  const [errMsg, setErrMsg] = useState(REPLACEMENT.emptyString);
   const [login, { isLoading }] = useLoginMutation();
   const userRef = useRef();
   const errRef = useRef();
@@ -26,7 +26,7 @@ function Login() {
   }, []);
 
   useEffect(() => {
-    setErrMsg(REGEX.emptyString);
+    setErrMsg(REPLACEMENT.emptyString);
   }, [username, password]);
 
   async function handleSubmit(e) {

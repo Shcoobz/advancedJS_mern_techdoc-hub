@@ -1,7 +1,11 @@
 export const CONFIG = {
   credentials: 'include' /* !important: always send cookie */,
   tagTypes: ['Note', 'User'],
-  emptyString: '',
+  DATE: {
+    locale: 'de-AT',
+    dateStyle: 'full',
+    timeStyle: 'long',
+  },
   TIMEOUT: {
     apiReset: 1000,
   },
@@ -29,12 +33,21 @@ export const REGEX = {
   dash: /^\/dash(\/)?$/,
   notes: /^\/dash\/notes(\/)?$/,
   users: /^\/dash\/users(\/)?$/,
-  emptyString: '',
+  removePeriodSpace: /\.\s/g,
+};
+
+export const INDEX = {
+  emptyArrayLength: 0,
 };
 
 export const CLASS_NAME = {
   errorMsg: 'errmsg',
   offscreen: 'offscreen',
+};
+
+export const REPLACEMENT = {
+  emptyString: '',
+  singleSpace: ' ',
 };
 
 export const PATH = {
@@ -48,9 +61,15 @@ export const PATH = {
   },
   DASH: {
     baseUrl: '/dash',
+    NOTE: {
+      overview: '/dash/notes',
+      new: '/dash/notes/new',
+    },
+    USER: {
+      overview: '/dash/users',
+      new: '/dash/users/new',
+    },
   },
-  NOTE: {},
-  USER: {},
 };
 
 export const HTTP_STATUS_CODES = {
@@ -173,5 +192,12 @@ export const UI = {
     currentUser: 'Current User: ',
     status: 'Status: ',
     headerTitle: 'Tech Documentation',
+    greeting: 'Welcome {username}!',
+    LINK: {
+      viewNotes: 'View Notes List',
+      addNewNote: 'Add New Note',
+      viewUsers: 'View Users List',
+      addNewUser: 'Add New User',
+    },
   },
 };
