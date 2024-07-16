@@ -1,6 +1,12 @@
 export const CONFIG = {
   credentials: 'include' /* !important: always send cookie */,
   tagTypes: ['Note', 'User'],
+  TAG_TYPE: {
+    NOTE: {
+      type: 'Note',
+      id: 'LIST',
+    },
+  },
   SLICE: {
     name: 'auth',
   },
@@ -78,6 +84,7 @@ export const PATH = {
     NOTE: {
       overview: '/dash/notes',
       new: '/dash/notes/new',
+      notes: '/notes',
     },
     USER: {
       overview: '/dash/users',
