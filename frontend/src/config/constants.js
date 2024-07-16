@@ -60,6 +60,7 @@ export const REGEX = {
 
 export const INDEX = {
   emptyArrayLength: 0,
+  first: 0,
 };
 
 export const CLASS_NAME = {
@@ -230,6 +231,7 @@ export const UI = {
     NOTE: {
       LABEL: {
         ticketTitle: 'Edit Note #${note.ticket}',
+        newTitle: 'New Note',
         title: 'Title:',
         text: 'Text: ',
         workComplete: 'WORK COMPLETE: ',

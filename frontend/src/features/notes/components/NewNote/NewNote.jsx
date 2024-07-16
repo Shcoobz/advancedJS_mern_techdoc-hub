@@ -1,22 +1,22 @@
 import { useGetUsersQuery } from '../../../users/usersApiSlice';
-import PulseLoader from 'react-spinners/PulseLoader';
 import useAuth from '../../../../hooks/useAuth';
-
+import Spinner from '../../../../components/common/Spinner';
 import NewNoteForm from './NewNoteForm';
+import { CLASS_NAME, CONFIG, UI } from '../../../../config/constants';
 
 function NewNote() {
   const { status } = useAuth();
 
-  const { users } = useGetUsersQuery('usersList', {
+  const { users } = useGetUsersQuery(CONFIG.CACHE_KEY.usersList, {
     selectFromResult: ({ data }) => ({
       users: data?.ids.map((id) => data?.entities[id]),
     }),
   });
 
-  if (!users?.length) return <PulseLoader color={'#FFF'} />;
+  if (!users?.length) return <Spinner />;
 
   if (!status) {
-    return <p className='errmsg'>No access</p>;
+    return <p className={CLASS_NAME.errorMsg}>{UI.PUBLIC.noAccess}</p>;
   }
 
   const content = <NewNoteForm users={users} />;

@@ -18,10 +18,16 @@ export async function onDeleteNoteClicked(deleteNote, noteId) {
   await deleteNote({ id: noteId });
 }
 
-export async function onSaveNoteClicked(updateNote, canSave, noteDetails) {
+export async function onSaveNoteClicked(action, canSave, noteDetails) {
   const { id, userId, title, text, completed } = noteDetails;
 
   if (canSave) {
-    await updateNote({ id, user: userId, title, text, completed });
+    if (id) {
+      // Update
+      await action({ id, user: userId, title, text, completed });
+    } else {
+      // Add new
+      await action({ user: userId, title, text });
+    }
   }
 }

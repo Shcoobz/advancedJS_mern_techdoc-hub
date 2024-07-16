@@ -42,9 +42,6 @@ function EditNoteForm({ note, users }) {
     REPLACEMENT.emptyString
   );
 
-  const saveNoteHandler = (e) => onSaveNoteClicked(updateNote, canSave, noteDetails);
-  const deleteNoteHandler = (e) => onDeleteNoteClicked(deleteNote, note.id);
-
   let deleteButton = null;
 
   useEffect(() => {
@@ -55,6 +52,15 @@ function EditNoteForm({ note, users }) {
       navigate(PATH.DASH.NOTE.overview);
     }
   }, [isSuccess, isDelSuccess, navigate]);
+
+  async function saveNoteHandler(e) {
+    e.preventDefault();
+    await onSaveNoteClicked(updateNote, canSave, noteDetails);
+  }
+
+  async function deleteNoteHandler(e) {
+    return onDeleteNoteClicked(deleteNote, note.id);
+  }
 
   if (isManager || isAdmin) {
     deleteButton = <DeleteButton onClick={deleteNoteHandler} />;
