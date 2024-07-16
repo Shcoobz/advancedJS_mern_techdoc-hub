@@ -19,17 +19,25 @@ export const CONFIG = {
     name: 'authorization',
     getAuthScheme: (token) => `Bearer ${token}`,
   },
-  ROLES: {
+  ROLE: {
     Employee: 'Employee',
     Manager: 'Manager',
     Admin: 'Admin',
   },
-  HTTP_METHODS: {
+  HTTP_METHOD: {
     post: 'POST',
     get: 'GET',
     put: 'PUT',
     delete: 'DELETE',
     patch: 'PATCH',
+  },
+  API_METHOD: {
+    getNotes: 'getNotes',
+    getUsers: 'getUsers',
+  },
+  CACHE_KEY: {
+    notesList: 'notesList',
+    usersList: 'usersList',
   },
 };
 
@@ -200,6 +208,7 @@ export const UI = {
     status: 'Status: ',
     headerTitle: 'Tech Documentation',
     greeting: 'Welcome {username}!',
+    templateUsername: '{username}',
     LINK: {
       viewNotes: 'View Notes List',
       addNewNote: 'Add New Note',

@@ -10,7 +10,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     login: builder.mutation({
       query: (credentials) => ({
         url: PATH.AUTH.baseUrl,
-        method: CONFIG.HTTP_METHODS.post,
+        method: CONFIG.HTTP_METHOD.post,
         body: { ...credentials },
       }),
     }),
@@ -18,7 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     sendLogout: builder.mutation({
       query: () => ({
         url: PATH.AUTH.logout,
-        method: CONFIG.HTTP_METHODS.post,
+        method: CONFIG.HTTP_METHOD.post,
       }),
       onQueryStarted: handleLogoutQueryStarted,
     }),
@@ -26,7 +26,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     refresh: builder.mutation({
       query: () => ({
         url: PATH.AUTH.refresh,
-        method: CONFIG.HTTP_METHODS.get,
+        method: CONFIG.HTTP_METHOD.get,
       }),
 
       onQueryStarted: handleRefreshQueryStarted,

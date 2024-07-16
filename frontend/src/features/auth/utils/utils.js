@@ -1,4 +1,4 @@
-import { CONFIG, REGEX, REPLACEMENT } from '../../../config/constants';
+import { CONFIG, REGEX, REPLACEMENT, UI } from '../../../config/constants';
 
 export function formatDate(date) {
   return new Intl.DateTimeFormat(CONFIG.DATE.locale, {
@@ -10,5 +10,5 @@ export function formatDate(date) {
 }
 
 export function replaceUsername(template, username) {
-  return template.replace('{username}', username);
+  return template.replace(UI.DASH.templateUsername, username);
 }

@@ -30,8 +30,7 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
-          <Route
-            element={<RequireAuth allowedRoles={[...Object.values(CONFIG.ROLES)]} />}>
+          <Route element={<RequireAuth allowedRoles={[...Object.values(CONFIG.ROLE)]} />}>
             <Route element={<Prefetch />}>
               <Route path='dash' element={<DashLayout />}>
                 <Route index element={<Welcome />} />
@@ -39,7 +38,7 @@ function App() {
                 <Route
                   element={
                     <RequireAuth
-                      allowedRoles={[CONFIG.ROLES.Manager, CONFIG.ROLES.Admin]}
+                      allowedRoles={[CONFIG.ROLE.Manager, CONFIG.ROLE.Admin]}
                     />
                   }>
                   <Route path='users'>

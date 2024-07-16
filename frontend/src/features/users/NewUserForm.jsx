@@ -64,7 +64,7 @@ function NewUserForm() {
     }
   }
 
-  const options = Object.values(CONFIG.ROLES).map((role) => {
+  const options = Object.values(CONFIG.ROLE).map((role) => {
     const option = (
       <option key={role} value={role}>
         {role}
