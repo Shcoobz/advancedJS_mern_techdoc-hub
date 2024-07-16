@@ -17,6 +17,8 @@ export const CONFIG = {
     locale: 'de-AT',
     dateStyle: 'full',
     timeStyle: 'long',
+    numeric: 'numeric',
+    long: 'long',
   },
   TIMEOUT: {
     apiReset: 1000,
@@ -63,6 +65,7 @@ export const INDEX = {
 export const CLASS_NAME = {
   errorMsg: 'errmsg',
   offscreen: 'offscreen',
+  formInputIncomplete: 'form__input--incomplete',
 };
 
 export const REPLACEMENT = {
@@ -167,6 +170,7 @@ export const UI = {
     login: 'Employee Login',
     loginAgain: 'Please login again!',
     backHome: 'Back to Home',
+    noAccess: 'No access!',
     COMPANY: {
       HEADER: {
         name: '[ Company Name ]!',
@@ -221,6 +225,17 @@ export const UI = {
       addNewNote: 'Add New Note',
       viewUsers: 'View Users List',
       addNewUser: 'Add New User',
+    },
+    NOTE: {
+      LABEL: {
+        ticketTitle: 'Edit Note #${note.ticket}',
+        title: 'Title:',
+        text: 'Text: ',
+        workComplete: 'WORK COMPLETE: ',
+        assignedTo: 'ASSIGNED TO: ',
+        created: 'Created: ',
+        updated: 'Updated: ',
+      },
     },
   },
 };

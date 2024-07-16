@@ -6,6 +6,8 @@ import {
   faUserGear,
   faFilePen,
   faRightFromBracket,
+  faTrashCan,
+  faSave,
 } from '@fortawesome/free-solid-svg-icons';
 
 export function HomeButton({ onClick }) {
@@ -52,6 +54,22 @@ export function LogoutButton({ onClick }) {
   return (
     <button className='icon-button' title='Logout' onClick={onClick}>
       <FontAwesomeIcon icon={faRightFromBracket} />
+    </button>
+  );
+}
+
+export function DeleteButton({ onClick }) {
+  return (
+    <button className='icon-button' title='Delete' onClick={onClick}>
+      <FontAwesomeIcon icon={faTrashCan} />
+    </button>
+  );
+}
+
+export function SaveButton({ onClick, disabled }) {
+  return (
+    <button className='icon-button' title='Save' onClick={onClick} disabled={disabled}>
+      <FontAwesomeIcon icon={faSave} />
     </button>
   );
 }

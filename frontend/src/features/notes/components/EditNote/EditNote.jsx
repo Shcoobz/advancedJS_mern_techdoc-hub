@@ -1,33 +1,32 @@
 import { useParams } from 'react-router-dom';
 import { useGetNotesQuery } from '../../api/notesApiSlice';
 import { useGetUsersQuery } from '../../../users/usersApiSlice';
+import { CLASS_NAME, CONFIG, UI } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
-import PulseLoader from 'react-spinners/PulseLoader';
-
+import Spinner from '../../../../components/common/Spinner';
 import EditNoteForm from './EditNoteForm';
 
 function EditNote() {
   const { id } = useParams();
-
   const { username, isManager, isAdmin } = useAuth();
 
-  const { note } = useGetNotesQuery('notesList', {
+  const { note } = useGetNotesQuery(CONFIG.CACHE_KEY.notesList, {
     selectFromResult: ({ data }) => ({
       note: data?.entities[id],
     }),
   });
 
-  const { users } = useGetUsersQuery('usersList', {
+  const { users } = useGetUsersQuery(CONFIG.CACHE_KEY.usersList, {
     selectFromResult: ({ data }) => ({
       users: data?.ids.map((id) => data?.entities[id]),
     }),
   });
 
-  if (!note || !users?.length) return <PulseLoader color={'#FFF'} />;
+  if (!note || !users?.length) return <Spinner />;
 
   if (!isManager && !isAdmin) {
     if (note.username !== username) {
-      return <p className='errmsg'>No access</p>;
+      return <p className={CLASS_NAME.errorMsg}>{UI.PUBLIC.noAccess}</p>;
     }
   }
 
