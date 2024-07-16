@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAddNewNoteMutation } from '../../api/notesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { generateUserOptions } from '../../utils/editNoteUtils';
 
 function NewNoteForm({ users }) {
   const [addNewNote, { isLoading, isSuccess, isError, error }] = useAddNewNoteMutation();
@@ -44,15 +45,7 @@ function NewNoteForm({ users }) {
     }
   }
 
-  const options = users.map((user) => {
-    const option = (
-      <option key={user.id} value={user.id}>
-        {user.username}
-      </option>
-    );
-
-    return option;
-  });
+  const options = generateUserOptions(users);
 
   const errClass = isError ? 'errmsg' : 'offscreen';
   const validTitleClass = !title ? 'form__input--incomplete' : '';

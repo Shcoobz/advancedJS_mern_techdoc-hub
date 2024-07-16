@@ -1,4 +1,4 @@
-import { UI } from '../../../../config/constants';
+import { REPLACEMENT, UI } from '../../../../config/constants';
 import { SaveButton } from '../../../../components/common/Buttons';
 import {
   onTitleChanged,
@@ -30,7 +30,10 @@ function EditNoteFormUI({ editNoteFormProps }) {
     note,
   } = editNoteFormProps;
 
-  const noteTitle = UI.DASH.NOTE.LABEL.ticketTitle.replace('${note.ticket}', note.ticket);
+  const noteTitle = UI.DASH.NOTE.LABEL.ticketTitle.replace(
+    REPLACEMENT.noteTicket,
+    note.ticket
+  );
 
   const content = (
     <>

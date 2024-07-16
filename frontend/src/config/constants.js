@@ -71,6 +71,7 @@ export const CLASS_NAME = {
 export const REPLACEMENT = {
   emptyString: '',
   singleSpace: ' ',
+  noteTicket: '${note.ticket}',
 };
 
 export const PATH = {

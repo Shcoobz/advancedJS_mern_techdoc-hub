@@ -7,6 +7,7 @@ import { formatDate, generateUserOptions } from '../../utils/editNoteUtils';
 import { CLASS_NAME, PATH, REPLACEMENT } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import EditNoteFormUI from './EditNoteFormUI';
+import { getErrClass, getErrContent, getValidClass } from '../../utils/formUtils';
 
 function EditNoteForm({ note, users }) {
   const { isManager, isAdmin } = useAuth();
@@ -21,22 +22,25 @@ function EditNoteForm({ note, users }) {
   const [deleteNote, { isSuccess: isDelSuccess, isError: isDelError, error: delerror }] =
     useDeleteNoteMutation();
 
+  const noteDetails = { id: note.id, userId, title, text, completed };
   const created = formatDate(note.createdAt);
   const updated = formatDate(note.updatedAt);
   const canSave = [title, text, userId].every(Boolean) && !isLoading;
 
   const options = generateUserOptions(users);
 
-  const errClass = isError || isDelError ? CLASS_NAME.errorMsg : CLASS_NAME.offscreen;
-  const validTitleClass = !title
-    ? CLASS_NAME.formInputIncomplete
-    : REPLACEMENT.emptyString;
-  const validTextClass = !text ? CLASS_NAME.formInputIncomplete : REPLACEMENT.emptyString;
-
-  const errContent =
-    (error?.data?.message || delerror?.data?.message) ?? REPLACEMENT.emptyString;
-
-  const noteDetails = { id: note.id, userId, title, text, completed };
+  const errClass = getErrClass(isError, isDelError);
+  const errContent = getErrContent(error, delerror);
+  const validTitleClass = getValidClass(
+    title,
+    CLASS_NAME.formInputIncomplete,
+    REPLACEMENT.emptyString
+  );
+  const validTextClass = getValidClass(
+    text,
+    CLASS_NAME.formInputIncomplete,
+    REPLACEMENT.emptyString
+  );
 
   const saveNoteHandler = (e) => onSaveNoteClicked(updateNote, canSave, noteDetails);
   const deleteNoteHandler = (e) => onDeleteNoteClicked(deleteNote, note.id);
