@@ -17,6 +17,8 @@ import {
   findUserById,
   findUserByName,
   hashPassword,
+  isUserValid,
+  updateUserFields,
 } from '../services/userService.js';
 
 // @desc Get all users
@@ -71,7 +73,7 @@ const updateUser = async (req, res) => {
   if (duplicate && duplicate?._id.toString() !== id)
     return sendUserDuplicateUsername(res);
 
-  updateUser(user, { username, roles, active });
+  updateUserFields(user, { username, roles, active });
 
   if (password) user.password = await hashPassword(password);
 

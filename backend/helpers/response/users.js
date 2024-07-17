@@ -1,5 +1,4 @@
 import { HTTP_STATUS_CODES, MSG } from '../../config/common/constants.js';
-import { extractUserDetails } from '../../services/userService.js';
 
 export function sendUserNotFound(res) {
   return res

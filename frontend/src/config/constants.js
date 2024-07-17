@@ -6,6 +6,10 @@ export const CONFIG = {
       type: 'Note',
       id: 'LIST',
     },
+    USER: {
+      type: 'User',
+      id: 'LIST',
+    },
   },
   SLICE: {
     name: 'auth',
@@ -111,6 +115,7 @@ export const PATH = {
     USER: {
       overview: '/dash/users',
       new: '/dash/users/new',
+      users: '/users',
     },
   },
 };

@@ -30,6 +30,7 @@ export function createUserObject(username, hashedPwd, roles) {
 
 export function isUserValid(user) {
   const { id, username, roles, active } = user;
+
   return (
     id &&
     username &&
@@ -39,7 +40,7 @@ export function isUserValid(user) {
   );
 }
 
-export function updateUser(user, { username, roles, active }) {
+export function updateUserFields(user, { username, roles, active }) {
   user.username = username;
   user.roles = roles;
   user.active = active;
