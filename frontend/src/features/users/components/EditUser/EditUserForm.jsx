@@ -45,7 +45,7 @@ function EditUserForm({ user }) {
     REPLACEMENT.emptyString
   );
   const validPwdClass = getValidClass(
-    password && !validPassword,
+    validPassword,
     CLASS_NAME.formInputIncomplete,
     REPLACEMENT.emptyString
   );
