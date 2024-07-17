@@ -1,10 +1,12 @@
 import { REPLACEMENT, UI } from '../../../../config/constants';
-import { SaveButton } from '../../../../components/common/Buttons';
+import { DeleteButton, SaveButton } from '../../../../components/common/Buttons';
 import {
   onTitleChanged,
   onCompletedChanged,
   onTextChanged,
   onUserIdChanged,
+  onSaveNoteClicked,
+  onDeleteNoteClicked,
 } from '../../utils/noteEventHandlers';
 
 function EditNoteFormUI({ editNoteFormProps }) {
@@ -17,9 +19,9 @@ function EditNoteFormUI({ editNoteFormProps }) {
     setText,
     setCompleted,
     setUserId,
-    saveNoteHandler,
+    updateNote,
+    deleteNote,
     canSave,
-    deleteButton,
     errClass,
     validTitleClass,
     validTextClass,
@@ -28,11 +30,31 @@ function EditNoteFormUI({ editNoteFormProps }) {
     created,
     updated,
     note,
+    isManager,
+    isAdmin,
   } = editNoteFormProps;
 
   const noteTitle = UI.DASH.NOTE.LABEL.ticketTitle.replace(
     REPLACEMENT.noteTicket,
     note.ticket
+  );
+
+  async function saveNoteHandler(e) {
+    await onSaveNoteClicked(updateNote, canSave, {
+      id: note.id,
+      userId,
+      title,
+      text,
+      completed,
+    });
+  }
+
+  async function deleteNoteHandler(e) {
+    return onDeleteNoteClicked(deleteNote, note.id);
+  }
+
+  const deleteButton = (isManager || isAdmin) && (
+    <DeleteButton onClick={deleteNoteHandler} />
   );
 
   const content = (

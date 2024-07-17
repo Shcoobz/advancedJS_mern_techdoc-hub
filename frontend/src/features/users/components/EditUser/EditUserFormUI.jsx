@@ -31,11 +31,11 @@ function EditUserFormUI({ editUserFormProps }) {
     userDetails,
   } = editUserFormProps;
 
-  function saveUserHandler(e) {
+  async function saveUserHandler(e) {
     return onSaveUserClicked(e, updateUser, userDetails);
   }
 
-  function deleteUserHandler(e) {
+  async function deleteUserHandler(e) {
     return onDeleteUserClicked(e, deleteUser, userDetails.id);
   }
 

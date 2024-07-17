@@ -53,18 +53,17 @@ function EditNoteForm({ note, users }) {
     }
   }, [isSuccess, isDelSuccess, navigate]);
 
-  async function saveNoteHandler(e) {
-    e.preventDefault();
-    await onSaveNoteClicked(updateNote, canSave, noteDetails);
-  }
+  // async function saveNoteHandler(e) {
+  //   await onSaveNoteClicked(updateNote, canSave, noteDetails);
+  // }
 
-  async function deleteNoteHandler(e) {
-    return onDeleteNoteClicked(deleteNote, note.id);
-  }
+  // async function deleteNoteHandler(e) {
+  //   return onDeleteNoteClicked(deleteNote, note.id);
+  // }
 
-  if (isManager || isAdmin) {
-    deleteButton = <DeleteButton onClick={deleteNoteHandler} />;
-  }
+  // if (isManager || isAdmin) {
+  //   deleteButton = <DeleteButton onClick={deleteNoteHandler} />;
+  // }
 
   const editNoteFormProps = {
     title,
@@ -75,9 +74,9 @@ function EditNoteForm({ note, users }) {
     setText,
     setCompleted,
     setUserId,
-    saveNoteHandler,
+    updateNote,
+    deleteNote,
     canSave,
-    deleteButton,
     errClass,
     validTitleClass,
     validTextClass,
@@ -86,6 +85,8 @@ function EditNoteForm({ note, users }) {
     created,
     updated,
     note,
+    isManager,
+    isAdmin,
   };
 
   return <EditNoteFormUI editNoteFormProps={editNoteFormProps} />;
