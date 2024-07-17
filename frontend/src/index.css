@@ -219,9 +219,17 @@ tr {
 .table__th,
 .table__cell {
   background-color: var(--TABLE-BGCOLOR);
-  text-align: left;
+  text-align: center;
   border: 1px solid var(--TABLE-COLOR);
   padding: 0.5em;
+}
+
+.table__th--center {
+  text-align: center;
+}
+
+.table__th--pointer {
+  cursor: pointer;
 }
 
 .table__cell:last-child {

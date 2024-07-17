@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { useGetNotesQuery } from '../../api/notesApiSlice';
-import PulseLoader from 'react-spinners/PulseLoader';
+import { CONFIG, REPLACEMENT } from '../../../../config/constants';
+import { getFilteredIds, renderTableContent } from '../../utils/notesListUtils';
 import useAuth from '../../../../hooks/useAuth';
-import Note from '../Note/Note';
+import NotesListUI from './NotesListUI';
 
 function NotesList() {
   const { username, isManager, isAdmin } = useAuth();
+  const navigate = useNavigate;
 
   const {
     data: notes,
@@ -12,63 +15,31 @@ function NotesList() {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery('notesList', {
+  } = useGetNotesQuery(CONFIG.CACHE_KEY.notesList, {
     pollingInterval: 15000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
 
-  let content;
-
-  if (isLoading) content = <PulseLoader color={'#FFF'} />;
+  if (isLoading) {
+    return <NotesListUI isLoading={isLoading} />;
+  }
 
   if (isError) {
-    content = <p className='errmsg'>{error?.data?.message}</p>;
+    const errorMessage = error?.data?.message || REPLACEMENT.emptyString;
+
+    return <NotesListUI isError={isError} errorMessage={errorMessage} />;
   }
 
   if (isSuccess) {
     const { ids, entities } = notes;
+    const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
+    const tableContent = renderTableContent(filteredIds, entities, navigate);
 
-    let filteredIds;
-    if (isManager || isAdmin) {
-      filteredIds = [...ids];
-    } else {
-      filteredIds = ids.filter((noteId) => entities[noteId].username === username);
-    }
-
-    const tableContent =
-      ids?.length && filteredIds.map((noteId) => <Note key={noteId} noteId={noteId} />);
-
-    content = (
-      <table className='table table--notes'>
-        <thead className='table__thead'>
-          <tr>
-            <th scope='col' className='table__th note__status'>
-              Status
-            </th>
-            <th scope='col' className='table__th note__created'>
-              Created
-            </th>
-            <th scope='col' className='table__th note__updated'>
-              Updated
-            </th>
-            <th scope='col' className='table__th note__title'>
-              Title
-            </th>
-            <th scope='col' className='table__th note__username'>
-              Owner
-            </th>
-            <th scope='col' className='table__th note__edit'>
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody>{tableContent}</tbody>
-      </table>
-    );
+    return <NotesListUI tableContent={tableContent} />;
   }
 
-  return content;
+  return null;
 }
 
 export default NotesList;
