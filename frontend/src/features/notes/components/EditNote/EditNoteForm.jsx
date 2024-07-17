@@ -7,7 +7,7 @@ import { formatDate, generateUserOptions } from '../../utils/noteUtils';
 import { CLASS_NAME, PATH, REPLACEMENT } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import EditNoteFormUI from './EditNoteFormUI';
-import { getErrClass, getErrContent, getValidClass } from '../../utils/formUtils';
+import { getErrClass, getErrContent, getValidClass } from '../../../../service/formUtils';
 
 function EditNoteForm({ note, users }) {
   const { isManager, isAdmin } = useAuth();

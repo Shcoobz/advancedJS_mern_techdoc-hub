@@ -60,6 +60,8 @@ export const REGEX = {
   notes: /^\/dash\/notes(\/)?$/,
   users: /^\/dash\/users(\/)?$/,
   removePeriodSpace: /\.\s/g,
+  usernameCheck: /^[A-z]{3,20}$/,
+  passwordCheck: /^[A-z0-9!@#$%]{4,12}$/,
 };
 
 export const INDEX = {
@@ -92,6 +94,7 @@ export const CLASS_NAME = {
 
 export const REPLACEMENT = {
   emptyString: '',
+  emptyArray: [],
   singleSpace: ' ',
   noteTicket: '${note.ticket}',
 };
@@ -273,6 +276,17 @@ export const UI = {
         title: 'Title',
         owner: 'Owner',
         actions: 'Actions',
+      },
+    },
+    USER: {
+      LABEL: {
+        username: 'Username: ',
+        usernameRule: '[3-20 letters]',
+        password: 'Password: ',
+        passwordRule1: '[empty = no change]',
+        passwordRule2: '[4-12 chars incl. !@#$%]',
+        active: 'ACTIVE ',
+        assignedRoles: 'ASSIGNED ROLES: ',
       },
     },
   },

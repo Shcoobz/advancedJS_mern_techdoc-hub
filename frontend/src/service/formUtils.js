@@ -1,4 +1,4 @@
-import { CLASS_NAME, REPLACEMENT } from '../../../config/constants';
+import { CLASS_NAME, REPLACEMENT } from '../config/constants';
 
 export function getErrClass(isError, isDelError) {
   return isError || isDelError ? CLASS_NAME.errorMsg : CLASS_NAME.offscreen;
