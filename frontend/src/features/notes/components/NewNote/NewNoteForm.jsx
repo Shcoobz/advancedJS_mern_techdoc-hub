@@ -41,9 +41,10 @@ function NewNoteForm({ users }) {
     }
   }, [isSuccess, navigate]);
 
-  function saveNoteHandler(e) {
+  async function saveNoteHandler(e) {
     e.preventDefault();
-    onSaveNoteClicked(addNewNote, canSave, noteDetails);
+
+    await onSaveNoteClicked(addNewNote, canSave, noteDetails);
   }
 
   const newNoteFormProps = {

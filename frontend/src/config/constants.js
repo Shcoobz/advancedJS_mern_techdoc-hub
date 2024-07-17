@@ -287,6 +287,7 @@ export const UI = {
         passwordRule2: '[4-12 chars incl. !@#$%]',
         active: 'ACTIVE ',
         assignedRoles: 'ASSIGNED ROLES: ',
+        userTitle: 'New User',
       },
     },
   },
