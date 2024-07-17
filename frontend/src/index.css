@@ -210,6 +210,15 @@ tr {
   color: var(--TABLE-COLOR);
 }
 
+.table__sort-symbol {
+  cursor: pointer;
+}
+
+.table__reset-sort-symbol {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 .table__thead {
   position: sticky;
   top: 0;

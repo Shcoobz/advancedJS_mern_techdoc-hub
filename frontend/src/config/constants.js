@@ -63,6 +63,23 @@ export const INDEX = {
   first: 0,
 };
 
+export const SORTING = {
+  ORDER: {
+    ascending: 1,
+    descending: -1,
+    equal: 0,
+  },
+  DIRECTION: {
+    ascending: 'ascending',
+    descending: 'descending',
+  },
+  SYMBOL: {
+    ascending: ' ▲',
+    descending: ' ▼',
+    reset: '✖',
+  },
+};
+
 export const CLASS_NAME = {
   errorMsg: 'errmsg',
   offscreen: 'offscreen',
@@ -240,6 +257,9 @@ export const UI = {
         updated: 'Updated: ',
         completed: 'Completed',
         open: 'Pending',
+        sortDesc: 'Sort Descending',
+        sortAsc: 'Sort Ascending',
+        resetSorting: 'Reset Sorting',
       },
       TABLE: {
         status: 'Status',

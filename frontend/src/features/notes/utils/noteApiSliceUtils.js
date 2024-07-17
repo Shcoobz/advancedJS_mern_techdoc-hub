@@ -1,9 +1,14 @@
 import { createEntityAdapter } from '@reduxjs/toolkit';
-import { HTTP_STATUS_CODES, CONFIG, PATH } from '../../../config/constants';
+import { HTTP_STATUS_CODES, CONFIG, PATH, SORTING } from '../../../config/constants';
 import { initialState } from '../api/notesApiSlice';
 
 export const notesAdapter = createEntityAdapter({
-  sortComparer: (a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1),
+  sortComparer: (a, b) =>
+    a.completed === b.completed
+      ? SORTING.ORDER.equal
+      : a.completed
+      ? SORTING.ORDER.ascending
+      : SORTING.ORDER.descending,
 });
 
 export function getNoteQuery() {

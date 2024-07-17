@@ -1,4 +1,4 @@
-import { UI } from '../../../config/constants';
+import { REPLACEMENT, SORTING, UI } from '../../../config/constants';
 import { goToNoteId } from '../../../service/navigationService';
 import Note from '../components/Note/Note';
 
@@ -44,22 +44,27 @@ export function getSortDirectionSymbol(key, sortConfig, resetSort) {
       <>
         <span
           title={
-            sortConfig.direction === 'ascending' ? 'Sort Descending' : 'Sort Ascending'
+            sortConfig.direction === SORTING.DIRECTION.ascending
+              ? UI.DASH.NOTE.LABEL.sortDesc
+              : UI.DASH.NOTE.LABEL.sortAsc
           }
-          style={{ cursor: 'pointer' }}>
-          {sortConfig.direction === 'ascending' ? ' ▲' : ' ▼'}
+          className='table__sort-symbol'>
+          {sortConfig.direction === SORTING.DIRECTION.ascending
+            ? SORTING.SYMBOL.ascending
+            : SORTING.SYMBOL.descending}
         </span>
         <span
           onClick={(e) => {
             e.stopPropagation();
             resetSort();
           }}
-          title='Reset Sorting'
-          style={{ cursor: 'pointer', marginLeft: '5px' }}>
-          ✖
+          title={UI.DASH.NOTE.LABEL.resetSorting}
+          className='table__reset-sort-symbol'>
+          {SORTING.SYMBOL.reset}
         </span>
       </>
     );
   }
-  return '';
+
+  return REPLACEMENT.emptyString;
 }
