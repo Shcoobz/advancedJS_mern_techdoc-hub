@@ -8,6 +8,7 @@ import {
   faRightFromBracket,
   faTrashCan,
   faSave,
+  faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
 export function HomeButton({ onClick }) {
@@ -70,6 +71,14 @@ export function SaveButton({ onClick, disabled }) {
   return (
     <button className='icon-button' title='Save' onClick={onClick} disabled={disabled}>
       <FontAwesomeIcon icon={faSave} />
+    </button>
+  );
+}
+
+export function EditButton({ onClick }) {
+  return (
+    <button className='icon-button table__button' title='Edit' onClick={onClick}>
+      <FontAwesomeIcon icon={faPenToSquare} />
     </button>
   );
 }

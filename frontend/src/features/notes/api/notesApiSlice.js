@@ -10,7 +10,7 @@ import {
   updateNoteQuery,
   invalidateNoteTag,
   deleteNoteQuery,
-} from '../utils/noteUtils';
+} from '../utils/noteApiSliceUtils';
 
 export const initialState = notesAdapter.getInitialState();
 

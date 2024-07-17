@@ -3,7 +3,7 @@ import { useUpdateNoteMutation, useDeleteNoteMutation } from '../../api/notesApi
 import { useNavigate } from 'react-router-dom';
 import { DeleteButton } from '../../../../components/common/Buttons';
 import { onDeleteNoteClicked, onSaveNoteClicked } from '../../utils/noteEventHandlers';
-import { formatDate, generateUserOptions } from '../../utils/editNoteUtils';
+import { formatDate, generateUserOptions } from '../../utils/noteUtils';
 import { CLASS_NAME, PATH, REPLACEMENT } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import EditNoteFormUI from './EditNoteFormUI';

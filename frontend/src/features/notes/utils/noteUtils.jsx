@@ -1,4 +1,4 @@
-import { CONFIG } from '../../../config/constants';
+import { CONFIG, REGEX, REPLACEMENT } from '../../../config/constants';
 
 export function formatDate(dateString, locale = CONFIG.DATE.locale) {
   const options = {
@@ -11,6 +11,18 @@ export function formatDate(dateString, locale = CONFIG.DATE.locale) {
   };
 
   return new Date(dateString).toLocaleString(locale, options);
+}
+
+export function formatDateSimple(dateString) {
+  const options = {
+    day: CONFIG.DATE.numeric,
+    month: CONFIG.DATE.long,
+    year: CONFIG.DATE.numeric,
+  };
+
+  return new Date(dateString)
+    .toLocaleString(CONFIG.DATE.locale, options)
+    .replace(REGEX.removePeriodSpace, REPLACEMENT.singleSpace);
 }
 
 export function generateUserOptions(users) {

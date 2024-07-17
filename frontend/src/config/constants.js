@@ -238,6 +238,8 @@ export const UI = {
         assignedTo: 'ASSIGNED TO: ',
         created: 'Created: ',
         updated: 'Updated: ',
+        completed: 'Completed',
+        open: 'Open',
       },
     },
   },

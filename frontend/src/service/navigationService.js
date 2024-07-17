@@ -29,3 +29,7 @@ export function goToNotesPage(navigate) {
 export function goToUsersPage(navigate) {
   return navigateTo(navigate, '/dash/users');
 }
+
+export function goToNoteId(navigate, noteId) {
+  return navigateTo(navigate, `/dash/notes/${noteId}`);
+}
