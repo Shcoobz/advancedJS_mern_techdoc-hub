@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useGetUsersQuery } from './usersApiSlice';
+import { useGetUsersQuery } from '../../api/usersApiSlice';
 import PulseLoader from 'react-spinners/PulseLoader';
 
 import EditUserForm from './EditUserForm';

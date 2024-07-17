@@ -1,7 +1,7 @@
 import { store } from '../../../app/store.js';
 import { CONFIG } from '../../../config/constants.js';
 import { notesApiSlice } from '../../notes/api/notesApiSlice.js';
-import { usersApiSlice } from '../../users/usersApiSlice.js';
+import { usersApiSlice } from '../../users/api/usersApiSlice.js';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 

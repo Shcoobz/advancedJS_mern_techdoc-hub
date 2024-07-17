@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetNotesQuery } from '../../api/notesApiSlice';
-import { useGetUsersQuery } from '../../../users/usersApiSlice';
+import { useGetUsersQuery } from '../../../users/api/usersApiSlice';
 import { CLASS_NAME, CONFIG, UI } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import Spinner from '../../../../components/common/Spinner';

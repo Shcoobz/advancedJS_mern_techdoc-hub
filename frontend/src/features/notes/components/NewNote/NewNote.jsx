@@ -1,4 +1,4 @@
-import { useGetUsersQuery } from '../../../users/usersApiSlice';
+import { useGetUsersQuery } from '../../../users/api/usersApiSlice';
 import useAuth from '../../../../hooks/useAuth';
 import Spinner from '../../../../components/common/Spinner';
 import NewNoteForm from './NewNoteForm';
