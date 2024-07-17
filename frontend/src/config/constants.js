@@ -90,6 +90,7 @@ export const CLASS_NAME = {
   errorMsg: 'errmsg',
   offscreen: 'offscreen',
   formInputIncomplete: 'form__input--incomplete',
+  cellInactive: 'table__cell--inactive',
 };
 
 export const REPLACEMENT = {
@@ -97,6 +98,8 @@ export const REPLACEMENT = {
   emptyArray: [],
   singleSpace: ' ',
   noteTicket: '${note.ticket}',
+  comma: ',',
+  commaSpace: ', ',
 };
 
 export const PATH = {

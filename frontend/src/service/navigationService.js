@@ -33,3 +33,7 @@ export function goToUsersPage(navigate) {
 export function goToNoteId(navigate, noteId) {
   return navigateTo(navigate, `/dash/notes/${noteId}`);
 }
+
+export function goToUserId(navigate, userId) {
+  return navigateTo(navigate, `/dash/users/${userId}`);
+}
