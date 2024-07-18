@@ -1,4 +1,5 @@
 export const CONFIG = {
+  root: 'root',
   credentials: 'include' /* !important: always send cookie */,
   tagTypes: ['Note', 'User'],
   TAG_TYPE: {
@@ -16,6 +17,7 @@ export const CONFIG = {
   },
   NODE: {
     env: 'development',
+    production: 'production',
   },
   DATE: {
     locale: 'de-AT',
@@ -59,6 +61,13 @@ export const CONFIG = {
     newUser: 'new-user',
     user: 'user',
     notes: 'notes',
+  },
+};
+
+export const TITLE = {
+  PUBLIC: {
+    companyName: '[Company Name]',
+    companyInitials: '[CN]',
   },
 };
 
@@ -135,6 +144,23 @@ export const PATH = {
       users: '/users',
       userId: (userId) => `/dash/users/${userId}`,
     },
+  },
+};
+
+export const ROUTE = {
+  root: '/',
+  login: 'login',
+  dash: 'dash',
+  wildcard: '/*',
+  USERS: {
+    users: 'users',
+    id: ':id',
+    new: 'new',
+  },
+  NOTES: {
+    notes: 'notes',
+    id: ':id',
+    new: 'new',
   },
 };
 

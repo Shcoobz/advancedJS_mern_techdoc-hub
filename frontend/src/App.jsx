@@ -16,42 +16,42 @@ import Prefetch from './features/auth/utils/Prefetch';
 import PersistLogin from './features/auth/state/PersistLogin.jsx';
 import RequireAuth from './features/auth/components/RequireAuth';
 import useTitle from './hooks/useTitle';
-import { CONFIG } from './config/constants.js';
+import { CONFIG, ROUTE, TITLE } from './config/constants.js';
 
 function App() {
-  useTitle('[Company Name]');
+  useTitle(TITLE.PUBLIC.companyName);
 
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route path={ROUTE.root} element={<Layout />}>
         {/* public routes */}
         <Route index element={<Public />} />
-        <Route path='login' element={<Login />} />
+        <Route path={ROUTE.login} element={<Login />} />
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[...Object.values(CONFIG.ROLE)]} />}>
             <Route element={<Prefetch />}>
-              <Route path='dash' element={<DashLayout />}>
+              <Route path={ROUTE.dash} element={<DashLayout />}>
                 <Route index element={<Welcome />} />
 
                 <Route
                   element={
                     <RequireAuth
-                      allowedRoles={[CONFIG.ROLE.Manager, CONFIG.ROLE.Admin]}
+                      allowedRoles={[CONFIG.ROLE.manager, CONFIG.ROLE.admin]}
                     />
                   }>
-                  <Route path='users'>
+                  <Route path={ROUTE.USERS.users}>
                     <Route index element={<UsersList />} />
-                    <Route path=':id' element={<EditUser />} />
-                    <Route path='new' element={<NewUserForm />} />
+                    <Route path={ROUTE.USERS.id} element={<EditUser />} />
+                    <Route path={ROUTE.USERS.new} element={<NewUserForm />} />
                   </Route>
                 </Route>
 
-                <Route path='notes'>
+                <Route path={ROUTE.NOTES.notes}>
                   <Route index element={<NotesList />} />
-                  <Route path=':id' element={<EditNote />} />
-                  <Route path='new' element={<NewNote />} />
+                  <Route path={ROUTE.NOTES.id} element={<EditNote />} />
+                  <Route path={ROUTE.NOTES.new} element={<NewNote />} />
                 </Route>
               </Route>
               {/* End Dash */}
