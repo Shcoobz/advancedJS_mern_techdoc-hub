@@ -86,8 +86,6 @@ export const TITLE = {
   },
 };
 
-export const LOADER_COLOR = '#FFF';
-
 export const REGEX = {
   dash: /^\/dash(\/)?$/,
   notes: /^\/dash\/notes(\/)?$/,

@@ -1,8 +1,11 @@
 import PulseLoader from 'react-spinners/PulseLoader';
-import { LOADER_COLOR } from '../../config/constants';
 
 function Spinner() {
-  return <PulseLoader color={LOADER_COLOR} />;
+  return (
+    <div className='spinner-container'>
+      <PulseLoader color='currentColor' />
+    </div>
+  );
 }
 
 export default Spinner;
