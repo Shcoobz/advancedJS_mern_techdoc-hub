@@ -1,5 +1,6 @@
 import { CONFIG } from '../../../../config/constants';
 import { useGetUsersQuery } from '../../api/usersApiSlice';
+import { getRolePriority } from '../../utils/usersListUtils';
 import User from '../User/User';
 import UsersListUI from './UsersListUI';
 
@@ -16,6 +17,15 @@ function UsersList() {
     refetchOnMountOrArgChange: true,
   });
 
+  const sortedUsers =
+    isSuccess &&
+    [...users.ids].sort((a, b) => {
+      const rolesA = users.entities[a].roles;
+      const rolesB = users.entities[b].roles;
+
+      return getRolePriority(rolesA) - getRolePriority(rolesB);
+    });
+
   if (isLoading) {
     return <UsersListUI isLoading={true} />;
   }
@@ -25,10 +35,11 @@ function UsersList() {
   }
 
   if (isSuccess) {
-    const { ids } = users;
+    // const { ids } = users;
 
     const tableContent =
-      ids?.length && ids.map((userId) => <User key={userId} userId={userId} />);
+      sortedUsers?.length &&
+      sortedUsers.map((userId) => <User key={userId} userId={userId} />);
 
     return <UsersListUI tableContent={tableContent} />;
   }
