@@ -1,5 +1,6 @@
+import useTitle from '../../../../hooks/useTitle';
 import { SaveButton, DeleteButton } from '../../../../components/common/Buttons.jsx';
-import { UI } from '../../../../config/constants.js';
+import { TITLE, UI } from '../../../../config/constants.js';
 import {
   onUsernameChanged,
   onPasswordChanged,
@@ -10,6 +11,8 @@ import {
 } from '../../utils/userEventHandlers.js';
 
 function EditUserFormUI({ editUserFormProps }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.edit}`);
+
   const {
     errClass,
     errContent,

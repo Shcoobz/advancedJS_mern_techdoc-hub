@@ -1,4 +1,5 @@
-import { REPLACEMENT, UI } from '../../../../config/constants';
+import useTitle from '../../../../hooks/useTitle';
+import { REPLACEMENT, TITLE, UI } from '../../../../config/constants';
 import { DeleteButton, SaveButton } from '../../../../components/common/Buttons';
 import {
   onTitleChanged,
@@ -10,6 +11,8 @@ import {
 } from '../../utils/noteEventHandlers';
 
 function EditNoteFormUI({ editNoteFormProps }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.NOTE.edit}`);
+
   const {
     title,
     text,

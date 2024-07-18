@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { PATH, UI } from '../../../config/constants';
+import { PATH, TITLE, UI } from '../../../config/constants';
 import { formatDate, replaceUsername } from '../utils/utils';
+import useTitle from '../../../hooks/useTitle';
 
 function DateDisplay({ date }) {
   return <p>{formatDate(date)}</p>;
@@ -35,6 +36,8 @@ function NavigationLinks({ isManager, isAdmin }) {
 }
 
 function WelcomeUI({ date, username, isManager, isAdmin }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.DASH.welcome}`);
+
   return (
     <section className='welcome'>
       <DateDisplay date={date} />

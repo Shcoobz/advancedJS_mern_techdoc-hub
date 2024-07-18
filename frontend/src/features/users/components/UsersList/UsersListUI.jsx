@@ -1,7 +1,10 @@
-import { CLASS_NAME, UI } from '../../../../config/constants';
+import { CLASS_NAME, TITLE, UI } from '../../../../config/constants';
 import Spinner from '../../../../components/common/Spinner';
+import useTitle from '../../../../hooks/useTitle';
 
 function UsersListUI({ isLoading, isError, errorMessage, tableContent }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.list}`);
+
   if (isLoading) {
     return <Spinner />;
   }

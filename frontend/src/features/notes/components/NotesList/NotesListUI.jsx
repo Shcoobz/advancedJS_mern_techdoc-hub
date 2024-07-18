@@ -1,7 +1,8 @@
-import { CLASS_NAME, UI } from '../../../../config/constants';
+import { CLASS_NAME, TITLE, UI } from '../../../../config/constants';
 import { useSortableData } from '../../../../hooks/useSortableData';
 import { getSortDirectionSymbol } from '../../utils/notesListUtils';
 import Spinner from '../../../../components/common/Spinner';
+import useTitle from '../../../../hooks/useTitle';
 
 function NotesListUI({ tableContent, isLoading, isError, errorMessage }) {
   const {
@@ -10,6 +11,8 @@ function NotesListUI({ tableContent, isLoading, isError, errorMessage }) {
     resetSort,
     sortConfig,
   } = useSortableData(tableContent);
+
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.NOTE.list}`);
 
   if (isLoading) {
     return <Spinner />;

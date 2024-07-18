@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FORM_FIELDS, PATH, UI } from '../../../config/constants';
+import { FORM_FIELDS, PATH, TITLE, UI } from '../../../config/constants';
+import useTitle from '../../../hooks/useTitle';
 
 function LoginHeader() {
   return (
@@ -85,6 +86,8 @@ function LoginUI({
   handleToggle,
   handleSubmit,
 }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.PUBLIC.login}`);
+
   return (
     <section className='public'>
       <LoginHeader />

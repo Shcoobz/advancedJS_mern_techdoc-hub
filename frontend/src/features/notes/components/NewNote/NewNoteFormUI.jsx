@@ -1,5 +1,6 @@
 import { SaveButton } from '../../../../components/common/Buttons';
-import { UI } from '../../../../config/constants';
+import { TITLE, UI } from '../../../../config/constants';
+import useTitle from '../../../../hooks/useTitle';
 import {
   onTextChanged,
   onTitleChanged,
@@ -23,10 +24,11 @@ function NewNoteFormUI({ newNoteFormProps }) {
     options,
   } = newNoteFormProps;
 
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.NOTE.new}`);
+
   return (
     <>
       <p className={errClass}>{error?.data?.message}</p>
-
       <form className='form' onSubmit={saveNoteHandler}>
         <div className='form__title-row'>
           <h2>{UI.DASH.NOTE.LABEL.newTitle}</h2>

@@ -1,5 +1,6 @@
+import useTitle from '../../../../hooks/useTitle';
 import { SaveButton } from '../../../../components/common/Buttons';
-import { UI } from '../../../../config/constants';
+import { TITLE, UI } from '../../../../config/constants';
 import {
   onPasswordChanged,
   onRolesChanged,
@@ -7,6 +8,8 @@ import {
 } from '../../utils/userEventHandlers';
 
 function NewUserFormUI({ newUserFormProps }) {
+  useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.new}`);
+
   const {
     username,
     setUsername,

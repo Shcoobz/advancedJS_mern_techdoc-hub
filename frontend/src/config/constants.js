@@ -65,9 +65,24 @@ export const CONFIG = {
 };
 
 export const TITLE = {
+  placeholder: ' - ',
   PUBLIC: {
     companyName: '[Company Name]',
     companyInitials: '[CN]',
+    login: 'Employee Login',
+  },
+  DASH: {
+    welcome: 'Dashboard',
+  },
+  NOTE: {
+    list: 'Notes List',
+    new: 'Add Note',
+    edit: 'Edit Note',
+  },
+  USER: {
+    list: 'Users List',
+    new: 'Add User',
+    edit: 'Edit User',
   },
 };
 
