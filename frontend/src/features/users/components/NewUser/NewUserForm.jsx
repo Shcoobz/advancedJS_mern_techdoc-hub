@@ -15,11 +15,11 @@ import NewUserFormUI from '../NewUser/NewUserFormUI';
 
 function NewUserForm() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(REPLACEMENT.emptyString);
   const [validUsername, setValidUsername] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(REPLACEMENT.emptyString);
   const [validPassword, setValidPassword] = useState(false);
-  const [roles, setRoles] = useState(['Employee']);
+  const [roles, setRoles] = useState([CONFIG.ROLE.employee]);
 
   const [addNewUser, { isLoading, isSuccess, isError, error }] = useAddNewUserMutation();
   const canSave =

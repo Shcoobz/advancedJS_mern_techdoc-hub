@@ -32,9 +32,9 @@ export const CONFIG = {
     getAuthScheme: (token) => `Bearer ${token}`,
   },
   ROLE: {
-    Employee: 'Employee',
-    Manager: 'Manager',
-    Admin: 'Admin',
+    employee: 'Employee',
+    manager: 'Manager',
+    admin: 'Admin',
   },
   HTTP_METHOD: {
     post: 'POST',
@@ -50,6 +50,9 @@ export const CONFIG = {
   CACHE_KEY: {
     notesList: 'notesList',
     usersList: 'usersList',
+  },
+  LOCAL_STORAGE: {
+    persistKey: 'persist',
   },
 };
 
