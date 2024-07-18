@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { goToRoot } from './navigationService.js';
-import { REGEX } from '../config/constants.js';
+import { CLASS_NAME, REGEX } from '../config/constants.js';
 
 export function useLogoutEffect(isSuccess, navigate) {
   useEffect(() => {
@@ -12,6 +12,6 @@ export function getDashClass(pathname) {
   const regexArray = [REGEX.dash, REGEX.notes, REGEX.users];
 
   return regexArray.every((regex) => !regex.test(pathname))
-    ? 'dash-header__container--small'
+    ? CLASS_NAME.containerSmall
     : null;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { REGEX, PATH, CONFIG } from '../config/constants.js';
 import {
   NewNoteButton,
   NewUserButton,
@@ -11,28 +12,27 @@ import {
   goToNotesPage,
   goToUsersPage,
 } from './navigationService.js';
-import { REGEX, PATH } from '../config/constants.js';
 
 export function getButtonsConfig(pathname, navigate, isManager, isAdmin) {
   const buttonsConfig = [
     {
-      key: 'new-note',
+      key: CONFIG.BUTTON_KEY.newNote,
       condition: REGEX.notes.test(pathname),
       element: <NewNoteButton onClick={goToNewNotePage(navigate)} />,
     },
     {
-      key: 'new-user',
+      key: CONFIG.BUTTON_KEY.newUser,
       condition: REGEX.users.test(pathname),
       element: <NewUserButton onClick={goToNewUserPage(navigate)} />,
     },
     {
-      key: 'user',
+      key: CONFIG.BUTTON_KEY.user,
       condition: isManager || isAdmin,
       subCondition: !REGEX.users.test(pathname) && pathname.includes(PATH.DASH.baseUrl),
       element: <UserButton onClick={goToUsersPage(navigate)} />,
     },
     {
-      key: 'notes',
+      key: CONFIG.BUTTON_KEY.notes,
       condition: !REGEX.notes.test(pathname) && pathname.includes(PATH.DASH.baseUrl),
       element: <NotesButton onClick={goToNotesPage(navigate)} />,
     },

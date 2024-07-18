@@ -54,6 +54,12 @@ export const CONFIG = {
   LOCAL_STORAGE: {
     persistKey: 'persist',
   },
+  BUTTON_KEY: {
+    newNote: 'new-note',
+    newUser: 'new-user',
+    user: 'user',
+    notes: 'notes',
+  },
 };
 
 export const LOADER_COLOR = '#FFF';
@@ -94,6 +100,7 @@ export const CLASS_NAME = {
   offscreen: 'offscreen',
   formInputIncomplete: 'form__input--incomplete',
   cellInactive: 'table__cell--inactive',
+  containerSmall: 'dash-header__container--small',
 };
 
 export const REPLACEMENT = {
@@ -120,11 +127,13 @@ export const PATH = {
       overview: '/dash/notes',
       new: '/dash/notes/new',
       notes: '/notes',
+      noteId: (noteId) => `/dash/notes/${noteId}`,
     },
     USER: {
       overview: '/dash/users',
       new: '/dash/users/new',
       users: '/users',
+      userId: (userId) => `/dash/users/${userId}`,
     },
   },
 };

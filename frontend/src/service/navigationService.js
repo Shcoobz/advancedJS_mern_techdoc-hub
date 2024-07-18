@@ -7,33 +7,36 @@ function navigateTo(navigate, path) {
 }
 
 export function goToRoot(navigate) {
-  return navigateTo(navigate, '/');
+  return navigateTo(navigate, PATH.root);
 }
 
+//  private
 export function goHome(navigate) {
   return navigateTo(navigate, PATH.DASH.baseUrl);
 }
 
-export function goToNewNotePage(navigate) {
-  return navigateTo(navigate, '/dash/notes/new');
+// users
+export function goToUsersPage(navigate) {
+  return navigateTo(navigate, PATH.DASH.USER.overview);
 }
 
 export function goToNewUserPage(navigate) {
-  return navigateTo(navigate, '/dash/users/new');
-}
-
-export function goToNotesPage(navigate) {
-  return navigateTo(navigate, '/dash/notes');
-}
-
-export function goToUsersPage(navigate) {
-  return navigateTo(navigate, '/dash/users');
-}
-
-export function goToNoteId(navigate, noteId) {
-  return navigateTo(navigate, `/dash/notes/${noteId}`);
+  return navigateTo(navigate, PATH.DASH.USER.new);
 }
 
 export function goToUserId(navigate, userId) {
-  return navigateTo(navigate, `/dash/users/${userId}`);
+  return navigateTo(navigate, PATH.DASH.USER.userId(userId));
+}
+
+// notes
+export function goToNotesPage(navigate) {
+  return navigateTo(navigate, PATH.DASH.NOTE.overview);
+}
+
+export function goToNewNotePage(navigate) {
+  return navigateTo(navigate, PATH.DASH.NOTE.new);
+}
+
+export function goToNoteId(navigate, noteId) {
+  return navigateTo(navigate, PATH.DASH.NOTE.noteId(noteId));
 }

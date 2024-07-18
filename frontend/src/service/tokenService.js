@@ -14,14 +14,15 @@ export const prepareRequestHeaders = (headers, token) => {
 
 export async function refreshToken(api, extraOptions) {
   const refreshResult = await baseQuery(PATH.AUTH.refresh, api, extraOptions);
+
   if (refreshResult?.data) {
     api.dispatch(setCredentials({ ...refreshResult.data }));
 
     return null;
   }
 
-  if (refreshResult?.error?.status === HTTP_STATUS_CODES.CLIENT.ERROR.FORBIDDEN) {
-    refreshResult.error.data.message = MSG.API.ERROR.LOGIN_EXPIRED;
+  if (refreshResult?.error?.status === HTTP_STATUS_CODES.CLIENT.ERROR.forbidden) {
+    refreshResult.error.data.message = MSG.API.ERROR.loginExpired;
   }
 
   return refreshResult;
