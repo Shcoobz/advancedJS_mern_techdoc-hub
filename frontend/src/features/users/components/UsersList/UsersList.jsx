@@ -1,6 +1,7 @@
+import { CONFIG } from '../../../../config/constants';
 import { useGetUsersQuery } from '../../api/usersApiSlice';
-import PulseLoader from 'react-spinners/PulseLoader';
 import User from '../User/User';
+import UsersListUI from './UsersListUI';
 
 function UsersList() {
   const {
@@ -9,18 +10,18 @@ function UsersList() {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery('usersList', {
+  } = useGetUsersQuery(CONFIG.CACHE_KEY.usersList, {
     pollingInterval: 60000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
 
-  let content;
-
-  if (isLoading) content = <PulseLoader color={'#FFF'} />;
+  if (isLoading) {
+    return <UsersListUI isLoading={true} />;
+  }
 
   if (isError) {
-    content = <p className='errmsg'>{error?.data?.message}</p>;
+    return <UsersListUI isError={true} errorMessage={error?.data?.message} />;
   }
 
   if (isSuccess) {
@@ -29,27 +30,10 @@ function UsersList() {
     const tableContent =
       ids?.length && ids.map((userId) => <User key={userId} userId={userId} />);
 
-    content = (
-      <table className='table table--users'>
-        <thead className='table__thead'>
-          <tr>
-            <th scope='col' className='table__th user__username'>
-              Username
-            </th>
-            <th scope='col' className='table__th user__roles'>
-              Roles
-            </th>
-            <th scope='col' className='table__th user__edit'>
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody>{tableContent}</tbody>
-      </table>
-    );
+    return <UsersListUI tableContent={tableContent} />;
   }
 
-  return content;
+  return null;
 }
 
 export default UsersList;

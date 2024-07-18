@@ -292,6 +292,11 @@ export const UI = {
         assignedRoles: 'ASSIGNED ROLES: ',
         userTitle: 'New User',
       },
+      TABLE: {
+        username: 'Username',
+        roles: 'Roles',
+        edit: 'Action',
+      },
     },
   },
 };

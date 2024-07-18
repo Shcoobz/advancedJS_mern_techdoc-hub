@@ -228,12 +228,13 @@ tr {
 .table__th,
 .table__cell {
   background-color: var(--TABLE-BGCOLOR);
-  text-align: center;
+  text-align: left;
   border: 1px solid var(--TABLE-COLOR);
   padding: 0.5em;
 }
 
-.table__th--center {
+.table__th--center,
+.table__cell {
   text-align: center;
 }
 
