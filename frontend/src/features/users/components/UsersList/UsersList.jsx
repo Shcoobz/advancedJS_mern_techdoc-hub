@@ -1,4 +1,5 @@
 import { CONFIG } from '../../../../config/constants';
+import { useSortableUserData } from '../../../../hooks/useSortableUserData';
 import { useGetUsersQuery } from '../../api/usersApiSlice';
 import { getRolePriority } from '../../utils/usersListUtils';
 import User from '../User/User';
@@ -17,14 +18,28 @@ function UsersList() {
     refetchOnMountOrArgChange: true,
   });
 
-  const sortedUsers =
-    isSuccess &&
-    [...users.ids].sort((a, b) => {
-      const rolesA = users.entities[a].roles;
-      const rolesB = users.entities[b].roles;
+  let tableContent = [];
 
+  if (isSuccess && users?.ids?.length) {
+    const sortedUsers = [...users.ids].sort((a, b) => {
+      const rolesA = users.entities[a]?.roles || [];
+      const rolesB = users.entities[b]?.roles || [];
       return getRolePriority(rolesA) - getRolePriority(rolesB);
     });
+
+    tableContent = sortedUsers.map((userId) => ({
+      id: userId,
+      username: users.entities[userId]?.username || '',
+      roles: (users.entities[userId]?.roles || []).toString().replaceAll(',', ', '),
+    }));
+  }
+
+  const {
+    items: sortedItems,
+    requestSort,
+    resetSort,
+    sortConfig,
+  } = useSortableUserData(tableContent);
 
   if (isLoading) {
     return <UsersListUI isLoading={true} />;
@@ -34,17 +49,14 @@ function UsersList() {
     return <UsersListUI isError={true} errorMessage={error?.data?.message} />;
   }
 
-  if (isSuccess) {
-    // const { ids } = users;
-
-    const tableContent =
-      sortedUsers?.length &&
-      sortedUsers.map((userId) => <User key={userId} userId={userId} />);
-
-    return <UsersListUI tableContent={tableContent} />;
-  }
-
-  return null;
+  return (
+    <UsersListUI
+      tableContent={sortedItems}
+      requestSort={requestSort}
+      resetSort={resetSort}
+      sortConfig={sortConfig}
+    />
+  );
 }
 
 export default UsersList;
