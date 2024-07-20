@@ -1,3 +1,7 @@
+/**
+ * @constant
+ * @description Defines various MongoDB event types.
+ */
 export const MONGO_EVENTS = {
   OPEN: 'open',
   ERROR: 'error',
@@ -5,21 +9,33 @@ export const MONGO_EVENTS = {
   RECONNECTED: 'reconnected',
 };
 
+/**
+ * @constant
+ * @description Contains index-related constants.
+ */
 export const INDEX = {
   NOT_FOUND: -1,
   START: 1,
 };
 
+/**
+ * @constant
+ * @description Names for different cookies.
+ */
 export const COOKIE_NAME = {
   JWT: 'jwt',
 };
 
+/**
+ * @constant
+ * @description Configuration options for cookies.
+ */
 export const COOKIE_OPTIONS = {
   JWT: {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
-    maxAge: 7 * 24 * 60 * 60 * 1000 /**TODO: make into constant */,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   },
   CLEAR_JWT: {
     httpOnly: true,
@@ -28,12 +44,20 @@ export const COOKIE_OPTIONS = {
   },
 };
 
+/**
+ * @constant
+ * @description Supported content types.
+ */
 export const CONTENT_TYPES = {
   HTML: 'html',
   JSON: 'json',
   TEXT: 'txt',
 };
 
+/**
+ * @constant
+ * @description Defines various application routes.
+ */
 export const ROUTE = {
   SERVER: {
     ROOT: '/',
@@ -55,9 +79,16 @@ export const ROUTE = {
   },
 };
 
+/**
+ * @constant
+ * @description Configuration settings for the application.
+ */
 export const CONFIG = {
   PORT: process.env.PORT || 3500,
   HTTP_LOCALHOST: process.env.HTTP_LOCALHOST,
+  ALLOWED_ORIGINS: {
+    DELIMITER: ',',
+  },
   TOKEN: {
     ACCESS: { EXPIRES_IN: '15m' },
     REFRESH: { EXPIRES_IN: '7d' },
@@ -93,9 +124,15 @@ export const CONFIG = {
   BEARER: {
     PREFIX: 'Bearer ',
   },
-  AUTH_HEADER: { SEPARATOR: ' ' },
+  AUTH_HEADER: {
+    SEPARATOR: ' ',
+  },
 };
 
+/**
+ * @constant
+ * @description HTTP status codes.
+ */
 export const HTTP_STATUS_CODES = {
   CLIENT: {
     ERROR: {
@@ -118,6 +155,10 @@ export const HTTP_STATUS_CODES = {
   },
 };
 
+/**
+ * @constant
+ * @description Various message templates for the application.
+ */
 export const MSG = {
   AUTH: {
     ERROR: {

@@ -19,9 +19,12 @@ import {
 } from '../services/noteService.js';
 import { sendNoteUpdated } from '../helpers/response/notes.js';
 
-// @desc Get all notes
-// @route GET /notes
-// @access Private
+/**
+ * @function getAllNotes
+ * @description Get all notes.
+ * @route GET /notes
+ * @access Private
+ */
 const getAllNotes = async (req, res) => {
   const notes = await findNotes();
   if (!notes?.length) return sendNoteNotFound(res);
@@ -30,9 +33,12 @@ const getAllNotes = async (req, res) => {
   res.json(notesWithUser);
 };
 
-// @desc Create new note
-// @route POST /notes
-// @access Private
+/**
+ * @function createNewNote
+ * @description Create new note.
+ * @route POST /notes
+ * @access Private
+ */
 const createNewNote = async (req, res) => {
   const { user, title, text } = req.body;
   if (!user || !title || !text) return sendNoteAllFieldsRequired(res);
@@ -48,9 +54,12 @@ const createNewNote = async (req, res) => {
   }
 };
 
-// @desc Update a note
-// @route PATCH /notes
-// @access Private
+/**
+ * @function updateNote
+ * @description Update a note.
+ * @route PATCH /notes
+ * @access Private
+ */
 const updateNote = async (req, res) => {
   const { id, user, title, text, completed } = req.body;
   if (!isNoteValid(req.body)) return sendNoteAllFieldsRequired(res);
@@ -68,9 +77,12 @@ const updateNote = async (req, res) => {
   sendNoteUpdated(res, updatedNote.title);
 };
 
-// @desc Delete a note
-// @route DELETE /notes
-// @access Private
+/**
+ * @function deleteNote
+ * @description Delete a note.
+ * @route DELETE /notes
+ * @access Private
+ */
 const deleteNote = async (req, res) => {
   const { id } = req.body;
   if (!id) return sendNoteIdRequired(res);

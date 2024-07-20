@@ -4,6 +4,10 @@ import path from 'path';
 import { __dirname } from '../config/common/utils.js';
 import { CONFIG } from '../config/common/constants.js';
 
+/**
+ * @constant router
+ * @description Express router for serving the index.html file.
+ */
 const router = express.Router();
 
 router.get('^/$|/index(.html)?', (req, res) => {

@@ -27,8 +27,16 @@ import {
   handleMongoReconnected,
 } from './config/database/mongoEventHandler.js';
 
+/**
+ * @constant LOCAL_URL
+ * @description Constructs the local URL using the host and port from configuration.
+ */
 const LOCAL_URL = `${CONFIG.HTTP_LOCALHOST}:${CONFIG.PORT}`;
 
+/**
+ * @constant app
+ * @description Main Express application instance setup and configuration.
+ */
 const app = express();
 
 connectDB();

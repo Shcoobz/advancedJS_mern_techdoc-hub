@@ -1,6 +1,10 @@
 import { INDEX, HTTP_STATUS_CODES, MSG } from '../common/constants.js';
 import allowedOrigins from './allowedOrigins.js';
 
+/**
+ * @constant
+ * @description Configuration options for CORS middleware.
+ */
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== INDEX.NOT_FOUND || !origin) {

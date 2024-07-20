@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
 
+/**
+ * @constant userSchema
+ * @description Mongoose schema for users with fields for username, password, roles, and active status.
+ */
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,

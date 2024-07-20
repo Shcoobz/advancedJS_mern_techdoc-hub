@@ -3,6 +3,10 @@ import { login, refresh, logout } from '../controllers/authController.js';
 import { ROUTE } from '../config/common/constants.js';
 import loginLimiter from '../middleware/security/loginLimiter.js';
 
+/**
+ * @constant router
+ * @description Express router for authentication routes.
+ */
 const router = express.Router();
 
 router.route(ROUTE.AUTH.ROOT).post(loginLimiter, login);

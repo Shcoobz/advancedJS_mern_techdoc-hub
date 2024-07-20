@@ -6,6 +6,10 @@ import {
 } from '../../config/common/constants.js';
 import { logEvents } from '../logging/logger.js';
 
+/**
+ * @function errorHandler
+ * @description Handles errors by logging them and sending a JSON response.
+ */
 export function errorHandler(err, req, res, next) {
   logEvents(
     `${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`,
@@ -23,6 +27,10 @@ export function errorHandler(err, req, res, next) {
   res.json({ message: err.message, isError: true });
 }
 
+/**
+ * @function handleWildcardRoute
+ * @description Handles all undefined routes by sending an appropriate response based on the accepted content type.
+ */
 export function handleWildcardRoute(req, res) {
   res.status(HTTP_STATUS_CODES.ERROR.NOT_FOUND);
 

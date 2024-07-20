@@ -8,6 +8,10 @@ import {
   deleteUser,
 } from '../controllers/usersController.js';
 
+/**
+ * @constant router
+ * @description Express router for user routes, with JWT verification middleware.
+ */
 const router = express.Router();
 
 router.use(verifyJWT);

@@ -8,6 +8,10 @@ import {
   deleteNote,
 } from '../controllers/notesController.js';
 
+/**
+ * @constant router
+ * @description Express router for note routes, with JWT verification middleware.
+ */
 const router = express.Router();
 
 router.use(verifyJWT);
