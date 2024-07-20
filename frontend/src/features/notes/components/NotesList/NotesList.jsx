@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetNotesQuery } from '../../api/notesApiSlice';
-import { CONFIG, REPLACEMENT } from '../../../../config/constants';
-import { getFilteredIds, renderTableContent } from '../../utils/notesListUtils';
+import { CONFIG, REPLACEMENT, SORTING } from '../../../../config/constants';
+import { getFilteredIds, renderTableContent } from '../../../../service/sortingService';
 import useAuth from '../../../../hooks/useAuth';
 import NotesListUI from './NotesListUI';
 
@@ -34,7 +34,12 @@ function NotesList() {
   if (isSuccess) {
     const { ids, entities } = notes;
     const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
-    const tableContent = renderTableContent(filteredIds, entities, navigate);
+    const tableContent = renderTableContent(
+      filteredIds,
+      entities,
+      navigate,
+      SORTING.TYPE.note
+    );
 
     return <NotesListUI tableContent={tableContent} />;
   }

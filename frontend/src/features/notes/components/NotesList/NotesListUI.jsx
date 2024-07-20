@@ -1,8 +1,9 @@
 import { CLASS_NAME, INDEX, MSG, TITLE, UI } from '../../../../config/constants';
 import { useSortableData } from '../../../../hooks/useSortableData';
-import { getSortDirectionSymbol } from '../../utils/notesListUtils';
 import Spinner from '../../../../components/common/Spinner';
 import useTitle from '../../../../hooks/useTitle';
+import SortableTableHeader from '../../../../components/common/SortableTableHeader';
+import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 
 function NotesListUI({ tableContent, isLoading, isError, errorMessage }) {
   const {
@@ -30,49 +31,47 @@ function NotesListUI({ tableContent, isLoading, isError, errorMessage }) {
     <table className='table table--notes'>
       <thead className='table__thead'>
         <tr>
-          <th
-            scope='col'
-            className='table__th table__th--center table__th--status table__th--pointer'
-            onClick={() => requestSort('status')}
-            title='Sort by Status'>
-            {UI.DASH.NOTE.TABLE.status}
-            {getSortDirectionSymbol('status', sortConfig, resetSort)}
-          </th>
-          <th
-            scope='col'
-            className='table__th table__th--center table__th--created table__th--pointer'
-            onClick={() => requestSort('createdAt')}
-            title='Sort by Created Date'>
-            {UI.DASH.NOTE.TABLE.created}
-            {getSortDirectionSymbol('createdAt', sortConfig, resetSort)}
-          </th>
-          <th
-            scope='col'
-            className='table__th table__th--center table__th--updated table__th--pointer'
-            onClick={() => requestSort('updatedAt')}
-            title='Sort by Updated Date'>
-            {UI.DASH.NOTE.TABLE.updated}
-            {getSortDirectionSymbol('updatedAt', sortConfig, resetSort)}
-          </th>
-          <th
-            scope='col'
-            className='table__th table__th--center table__th--title table__th--pointer'
-            onClick={() => requestSort('title')}
-            title='Sort by Title'>
-            {UI.DASH.NOTE.TABLE.title}
-            {getSortDirectionSymbol('title', sortConfig, resetSort)}
-          </th>
-          <th
-            scope='col'
-            className='table__th table__th--center table__th--username table__th--pointer'
-            onClick={() => requestSort('user')}
-            title='Sort by Owner'>
-            {UI.DASH.NOTE.TABLE.owner}
-            {getSortDirectionSymbol('user', sortConfig, resetSort)}
-          </th>
-          <th scope='col' className='table__th table__th--center table__th--edit'>
-            {UI.DASH.NOTE.TABLE.actions}
-          </th>
+          <SortableTableHeader
+            columnKey={UI.DASH.NOTE.TABLE.COL_KEY.status}
+            title={UI.DASH.NOTE.TABLE.TITLE.status}
+            label={UI.DASH.NOTE.TABLE.TITLE.status}
+            sortConfig={sortConfig}
+            requestSort={requestSort}
+            resetSort={resetSort}
+          />
+          <SortableTableHeader
+            columnKey={UI.DASH.NOTE.TABLE.COL_KEY.createdAt}
+            title={UI.DASH.NOTE.TABLE.TITLE.created}
+            label={UI.DASH.NOTE.TABLE.TITLE.created}
+            sortConfig={sortConfig}
+            requestSort={requestSort}
+            resetSort={resetSort}
+          />
+          <SortableTableHeader
+            columnKey={UI.DASH.NOTE.TABLE.COL_KEY.updatedAt}
+            title={UI.DASH.NOTE.TABLE.TITLE.updated}
+            label={UI.DASH.NOTE.TABLE.TITLE.updated}
+            sortConfig={sortConfig}
+            requestSort={requestSort}
+            resetSort={resetSort}
+          />
+          <SortableTableHeader
+            columnKey={UI.DASH.NOTE.TABLE.COL_KEY.title}
+            title={UI.DASH.NOTE.TABLE.TITLE.title}
+            label={UI.DASH.NOTE.TABLE.TITLE.title}
+            sortConfig={sortConfig}
+            requestSort={requestSort}
+            resetSort={resetSort}
+          />
+          <SortableTableHeader
+            columnKey={UI.DASH.NOTE.TABLE.COL_KEY.owner}
+            title={UI.DASH.NOTE.TABLE.TITLE.owner}
+            label={UI.DASH.NOTE.TABLE.TITLE.owner}
+            sortConfig={sortConfig}
+            requestSort={requestSort}
+            resetSort={resetSort}
+          />
+          <CustomTableHeader label={UI.DASH.NOTE.TABLE.TITLE.edit} />
         </tr>
       </thead>
       <tbody>{sortedItems}</tbody>

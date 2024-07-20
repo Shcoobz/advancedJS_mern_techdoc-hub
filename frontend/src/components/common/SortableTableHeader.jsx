@@ -1,4 +1,4 @@
-import { getSortDirectionSymbol } from '../../features/users/utils/usersListUtils';
+import { getSortDirectionSymbol } from '../../service/sortingService';
 
 function SortableTableHeader({
   columnKey,

@@ -115,6 +115,10 @@ export const SORTING = {
     descending: ' ▼',
     reset: '✖',
   },
+  TYPE: {
+    user: 'user',
+    note: 'note',
+  },
 };
 
 export const CLASS_NAME = {
@@ -123,6 +127,7 @@ export const CLASS_NAME = {
   formInputIncomplete: 'form__input--incomplete',
   cellInactive: 'table__cell--inactive',
   containerSmall: 'dash-header__container--small',
+  userEdit: 'user__edit',
 };
 
 export const REPLACEMENT = {
@@ -326,12 +331,22 @@ export const UI = {
         resetSorting: 'Reset Sorting',
       },
       TABLE: {
-        status: 'Status',
-        created: 'Created',
-        updated: 'Updated',
-        title: 'Title',
-        owner: 'Owner',
-        actions: 'Actions',
+        COL_KEY: {
+          status: 'status',
+          createdAt: 'createdAt',
+          updatedAt: 'updatedAt',
+          title: 'title',
+          owner: 'user',
+          edit: 'actions',
+        },
+        TITLE: {
+          status: 'Status',
+          created: 'Created',
+          updated: 'Updated',
+          title: 'Title',
+          owner: 'Owner',
+          edit: 'Actions',
+        },
       },
     },
     USER: {

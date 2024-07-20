@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetUsersQuery } from '../../api/usersApiSlice';
-import { getFilteredIds, renderTableContent } from '../../utils/usersListUtils';
-import { CONFIG, REPLACEMENT } from '../../../../config/constants';
+import { getFilteredIds, renderTableContent } from '../../../../service/sortingService';
+import { CONFIG, REPLACEMENT, SORTING } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import UsersListUI from './UsersListUI';
-import { useMemo } from 'react';
 
 function UsersList() {
   const { username, isManager, isAdmin } = useAuth();
@@ -23,18 +22,25 @@ function UsersList() {
   });
 
   if (isLoading) {
-    return <UsersListUI isLoading={true} />;
+    return <UsersListUI isLoading={isLoading} />;
   }
 
   if (isError) {
     const errorMessage = error?.data?.message || REPLACEMENT.emptyString;
-    return <UsersListUI isError={true} errorMessage={errorMessage} />;
+
+    return <UsersListUI isError={isError} errorMessage={errorMessage} />;
   }
 
   if (isSuccess) {
     const { ids, entities } = users;
     const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
-    const tableContent = renderTableContent(filteredIds, entities, navigate);
+    const tableContent = renderTableContent(
+      filteredIds,
+      entities,
+      navigate,
+      SORTING.TYPE.user
+    );
+
     return <UsersListUI tableContent={tableContent} />;
   }
 
