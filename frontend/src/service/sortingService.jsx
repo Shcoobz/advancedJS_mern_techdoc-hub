@@ -30,7 +30,7 @@ export function renderTableContent(filteredIds, entities, navigate, type) {
           key={id}
           userId={id}
           username={entity.username}
-          roles={entity.roles.join(', ')}
+          roles={entity.roles.join(REPLACEMENT.commaSpace)}
           onEdit={onEdit}
         />
       );

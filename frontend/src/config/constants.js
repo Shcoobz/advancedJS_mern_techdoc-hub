@@ -308,6 +308,42 @@ export const UI = {
     headerTitle: 'Tech Documentation',
     greeting: 'Welcome {username}!',
     templateUsername: '{username}',
+    welcome: `Tempor dolor nulla deserunt in dolore elit. In eu ut sunt laborum occaecat
+      exercitation amet sunt ex cillum aliqua cillum mollit. Proident officia id
+      laboris commodo incididunt nulla et amet. Ipsum excepteur eiusmod sint dolor
+      pariatur consectetur nisi in. Nulla nulla culpa ut anim aliqua ea reprehenderit
+      irure qui. Mollit consequat elit voluptate sit et elit pariatur labore occaecat.
+      Duis sint dolore nulla Lorem in. Consectetur culpa ipsum enim sunt nulla
+      cupidatat ad ea. Culpa id velit aliquip quis do minim aute mollit ullamco
+      adipisicing officia velit.In exercitation quis dolore aliquip incididunt.
+      Ullamco cupidatat elit quis amet laborum. Ipsum culpa non occaecat ullamco
+      exercitation cillum eiusmod eiusmod aute ullamco mollit. Exercitation ut sint
+      nulla laboris anim sit mollit eiusmod ex velit commodo et ex minim. Dolor Lorem
+      est amet pariatur quis do exercitation.`,
+    welcome2: `Tempor dolor nulla deserunt in dolore elit. In eu ut sunt laborum occaecat
+      exercitation amet sunt ex cillum aliqua cillum mollit. Proident officia id
+      laboris commodo incididunt nulla et amet. Ipsum excepteur eiusmod sint dolor
+      pariatur consectetur nisi in. Nulla nulla culpa ut anim aliqua ea reprehenderit
+      irure qui. Mollit consequat elit voluptate sit et elit pariatur labore occaecat.
+      Duis sint dolore nulla Lorem in. Consectetur culpa ipsum enim sunt nulla
+      cupidatat ad ea. Culpa id velit aliquip quis do minim aute mollit ullamco
+      adipisicing officia velit.In exercitation quis dolore aliquip incididunt.
+      Ullamco cupidatat elit quis amet laborum. Ipsum culpa non occaecat ullamco
+      exercitation cillum eiusmod eiusmod aute ullamco mollit. Exercitation ut sint
+      nulla laboris anim sit mollit eiusmod ex velit commodo et ex minim. Dolor Lorem
+      est amet pariatur quis do exercitation.`,
+    welcome3: `Tempor dolor nulla deserunt in dolore elit. In eu ut sunt laborum occaecat
+      exercitation amet sunt ex cillum aliqua cillum mollit. Proident officia id
+      laboris commodo incididunt nulla et amet. Ipsum excepteur eiusmod sint dolor
+      pariatur consectetur nisi in. Nulla nulla culpa ut anim aliqua ea reprehenderit
+      irure qui. Mollit consequat elit voluptate sit et elit pariatur labore occaecat.
+      Duis sint dolore nulla Lorem in. Consectetur culpa ipsum enim sunt nulla
+      cupidatat ad ea. Culpa id velit aliquip quis do minim aute mollit ullamco
+      adipisicing officia velit.In exercitation quis dolore aliquip incididunt.
+      Ullamco cupidatat elit quis amet laborum. Ipsum culpa non occaecat ullamco
+      exercitation cillum eiusmod eiusmod aute ullamco mollit. Exercitation ut sint
+      nulla laboris anim sit mollit eiusmod ex velit commodo et ex minim. Dolor Lorem
+      est amet pariatur quis do exercitation.`,
     LINK: {
       viewNotes: 'View Notes List',
       addNewNote: 'Add New Note',

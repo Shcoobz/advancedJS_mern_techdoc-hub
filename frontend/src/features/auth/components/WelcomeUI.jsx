@@ -12,6 +12,16 @@ function Greeting({ username }) {
   return <h1>{greetingMessage}</h1>;
 }
 
+function GreetingText() {
+  return (
+    <div>
+      <p>{UI.DASH.welcome}</p> <br />
+      <p>{UI.DASH.welcome2}</p> <br />
+      <p>{UI.DASH.welcome3}</p> <br />
+    </div>
+  );
+}
+
 function NavigationLinks({ isManager, isAdmin }) {
   return (
     <>
@@ -42,6 +52,7 @@ function WelcomeUI({ date, username, isManager, isAdmin }) {
     <section className='welcome'>
       <DateDisplay date={date} />
       <Greeting username={username} />
+      <GreetingText />
       <NavigationLinks isManager={isManager} isAdmin={isAdmin} />
     </section>
   );
