@@ -5,7 +5,7 @@ import Spinner from '../../../../components/common/Spinner';
 import SortableTableHeader from '../../../../components/common/SortableTableHeader';
 import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 
-function UsersListUI({ tableContent, isLoading, isError, errorMessage }) {
+function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
     items: sortedItems,
     requestSort,
@@ -28,30 +28,37 @@ function UsersListUI({ tableContent, isLoading, isError, errorMessage }) {
   }
 
   return (
-    <table className='table table--users'>
-      <thead className='table__thead'>
-        <tr>
-          <SortableTableHeader
-            columnKey={UI.DASH.USER.TABLE.COL_KEY.username}
-            title={UI.DASH.USER.TABLE.TITLE.username}
-            label={UI.DASH.USER.TABLE.TITLE.username}
-            sortConfig={sortConfig}
-            requestSort={requestSort}
-            resetSort={resetSort}
-          />
-          <SortableTableHeader
-            columnKey={UI.DASH.USER.TABLE.COL_KEY.roles}
-            title={UI.DASH.USER.TABLE.TITLE.roles}
-            label={UI.DASH.USER.TABLE.TITLE.roles}
-            sortConfig={sortConfig}
-            requestSort={requestSort}
-            resetSort={resetSort}
-          />
-          <CustomTableHeader label={UI.DASH.USER.TABLE.TITLE.edit} />
-        </tr>
-      </thead>
-      <tbody>{sortedItems}</tbody>
-    </table>
+    <>
+      <input
+        type='text'
+        placeholder='Search by username or role...'
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <table className='table table--users'>
+        <thead className='table__thead'>
+          <tr>
+            <SortableTableHeader
+              columnKey={UI.DASH.USER.TABLE.COL_KEY.username}
+              title={UI.DASH.USER.TABLE.TITLE.username}
+              label={UI.DASH.USER.TABLE.TITLE.username}
+              sortConfig={sortConfig}
+              requestSort={requestSort}
+              resetSort={resetSort}
+            />
+            <SortableTableHeader
+              columnKey={UI.DASH.USER.TABLE.COL_KEY.roles}
+              title={UI.DASH.USER.TABLE.TITLE.roles}
+              label={UI.DASH.USER.TABLE.TITLE.roles}
+              sortConfig={sortConfig}
+              requestSort={requestSort}
+              resetSort={resetSort}
+            />
+            <CustomTableHeader label={UI.DASH.USER.TABLE.TITLE.edit} />
+          </tr>
+        </thead>
+        <tbody>{sortedItems}</tbody>
+      </table>
+    </>
   );
 }
 
