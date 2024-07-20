@@ -50,6 +50,7 @@ function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
               sortConfig={sortConfig}
               requestSort={requestSort}
               resetSort={resetSort}
+              additionalClass={CLASS_NAME.ADDITIONAL.noteCreated}
             />
             <SortableTableHeader
               columnKey={UI.DASH.NOTE.TABLE.COL_KEY.updatedAt}
@@ -58,6 +59,7 @@ function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
               sortConfig={sortConfig}
               requestSort={requestSort}
               resetSort={resetSort}
+              additionalClass={CLASS_NAME.ADDITIONAL.noteUpdated}
             />
             <SortableTableHeader
               columnKey={UI.DASH.NOTE.TABLE.COL_KEY.title}
@@ -74,6 +76,7 @@ function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
               sortConfig={sortConfig}
               requestSort={requestSort}
               resetSort={resetSort}
+              additionalClass={CLASS_NAME.ADDITIONAL.noteUsername}
             />
             <CustomTableHeader label={UI.DASH.NOTE.TABLE.TITLE.edit} />
           </tr>

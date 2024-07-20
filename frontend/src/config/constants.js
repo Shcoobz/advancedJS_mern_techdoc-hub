@@ -128,6 +128,11 @@ export const CLASS_NAME = {
   cellInactive: 'table__cell--inactive',
   containerSmall: 'dash-header__container--small',
   userEdit: 'user__edit',
+  ADDITIONAL: {
+    noteCreated: 'note__created',
+    noteUpdated: 'note__updated',
+    noteUsername: 'note__username',
+  },
 };
 
 export const REPLACEMENT = {
