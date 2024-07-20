@@ -11,7 +11,7 @@ export function getFilteredIds(ids, entities, username, isManager, isAdmin) {
   return ids.filter((id) => entities[id].user === username);
 }
 
-function getStatus(completed) {
+export function getStatus(completed) {
   return completed ? UI.DASH.NOTE.LABEL.completed : UI.DASH.NOTE.LABEL.open;
 }
 

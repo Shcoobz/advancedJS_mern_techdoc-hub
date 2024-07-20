@@ -5,6 +5,7 @@ import { CONFIG, REPLACEMENT, SORTING } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import UsersListUI from './UsersListUI';
 import { useState } from 'react';
+import { filterBySearchTerm } from '../../../../service/searchService';
 
 function UsersList() {
   const { username, isManager, isAdmin } = useAuth();
@@ -34,17 +35,6 @@ function UsersList() {
   }
 
   if (isSuccess) {
-    // const { ids, entities } = users;
-    // const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
-    // const tableContent = renderTableContent(
-    //   filteredIds,
-    //   entities,
-    //   navigate,
-    //   SORTING.TYPE.user
-    // );
-
-    // return <UsersListUI tableContent={tableContent} />;
-
     const { ids, entities } = users;
 
     const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
@@ -60,18 +50,6 @@ function UsersList() {
   }
 
   return null;
-}
-
-function filterBySearchTerm(ids, entities, searchTerm) {
-  if (!searchTerm) return ids;
-
-  searchTerm = searchTerm.toLowerCase();
-
-  return ids.filter(
-    (id) =>
-      entities[id].username.toLowerCase().includes(searchTerm) ||
-      entities[id].roles.some((role) => role.toLowerCase().includes(searchTerm))
-  );
 }
 
 export default UsersList;

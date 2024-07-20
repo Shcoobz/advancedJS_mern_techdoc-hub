@@ -4,10 +4,13 @@ import { CONFIG, REPLACEMENT, SORTING } from '../../../../config/constants';
 import { getFilteredIds, renderTableContent } from '../../../../service/sortingService';
 import useAuth from '../../../../hooks/useAuth';
 import NotesListUI from './NotesListUI';
+import { useState } from 'react';
+import { filterBySearchTerm } from '../../../../service/searchService';
 
 function NotesList() {
   const { username, isManager, isAdmin } = useAuth();
   const navigate = useNavigate;
+  const [searchTerm, setSearchTerm] = useState('');
 
   const {
     data: notes,
@@ -34,14 +37,15 @@ function NotesList() {
   if (isSuccess) {
     const { ids, entities } = notes;
     const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
+    const searchFilteredIds = filterBySearchTerm(filteredIds, entities, searchTerm);
     const tableContent = renderTableContent(
-      filteredIds,
+      searchFilteredIds,
       entities,
       navigate,
       SORTING.TYPE.note
     );
 
-    return <NotesListUI tableContent={tableContent} />;
+    return <NotesListUI tableContent={tableContent} setSearchTerm={setSearchTerm} />;
   }
 
   return null;

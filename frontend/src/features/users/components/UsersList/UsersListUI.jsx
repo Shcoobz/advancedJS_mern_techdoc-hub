@@ -4,6 +4,7 @@ import useTitle from '../../../../hooks/useTitle';
 import Spinner from '../../../../components/common/Spinner';
 import SortableTableHeader from '../../../../components/common/SortableTableHeader';
 import CustomTableHeader from '../../../../components/common/CustomTableHeader';
+import SearchInput from '../../../../components/common/SearchInput';
 
 function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
@@ -29,11 +30,7 @@ function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
 
   return (
     <>
-      <input
-        type='text'
-        placeholder='Search by username or role...'
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <SearchInput setSearchTerm={setSearchTerm} />
       <table className='table table--users'>
         <thead className='table__thead'>
           <tr>
