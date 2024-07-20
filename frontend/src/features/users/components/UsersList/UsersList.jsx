@@ -1,11 +1,15 @@
-import { CONFIG } from '../../../../config/constants';
-import { useSortableUserData } from '../../../../hooks/useSortableUserData';
+import { useNavigate } from 'react-router-dom';
 import { useGetUsersQuery } from '../../api/usersApiSlice';
-import { getRolePriority } from '../../utils/usersListUtils';
-import User from '../User/User';
+import { getFilteredIds, renderTableContent } from '../../utils/usersListUtils';
+import { CONFIG, REPLACEMENT } from '../../../../config/constants';
+import useAuth from '../../../../hooks/useAuth';
 import UsersListUI from './UsersListUI';
+import { useMemo } from 'react';
 
 function UsersList() {
+  const { username, isManager, isAdmin } = useAuth();
+  const navigate = useNavigate();
+
   const {
     data: users,
     isLoading,
@@ -18,45 +22,23 @@ function UsersList() {
     refetchOnMountOrArgChange: true,
   });
 
-  let tableContent = [];
-
-  if (isSuccess && users?.ids?.length) {
-    const sortedUsers = [...users.ids].sort((a, b) => {
-      const rolesA = users.entities[a]?.roles || [];
-      const rolesB = users.entities[b]?.roles || [];
-      return getRolePriority(rolesA) - getRolePriority(rolesB);
-    });
-
-    tableContent = sortedUsers.map((userId) => ({
-      id: userId,
-      username: users.entities[userId]?.username || '',
-      roles: (users.entities[userId]?.roles || []).toString().replaceAll(',', ', '),
-    }));
-  }
-
-  const {
-    items: sortedItems,
-    requestSort,
-    resetSort,
-    sortConfig,
-  } = useSortableUserData(tableContent);
-
   if (isLoading) {
     return <UsersListUI isLoading={true} />;
   }
 
   if (isError) {
-    return <UsersListUI isError={true} errorMessage={error?.data?.message} />;
+    const errorMessage = error?.data?.message || REPLACEMENT.emptyString;
+    return <UsersListUI isError={true} errorMessage={errorMessage} />;
   }
 
-  return (
-    <UsersListUI
-      tableContent={sortedItems}
-      requestSort={requestSort}
-      resetSort={resetSort}
-      sortConfig={sortConfig}
-    />
-  );
+  if (isSuccess) {
+    const { ids, entities } = users;
+    const filteredIds = getFilteredIds(ids, entities, username, isManager, isAdmin);
+    const tableContent = renderTableContent(filteredIds, entities, navigate);
+    return <UsersListUI tableContent={tableContent} />;
+  }
+
+  return null;
 }
 
 export default UsersList;

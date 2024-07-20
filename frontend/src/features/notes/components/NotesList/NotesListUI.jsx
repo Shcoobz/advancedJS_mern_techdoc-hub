@@ -1,4 +1,4 @@
-import { CLASS_NAME, TITLE, UI } from '../../../../config/constants';
+import { CLASS_NAME, INDEX, MSG, TITLE, UI } from '../../../../config/constants';
 import { useSortableData } from '../../../../hooks/useSortableData';
 import { getSortDirectionSymbol } from '../../utils/notesListUtils';
 import Spinner from '../../../../components/common/Spinner';
@@ -20,6 +20,10 @@ function NotesListUI({ tableContent, isLoading, isError, errorMessage }) {
 
   if (isError) {
     return <p className={CLASS_NAME.errorMsg}>{errorMessage}</p>;
+  }
+
+  if (!sortedItems || sortedItems.length === INDEX.emptyArrayLength) {
+    return <p>{MSG.NOTE.ERROR.noNotesFound}</p>;
   }
 
   return (

@@ -13,8 +13,10 @@ export const useSortableUserData = (
     const sortableItems = [...items];
     if (sortConfig.key !== null) {
       sortableItems.sort((a, b) => {
-        const aValue = a[sortConfig.key] || '';
-        const bValue = b[sortConfig.key] || '';
+        const aValue = a.props[sortConfig.key] || '';
+        const bValue = b.props[sortConfig.key] || '';
+
+        // console.log(`Comparing ${aValue} with ${bValue}`);
 
         if (aValue < bValue) {
           return sortConfig.direction === SORTING.DIRECTION.ascending ? -1 : 1;
@@ -30,11 +32,17 @@ export const useSortableUserData = (
   }, [items, sortConfig]);
 
   function requestSort(key) {
-    let direction = SORTING.DIRECTION.ascending;
-    if (sortConfig.key === key && sortConfig.direction === SORTING.DIRECTION.ascending) {
-      direction = SORTING.DIRECTION.descending;
-    }
-    setSortConfig({ key, direction });
+    setSortConfig((prevConfig) => {
+      let direction = SORTING.DIRECTION.ascending;
+      if (
+        prevConfig.key === key &&
+        prevConfig.direction === SORTING.DIRECTION.ascending
+      ) {
+        direction = SORTING.DIRECTION.descending;
+      }
+
+      return { key, direction };
+    });
   }
 
   function resetSort() {
