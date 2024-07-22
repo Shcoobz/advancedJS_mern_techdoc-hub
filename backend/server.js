@@ -56,7 +56,7 @@ app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
-app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute());
+app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 
 app.use(errorHandler);
 
