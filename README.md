@@ -1,4 +1,4 @@
-# advancedJS_mern_TechDoc - Hub
+# advancedJS_mern_TechDoc - Hub: [LIVE DEMO](https://advancedjs-mern-techdoc-hub.onrender.com)
 
 ![advancedJS_mern_TechDoc - Hub](frontend/public/img/advancedJS_mern_techdoc-hub.png)
 
@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-You can access the live demo of **TechDoc - Hub** using the following credentials:
+You can access the [live demo](https://advancedjs-mern-techdoc-hub.onrender.com) of **TechDoc - Hub** using the following credentials:
 
 <blockquote>
 
