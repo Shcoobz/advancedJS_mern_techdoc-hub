@@ -15,7 +15,6 @@ import { CONFIG } from '../../config/common/constants.js';
 async function logEvents(message, logFileName) {
   const dateTime = format(new Date(), CONFIG.DATE_SETTING.FORMAT);
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
-
   const logDirPath = path.join(__dirname, ...CONFIG.PATH.LOGS_DIR);
 
   try {
