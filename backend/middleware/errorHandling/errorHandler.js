@@ -32,7 +32,7 @@ export function errorHandler(err, req, res, next) {
  * @description Handles all undefined routes by sending an appropriate response based on the accepted content type.
  */
 export function handleWildcardRoute(req, res) {
-  res.status(HTTP_STATUS_CODES.ERROR.NOT_FOUND);
+  res.status(HTTP_STATUS_CODES.CLIENT.ERROR.NOT_FOUND);
 
   if (req.accepts(CONTENT_TYPES.HTML)) {
     res.sendFile(path.join(__dirname, ...CONFIG.PATH.VIEWS_DIR, CONFIG.PATH.ERROR_HTML));
