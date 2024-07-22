@@ -1,10 +1,11 @@
+import path from 'path';
+import { logEvents } from '../logging/logger.js';
 import {
   CONFIG,
   CONTENT_TYPES,
   HTTP_STATUS_CODES,
   MSG,
 } from '../../config/common/constants.js';
-import { logEvents } from '../logging/logger.js';
 
 /**
  * @function errorHandler
