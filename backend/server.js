@@ -14,6 +14,7 @@ import { __dirname } from './config/common/utils.js';
 import { logger } from './middleware/logging/logger.js';
 import {
   serveFrontendStaticFiles,
+  serveIndexHtml,
   servePublicStaticFiles,
 } from './middleware/staticFileHandler.js';
 import {
@@ -48,25 +49,29 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+console.log('Setting up static file serving middleware...');
 app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
 app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
 
+console.log('Setting up API routes...');
 app.use(ROUTE.SERVER.ROOT, rootRouter);
 app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
-app.get('*', (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname, ...CONFIG.PATH.FRONTEND_DIR, CONFIG.PATH.INDEX_HTML)
-  );
-});
+console.log('Setting up catch-all route for client-side routing...');
+app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
 
+console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 
+console.log('Setting up error handling middleware...');
 app.use(errorHandler);
 
+console.log('Finalizing server setup...');
 handleMongoOpen(app, PORT, LOCAL_URL);
 handleMongoError();
 handleMongoDisconnected();
 handleMongoReconnected();
+
+console.log(`Server is running on port ${PORT}`);
