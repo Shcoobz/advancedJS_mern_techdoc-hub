@@ -10,7 +10,7 @@ You can access the live demo of **TechDoc - Hub** using the following credential
 
 <blockquote>
 
-#### <u> Manager: </u>
+#### Manager:
 
 - **Username**: Manager
 - **Password**: 123456
@@ -42,11 +42,9 @@ The core functionality includes:
 
 </blockquote>
 
-<br>
-
 <blockquote>
 
-#### Frontend
+#### Frontend:
 
 The core functionality includes:
 
@@ -61,49 +59,91 @@ The core functionality includes:
 
 ## Features
 
-### User Authentication
+<blockquote>
+
+#### User Authentication:
 
 Handles user login, logout, and token refresh functionalities. Ensures secure access and management of user sessions with JWT tokens.
 
-### Note Management
+</blockquote>
+
+<blockquote>
+
+#### Note Management:
 
 Enables CRUD operations for notes, including creating, reading, updating, and deleting notes. Notes are associated with users and enriched with user details.
 
-### Role-Based Access Control
+</blockquote>
+
+<blockquote>
+
+#### Role-Based Access Control:
 
 Implements access control based on user roles, ensuring that only authorized users can access certain endpoints and functionalities.
 
-### Secure Cookie Management
+</blockquote>
+
+<blockquote>
+
+#### Secure Cookie Management:
 
 Manages cookies securely, including setting and clearing JWT tokens. Ensures cookies are handled with appropriate security settings like httpOnly, secure, and sameSite attributes.
 
-### Comprehensive Error Handling
+</blockquote>
+
+<blockquote>
+
+#### Comprehensive Error Handling:
 
 Provides robust error handling mechanisms, logging errors to designated files and sending appropriate error responses to clients.
 
-### Logging
+</blockquote>
+
+<blockquote>
+
+#### Logging:
 
 Logs important events, such as HTTP requests and MongoDB events, to files. Ensures that the application behavior can be monitored and debugged effectively.
 
-### User Management (Frontend)
+</blockquote>
+
+<blockquote>
+
+#### User Management - Frontend:
 
 Manage user information including roles and credentials. Users can be added, edited, or removed with ease. Role-based access control ensures that only authorized users can perform certain actions.
 
-### Notes Management (Frontend)
+</blockquote>
+
+<blockquote>
+
+#### Notes Management - Frontend:
 
 Create, edit, and organize notes. The application allows users to manage notes with different statuses and dates, providing a comprehensive view of their tasks and projects.
 
-### Authentication and Authorization (Frontend)
+</blockquote>
+
+<blockquote>
+
+#### Authentication and Authorization - Frontend:
 
 Secure login and role-based authorization mechanisms ensure that users can only access features and data that they are permitted to. Includes token-based authentication and session management.
 
-### Dynamic Sorting and Filtering (Frontend)
+</blockquote>
+
+<blockquote>
+
+#### Dynamic Sorting and Filtering - Frontend:
 
 Sort and filter data dynamically in tables based on user preferences. The application supports various sorting directions and can reset sorting configurations as needed.
 
+</blockquote>
+
 ## Technologies
 
-### Backend
+<blockquote>
+
+#### Backend:
 
 - **Node.js**: JavaScript runtime for building the backend.
 - **Express**: Web framework for building the API.
@@ -115,7 +155,11 @@ Sort and filter data dynamically in tables based on user preferences. The applic
 - **Date-fns**: For date formatting.
 - **UUID**: For generating unique identifiers.
 
-### Frontend
+</blockquote>
+
+<blockquote>
+
+#### Frontend:
 
 - **React**: A JavaScript library for building user interfaces. Used for creating dynamic and responsive UI components.
 - **Redux**: A state management library for JavaScript apps. Manages application state in a predictable manner.
@@ -123,6 +167,8 @@ Sort and filter data dynamically in tables based on user preferences. The applic
 - **RTK Query**: A data fetching and caching tool that simplifies data management in Redux.
 - **JWT (JSON Web Tokens)**: Used for authentication and authorization processes.
 - **CSS Modules**: Scoped CSS for styling React components, ensuring modular and maintainable styles.
+
+</blockquote>
 
 ---
 
