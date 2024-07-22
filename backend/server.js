@@ -48,8 +48,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
 app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
+app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
 
 app.use(ROUTE.SERVER.ROOT, rootRouter);
 app.use(ROUTE.SERVER.AUTH, authRouter);
