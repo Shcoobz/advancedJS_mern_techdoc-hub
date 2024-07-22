@@ -33,10 +33,19 @@ export function errorHandler(err, req, res, next) {
  * @description Handles all undefined routes by sending an appropriate response based on the accepted content type.
  */
 export function handleWildcardRoute(req, res) {
+  console.log('__dirname in handleWildcardRoute:', __dirname);
+
+  const viewsDirPath = path.join(__dirname, ...CONFIG.PATH.VIEWS_DIR);
+  const errorHtmlPath = path.join(viewsDirPath, CONFIG.PATH.ERROR_HTML);
+
+  console.log('Constructed views directory path:', viewsDirPath);
+  console.log('Constructed error HTML path:', errorHtmlPath);
+
   res.status(HTTP_STATUS_CODES.CLIENT.ERROR.NOT_FOUND);
 
   if (req.accepts(CONTENT_TYPES.HTML)) {
-    res.sendFile(path.join(__dirname, ...CONFIG.PATH.VIEWS_DIR, CONFIG.PATH.ERROR_HTML));
+    console.log('Sending HTML file from path:', errorHtmlPath);
+    res.sendFile(path.join(errorHtmlPath));
   } else if (req.accepts(CONTENT_TYPES.JSON)) {
     res.json({ message: MSG.SERVER.NOT_FOUND });
   } else {

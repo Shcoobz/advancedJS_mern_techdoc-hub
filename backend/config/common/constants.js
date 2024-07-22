@@ -110,12 +110,9 @@ export const CONFIG = {
   PATH: {
     LOGS_DIR: ['..', '..', 'logs'],
     VIEWS_DIR: ['..', '..', 'views'],
-    PUBLIC_DIR: ['..', '..', 'public'],
-    FRONTEND_DIR: ['..', '..', 'frontend', 'dist'],
-    STATIC_FRONTEND_DIR: '../frontend/dist',
-    STATIC_PUBLIC_DIR: '../public',
-    STATIC_INDEX_PATH: '../frontend/dist/index.html',
-    INDEX_HTML: 'index.html',
+    PUBLIC_DIR: ['..', '..', '..', 'frontend', 'public'],
+    FRONTEND_DIR: ['..', '..', '..', 'frontend', 'dist'],
+    INDEX_DIR: ['..', '..', '..', 'frontend', 'dist', 'index.html'],
     ERROR_HTML: '404.html',
   },
   DATE_SETTING: {

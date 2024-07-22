@@ -54,11 +54,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-console.log('Setting up static file serving middleware...');
 app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
 app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
 
-console.log('Setting up API routes...');
 app.use(ROUTE.SERVER.ROOT, rootRouter);
 app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
@@ -73,10 +71,7 @@ app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 console.log('Setting up error handling middleware...');
 app.use(errorHandler);
 
-console.log('Finalizing server setup...');
 handleMongoOpen(app, PORT, LOCAL_URL);
 handleMongoError();
 handleMongoDisconnected();
 handleMongoReconnected();
-
-console.log(`Server is running on port ${PORT}`);
