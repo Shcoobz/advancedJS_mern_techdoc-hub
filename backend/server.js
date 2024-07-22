@@ -1,6 +1,5 @@
 import 'express-async-errors';
 import 'dotenv/config';
-import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -28,12 +27,6 @@ import {
   handleMongoOpen,
   handleMongoReconnected,
 } from './config/database/mongoEventHandler.js';
-
-/**
- * @constant PORT
- * @description Using PORT from env.
- */
-const PORT = process.env.PORT || 3500;
 
 /**
  * @constant LOCAL_URL
@@ -71,7 +64,7 @@ app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 console.log('Setting up error handling middleware...');
 app.use(errorHandler);
 
-handleMongoOpen(app, PORT, LOCAL_URL);
+handleMongoOpen(app, CONFIG.PORT, LOCAL_URL);
 handleMongoError();
 handleMongoDisconnected();
 handleMongoReconnected();
