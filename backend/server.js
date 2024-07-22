@@ -29,9 +29,11 @@ import {
   handleMongoReconnected,
 } from './config/database/mongoEventHandler.js';
 
+/**
+ * @constant PORT
+ * @description Using PORT from env.
+ */
 const PORT = process.env.PORT || 3500;
-const FRONTEND_DIR = path.join(__dirname, '../frontend/dist');
-const PUBLIC_DIR = path.join(__dirname, '../public');
 
 /**
  * @constant LOCAL_URL
