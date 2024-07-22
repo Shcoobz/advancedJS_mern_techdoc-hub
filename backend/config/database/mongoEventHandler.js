@@ -12,7 +12,7 @@ import { CONFIG, MONGO_EVENTS, MSG } from '../common/constants.js';
 export function handleMongoOpen(app, PORT, LOCAL_URL) {
   mongoose.connection.once(MONGO_EVENTS.OPEN, () => {
     app.listen(PORT, () => {
-      const isProduction = process.env.NODE_ENV === CONFIG.NODE_ENV;
+      const isProduction = process.env.NODE_ENV === 'production';
       const url = isProduction ? LOCAL_URL : `${LOCAL_URL}:${PORT}`;
 
       console.log(MSG.SERVER.LOG.START(PORT, url));
