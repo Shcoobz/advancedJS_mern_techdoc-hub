@@ -10,8 +10,9 @@
     "client": "vite --config frontend/vite.config.js",
     "dev": "concurrently -n SERVER,CLIENT -c blue,green --raw \"npm run server\" \"npm run client\"",
     "build": "cd frontend && npx vite build --config vite.config.js",
-    "render-build": "npm install && cd frontend && npm run build",
-    "render-start": "npm run start"
+    "build-frontend": "cd frontend && npx vite build --config vite.config.js",
+    "render-build": "npm install && npm run build-frontend",
+    "render-start": "cd backend && node server.js"
   },
   "keywords": [],
   "author": "",
