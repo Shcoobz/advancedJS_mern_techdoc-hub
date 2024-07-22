@@ -33,7 +33,7 @@ const PORT = process.env.PORT || 3500;
  * @constant LOCAL_URL
  * @description Constructs the local URL using the host and port from configuration.
  */
-const LOCAL_URL = `${CONFIG.HTTP_LOCALHOST}:${CONFIG.PORT}`;
+const LOCAL_URL = `${CONFIG.HTTP_LOCALHOST}`;
 
 /**
  * @constant app
@@ -56,7 +56,7 @@ app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
-app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
+app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute(req, res));
 
 app.use(errorHandler);
 
