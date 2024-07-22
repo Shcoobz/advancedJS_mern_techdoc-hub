@@ -1,6 +1,6 @@
 # advancedJS_mern_TechDoc - Hub
 
-![advancedJS_mern_TechDoc - Hub](public/img/advancedJS_mern_techdoc-hub.png)
+![advancedJS_mern_TechDoc - Hub](frontend/public/img/advancedJS_mern_techdoc-hub.png)
 
 ## Summary
 
