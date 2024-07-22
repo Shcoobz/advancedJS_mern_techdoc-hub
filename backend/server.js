@@ -62,8 +62,8 @@ app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
-console.log('Setting up catch-all route for client-side routing...');
-app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
+// console.log('Setting up catch-all route for client-side routing...');
+// app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
 
 console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);

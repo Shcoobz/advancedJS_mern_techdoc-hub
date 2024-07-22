@@ -6,9 +6,7 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ mode }) => {
-  console.log(`Running in mode: ${mode}`);
   const env = loadEnv(mode, path.resolve(__dirname, '..'), 'VITE_');
-  console.log('Loaded environment variables:', env);
 
   return {
     root: __dirname,
