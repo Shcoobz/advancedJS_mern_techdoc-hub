@@ -112,6 +112,7 @@ export const CONFIG = {
     VIEWS_DIR: ['..', '..', 'views'],
     PUBLIC_DIR: ['..', '..', 'public'],
     FRONTEND_DIR: ['..', '..', 'frontend', 'dist'],
+    STATIC_FRONTEND_DIR: '../frontend/dist/index.html',
     INDEX_HTML: 'index.html',
     ERROR_HTML: '404.html',
   },

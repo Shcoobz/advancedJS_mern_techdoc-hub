@@ -29,6 +29,8 @@ import {
 } from './config/database/mongoEventHandler.js';
 
 const PORT = process.env.PORT || 3500;
+const FRONTEND_DIR = path.join(__dirname, '../frontend/dist');
+const PUBLIC_DIR = path.join(__dirname, '../public');
 
 /**
  * @constant LOCAL_URL
@@ -50,8 +52,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 console.log('Setting up static file serving middleware...');
-app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
-app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
+// app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
+// app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
+app.use(express.static(FRONTEND_DIR));
+app.use(express.static(PUBLIC_DIR));
 
 console.log('Setting up API routes...');
 app.use(ROUTE.SERVER.ROOT, rootRouter);
@@ -61,9 +65,8 @@ app.use(ROUTE.SERVER.NOTES, noteRouter);
 
 console.log('Setting up catch-all route for client-side routing...');
 // app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
-
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
+  res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
 });
 
 console.log('Setting up wildcard route for undefined routes...');
