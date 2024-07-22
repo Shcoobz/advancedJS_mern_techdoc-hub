@@ -43,10 +43,6 @@ export function handleWildcardRoute(req, res) {
   res.status(HTTP_STATUS_CODES.CLIENT.ERROR.NOT_FOUND);
 
   if (req.accepts(CONTENT_TYPES.HTML)) {
-    console.log('errorHtmlPath dirname:', __dirname);
-    console.log('viewsDirPath: ', viewsDirPath);
-    console.log('errorHtmlPath:', errorHtmlPath);
-
     res.sendFile(path.join(errorHtmlPath));
   } else if (req.accepts(CONTENT_TYPES.JSON)) {
     res.json({ message: MSG.SERVER.NOT_FOUND });
