@@ -9,7 +9,7 @@
     "server": "nodemon backend/server.js",
     "client": "vite --config frontend/vite.config.js",
     "dev": "concurrently -n SERVER,CLIENT -c blue,green --raw \"npm run server\" \"npm run client\"",
-    "build": "vite build --config frontend/vite.config.js",
+    "build": "npx vite build --config frontend/vite.config.js",
     "render-build": "npm install && npm run build",
     "render-start": "npm run start"
   },
