@@ -44,6 +44,7 @@ export function handleWildcardRoute(req, res) {
 
   if (req.accepts(CONTENT_TYPES.HTML)) {
     console.log('errorHtmlPath dirname:', __dirname);
+    console.log('viewsDirPath: ', viewsDirPath);
     console.log('errorHtmlPath:', errorHtmlPath);
 
     res.sendFile(path.join(errorHtmlPath));
