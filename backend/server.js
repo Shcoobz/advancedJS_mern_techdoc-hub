@@ -60,7 +60,11 @@ app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
 console.log('Setting up catch-all route for client-side routing...');
-app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
+// app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
+});
 
 console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
