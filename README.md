@@ -2,11 +2,35 @@
 
 ![advancedJS_mern_TechDoc - Hub](frontend/public/img/advancedJS_mern_techdoc-hub.png)
 
+<br>
+
+## Live Demo
+
+You can access the live demo of **TechDoc - Hub** using the following credentials:
+
+<blockquote>
+
+#### <u> Manager: </u>
+
+- **Username**: Manager
+- **Password**: 123456
+
+#### Employee:
+
+- **Username**: Employee
+- **Password**: 123456
+
+</blockquote>
+
+<br>
+
 ## Summary
 
 **TechDoc - Hub** provides a robust platform for managing users and notes, featuring secure authentication, comprehensive data management, and a user-friendly interface.
 
-### Backend
+<blockquote>
+
+#### Backend:
 
 The core functionality includes:
 
@@ -16,7 +40,13 @@ The core functionality includes:
 - Role-based access control
 - Comprehensive error handling and logging
 
-### Frontend
+</blockquote>
+
+<br>
+
+<blockquote>
+
+#### Frontend
 
 The core functionality includes:
 
@@ -24,6 +54,10 @@ The core functionality includes:
 - Notes Management: Add, edit, and organize notes with various statuses.
 - Role-Based Access: Restrict access to certain features based on user roles.
 - Dynamic Data Sorting: Sort and filter data in tables based on user input.
+
+</blockquote>
+
+<br>
 
 ## Features
 
