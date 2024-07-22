@@ -3,6 +3,7 @@ import { useGetNotesQuery } from '../../api/notesApiSlice';
 import { CONFIG, UI } from '../../../../config/constants';
 import NoteUI from './NoteUI';
 import { goToNoteId } from '../../../../service/navigationService';
+import { noteComponentPropTypes } from '../../../../config/propTypes';
 
 function NoteComponent({ noteId }) {
   const navigate = useNavigate();
@@ -33,5 +34,7 @@ function NoteComponent({ noteId }) {
     />
   );
 }
+
+NoteComponent.propTypes = noteComponentPropTypes;
 
 export default NoteComponent;

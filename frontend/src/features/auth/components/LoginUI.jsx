@@ -1,3 +1,4 @@
+import { loginFormPropTypes, loginUIPropTypes } from '../../../config/propTypes';
 import { Link } from 'react-router-dom';
 import { FORM_FIELDS, PATH, TITLE, UI } from '../../../config/constants';
 import useTitle from '../../../hooks/useTitle';
@@ -110,5 +111,8 @@ function LoginUI({
     </section>
   );
 }
+
+LoginForm.propTypes = loginFormPropTypes;
+LoginUI.propTypes = loginUIPropTypes;
 
 export default LoginUI;

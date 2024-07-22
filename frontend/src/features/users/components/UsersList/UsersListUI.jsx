@@ -5,6 +5,7 @@ import Spinner from '../../../../components/common/Spinner';
 import SortableTableHeader from '../../../../components/common/SortableTableHeader';
 import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 import SearchInput from '../../../../components/common/SearchInput';
+import { usersListUIPropTypes } from '../../../../config/propTypes';
 
 function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
@@ -58,5 +59,7 @@ function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
     </>
   );
 }
+
+UsersListUI.propTypes = usersListUIPropTypes;
 
 export default UsersListUI;

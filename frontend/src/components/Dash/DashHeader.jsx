@@ -1,11 +1,9 @@
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-
 import { useSendLogoutMutation } from '../../features/auth/api/authApiSlice.js';
 import { LogoutButton } from '../common/Buttons.jsx';
 import { getDashClass, useLogoutEffect } from '../../service/utils.js';
 import { getButtonsConfig } from '../../service/buttonConfig.jsx';
 import { CLASS_NAME, PATH, UI } from '../../config/constants.js';
-
 import useAuth from '../../hooks/useAuth.js';
 import Spinner from '../common/Spinner.jsx';
 

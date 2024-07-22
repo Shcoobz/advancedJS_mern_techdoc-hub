@@ -10,6 +10,17 @@ import {
   faSave,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  deleteButtonPropTypes,
+  editButtonPropTypes,
+  homeButtonPropTypes,
+  logoutButtonPropTypes,
+  newNoteButtonPropTypes,
+  newUserButtonPropTypes,
+  notesButtonPropTypes,
+  saveButtonPropTypes,
+  userButtonPropTypes,
+} from '../../config/propTypes';
 
 export function HomeButton({ onClick }) {
   return (
@@ -82,3 +93,13 @@ export function EditButton({ onClick }) {
     </button>
   );
 }
+
+HomeButton.propTypes = homeButtonPropTypes;
+NewNoteButton.propTypes = newNoteButtonPropTypes;
+NewUserButton.propTypes = newUserButtonPropTypes;
+UserButton.propTypes = userButtonPropTypes;
+NotesButton.propTypes = notesButtonPropTypes;
+LogoutButton.propTypes = logoutButtonPropTypes;
+DeleteButton.propTypes = deleteButtonPropTypes;
+SaveButton.propTypes = saveButtonPropTypes;
+EditButton.propTypes = editButtonPropTypes;

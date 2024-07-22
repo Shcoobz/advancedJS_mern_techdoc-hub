@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useUpdateUserMutation, useDeleteUserMutation } from '../../api/usersApiSlice';
 import { useNavigate } from 'react-router-dom';
+import { generateRoleOptions } from '../../utils/userUtils.jsx';
+import { editUserFormPropTypes } from '../../../../config/propTypes.js';
 import {
   CLASS_NAME,
   CONFIG,
@@ -8,7 +10,6 @@ import {
   REGEX,
   REPLACEMENT,
 } from '../../../../config/constants';
-import { generateRoleOptions } from '../../utils/userUtils.jsx';
 import {
   getErrClass,
   getErrContent,
@@ -64,7 +65,6 @@ function EditUserForm({ user }) {
   }, [password]);
 
   useEffect(() => {
-    console.log(isSuccess);
     if (isSuccess || isDelSuccess) {
       setUsername(REPLACEMENT.emptyString);
       setPassword(REPLACEMENT.emptyString);
@@ -96,5 +96,7 @@ function EditUserForm({ user }) {
 
   return <EditUserFormUI editUserFormProps={editUserFormProps} />;
 }
+
+EditUserForm.propTypes = editUserFormPropTypes;
 
 export default EditUserForm;

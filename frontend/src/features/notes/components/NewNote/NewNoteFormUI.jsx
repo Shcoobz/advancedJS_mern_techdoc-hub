@@ -1,5 +1,6 @@
 import { SaveButton } from '../../../../components/common/Buttons';
 import { TITLE, UI } from '../../../../config/constants';
+import { newNoteFormUIPropTypes } from '../../../../config/propTypes';
 import useTitle from '../../../../hooks/useTitle';
 import {
   onTextChanged,
@@ -81,5 +82,7 @@ function NewNoteFormUI({ newNoteFormProps }) {
     </>
   );
 }
+
+NewNoteFormUI.propTypes = newNoteFormUIPropTypes;
 
 export default NewNoteFormUI;

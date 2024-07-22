@@ -5,6 +5,7 @@ import useTitle from '../../../../hooks/useTitle';
 import SortableTableHeader from '../../../../components/common/SortableTableHeader';
 import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 import SearchInput from '../../../../components/common/SearchInput';
+import { notesListUIPropTypes } from '../../../../config/propTypes';
 
 function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
@@ -86,5 +87,7 @@ function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
     </>
   );
 }
+
+NotesListUI.propTypes = notesListUIPropTypes;
 
 export default NotesListUI;

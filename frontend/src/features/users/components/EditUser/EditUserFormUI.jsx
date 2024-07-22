@@ -9,6 +9,7 @@ import {
   onSaveUserClicked,
   onDeleteUserClicked,
 } from '../../utils/userEventHandlers.js';
+import { editUserFormUIPropTypes } from '../../../../config/propTypes.js';
 
 function EditUserFormUI({ editUserFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.edit}`);
@@ -111,5 +112,7 @@ function EditUserFormUI({ editUserFormProps }) {
     </>
   );
 }
+
+EditUserFormUI.propTypes = editUserFormUIPropTypes;
 
 export default EditUserFormUI;

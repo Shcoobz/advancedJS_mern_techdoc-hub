@@ -1,4 +1,5 @@
 import { EditButton } from '../../../../components/common/Buttons';
+import { userComponentUIPropTypes } from '../../../../config/propTypes';
 
 function UserComponentUI({ username, userRolesString, cellStatus, onEdit }) {
   return (
@@ -11,5 +12,7 @@ function UserComponentUI({ username, userRolesString, cellStatus, onEdit }) {
     </tr>
   );
 }
+
+UserComponentUI.propTypes = userComponentUIPropTypes;
 
 export default UserComponentUI;

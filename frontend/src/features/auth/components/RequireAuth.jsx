@@ -1,6 +1,7 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth.js';
 import { INDEX, PATH } from '../../../config/constants.js';
+import { requireAuthPropTypes } from '../../../config/propTypes.js';
+import useAuth from '../../../hooks/useAuth.js';
 
 function RequireAuth({ allowedRoles }) {
   const location = useLocation();
@@ -18,5 +19,7 @@ function RequireAuth({ allowedRoles }) {
 
   return content;
 }
+
+RequireAuth.propTypes = requireAuthPropTypes;
 
 export default RequireAuth;

@@ -1,7 +1,13 @@
+import useTitle from '../../../hooks/useTitle';
 import { Link } from 'react-router-dom';
 import { PATH, TITLE, UI } from '../../../config/constants';
 import { formatDate, replaceUsername } from '../utils/utils';
-import useTitle from '../../../hooks/useTitle';
+import {
+  dateDisplayPropTypes,
+  greetingPropTypes,
+  navigationLinksPropTypes,
+  welcomeUIPropTypes,
+} from '../../../config/propTypes';
 
 function DateDisplay({ date }) {
   return <p>{formatDate(date)}</p>;
@@ -57,5 +63,10 @@ function WelcomeUI({ date, username, isManager, isAdmin }) {
     </section>
   );
 }
+
+DateDisplay.propTypes = dateDisplayPropTypes;
+Greeting.propTypes = greetingPropTypes;
+NavigationLinks.propTypes = navigationLinksPropTypes;
+WelcomeUI.propTypes = welcomeUIPropTypes;
 
 export default WelcomeUI;

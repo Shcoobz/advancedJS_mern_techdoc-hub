@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { searchInputPropTypes } from '../../config/propTypes';
 
 function SearchInput({ setSearchTerm }) {
   const [localSearchTerm, setLocalSearchTerm] = useState('');
@@ -31,5 +32,7 @@ function SearchInput({ setSearchTerm }) {
     </div>
   );
 }
+
+SearchInput.propTypes = searchInputPropTypes;
 
 export default SearchInput;

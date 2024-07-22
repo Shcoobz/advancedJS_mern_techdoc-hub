@@ -6,6 +6,7 @@ import { getErrClass, getValidClass } from '../../../../service/formUtils';
 import { CLASS_NAME, INDEX, PATH, REPLACEMENT } from '../../../../config/constants';
 import { onSaveNoteClicked } from '../../utils/noteEventHandlers';
 import NewNoteFormUI from './NewNoteFormUI';
+import { newNoteFormPropTypes } from '../../../../config/propTypes';
 
 function NewNoteForm({ users }) {
   const navigate = useNavigate();
@@ -65,5 +66,7 @@ function NewNoteForm({ users }) {
 
   return <NewNoteFormUI newNoteFormProps={newNoteFormProps} />;
 }
+
+NewNoteForm.propTypes = newNoteFormPropTypes;
 
 export default NewNoteForm;

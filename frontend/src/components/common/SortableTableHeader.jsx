@@ -1,3 +1,4 @@
+import { searchableTableHeaderPropTypes } from '../../config/propTypes';
 import { getSortDirectionSymbol } from '../../service/sortingService';
 
 function SortableTableHeader({
@@ -20,5 +21,7 @@ function SortableTableHeader({
     </th>
   );
 }
+
+SortableTableHeader.propTypes = searchableTableHeaderPropTypes;
 
 export default SortableTableHeader;

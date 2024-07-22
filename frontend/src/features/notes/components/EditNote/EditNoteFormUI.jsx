@@ -9,6 +9,7 @@ import {
   onSaveNoteClicked,
   onDeleteNoteClicked,
 } from '../../utils/noteEventHandlers';
+import { editNoteFormUIPropTypes } from '../../../../config/propTypes';
 
 function EditNoteFormUI({ editNoteFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.NOTE.edit}`);
@@ -42,7 +43,7 @@ function EditNoteFormUI({ editNoteFormProps }) {
     note.ticket
   );
 
-  async function saveNoteHandler(e) {
+  async function saveNoteHandler() {
     await onSaveNoteClicked(updateNote, canSave, {
       id: note.id,
       userId,
@@ -52,7 +53,7 @@ function EditNoteFormUI({ editNoteFormProps }) {
     });
   }
 
-  async function deleteNoteHandler(e) {
+  async function deleteNoteHandler() {
     return onDeleteNoteClicked(deleteNote, note.id);
   }
 
@@ -152,5 +153,7 @@ function EditNoteFormUI({ editNoteFormProps }) {
 
   return content;
 }
+
+EditNoteFormUI.propTypes = editNoteFormUIPropTypes;
 
 export default EditNoteFormUI;

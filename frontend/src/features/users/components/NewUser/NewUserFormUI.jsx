@@ -6,6 +6,7 @@ import {
   onRolesChanged,
   onUsernameChanged,
 } from '../../utils/userEventHandlers';
+import { newUserFormUIPropTypes } from '../../../../config/propTypes';
 
 function NewUserFormUI({ newUserFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.new}`);
@@ -82,5 +83,7 @@ function NewUserFormUI({ newUserFormProps }) {
     </>
   );
 }
+
+NewUserFormUI.propTypes = newUserFormUIPropTypes;
 
 export default NewUserFormUI;

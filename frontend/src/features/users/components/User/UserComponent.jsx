@@ -3,6 +3,7 @@ import { useGetUsersQuery } from '../../api/usersApiSlice';
 import { goToUserId } from '../../../../service/navigationService';
 import { CLASS_NAME, CONFIG, REPLACEMENT } from '../../../../config/constants';
 import UserUI from './UserUI';
+import { userComponentPropTypes } from '../../../../config/propTypes';
 
 function UserComponent({ userId }) {
   const navigate = useNavigate();
@@ -33,5 +34,7 @@ function UserComponent({ userId }) {
     />
   );
 }
+
+UserComponent.propTypes = userComponentPropTypes;
 
 export default UserComponent;

@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useUpdateNoteMutation, useDeleteNoteMutation } from '../../api/notesApiSlice';
 import { useNavigate } from 'react-router-dom';
-import { DeleteButton } from '../../../../components/common/Buttons';
-import { onDeleteNoteClicked, onSaveNoteClicked } from '../../utils/noteEventHandlers';
 import { formatDate, generateUserOptions } from '../../utils/noteUtils';
+import { getErrClass, getErrContent, getValidClass } from '../../../../service/formUtils';
 import { CLASS_NAME, PATH, REPLACEMENT } from '../../../../config/constants';
 import useAuth from '../../../../hooks/useAuth';
 import EditNoteFormUI from './EditNoteFormUI';
-import { getErrClass, getErrContent, getValidClass } from '../../../../service/formUtils';
+import { editNoteFormPropTypes } from '../../../../config/propTypes';
 
 function EditNoteForm({ note, users }) {
   const { isManager, isAdmin } = useAuth();
@@ -22,7 +21,6 @@ function EditNoteForm({ note, users }) {
   const [deleteNote, { isSuccess: isDelSuccess, isError: isDelError, error: delerror }] =
     useDeleteNoteMutation();
 
-  const noteDetails = { id: note.id, userId, title, text, completed };
   const created = formatDate(note.createdAt);
   const updated = formatDate(note.updatedAt);
   const canSave = [title, text, userId].every(Boolean) && !isLoading;
@@ -42,8 +40,6 @@ function EditNoteForm({ note, users }) {
     REPLACEMENT.emptyString
   );
 
-  let deleteButton = null;
-
   useEffect(() => {
     if (isSuccess || isDelSuccess) {
       setTitle(REPLACEMENT.emptyString);
@@ -52,18 +48,6 @@ function EditNoteForm({ note, users }) {
       navigate(PATH.DASH.NOTE.overview);
     }
   }, [isSuccess, isDelSuccess, navigate]);
-
-  // async function saveNoteHandler(e) {
-  //   await onSaveNoteClicked(updateNote, canSave, noteDetails);
-  // }
-
-  // async function deleteNoteHandler(e) {
-  //   return onDeleteNoteClicked(deleteNote, note.id);
-  // }
-
-  // if (isManager || isAdmin) {
-  //   deleteButton = <DeleteButton onClick={deleteNoteHandler} />;
-  // }
 
   const editNoteFormProps = {
     title,
@@ -91,5 +75,7 @@ function EditNoteForm({ note, users }) {
 
   return <EditNoteFormUI editNoteFormProps={editNoteFormProps} />;
 }
+
+EditNoteForm.propTypes = editNoteFormPropTypes;
 
 export default EditNoteForm;
