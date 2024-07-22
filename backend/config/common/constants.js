@@ -85,6 +85,7 @@ export const ROUTE = {
  */
 export const CONFIG = {
   PORT: process.env.PORT || 3500,
+  NODE_ENV: 'production',
   HTTP_LOCALHOST: process.env.HTTP_LOCALHOST,
   ALLOWED_ORIGINS: {
     DELIMITER: ',',
