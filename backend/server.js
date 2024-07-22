@@ -54,10 +54,8 @@ app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
-console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 
-console.log('Setting up error handling middleware...');
 app.use(errorHandler);
 
 handleMongoOpen(app, CONFIG.PORT, LOCAL_URL);
