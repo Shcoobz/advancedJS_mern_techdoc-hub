@@ -13,6 +13,10 @@ import {
   goToUsersPage,
 } from './navigationService.js';
 
+/**
+ * @function getButtonsConfig
+ * @desc Returns an array of button elements based on the current pathname, user roles, and specified conditions.
+ */
 export function getButtonsConfig(pathname, navigate, isManager, isAdmin) {
   const buttonsConfig = [
     {

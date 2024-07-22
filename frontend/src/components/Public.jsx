@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import { PATH, UI } from '../config/constants';
 
+/**
+ * @function Public
+ * @description Public-facing component displaying company information and a login link.
+ */
 function Public() {
   const headerContent = (
     <header>

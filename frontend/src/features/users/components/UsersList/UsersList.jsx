@@ -7,6 +7,10 @@ import UsersListUI from './UsersListUI';
 import { useState } from 'react';
 import { filterBySearchTerm } from '../../../../service/searchService';
 
+/**
+ * @function UsersList
+ * @desc Manages the users list, including data fetching, filtering, and handling loading and error states.
+ */
 function UsersList() {
   const { username, isManager, isAdmin } = useAuth();
   const navigate = useNavigate();

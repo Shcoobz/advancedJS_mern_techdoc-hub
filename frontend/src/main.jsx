@@ -12,6 +12,10 @@ import './index.css';
 
 if (import.meta.env.VITE_NODE_ENV === CONFIG.NODE.production) disableReactDevTools();
 
+/**
+ * @function Root
+ * @desc Renders the main application with React Router and Redux provider.
+ */
 const root = ReactDOM.createRoot(document.getElementById(CONFIG.root));
 
 root.render(

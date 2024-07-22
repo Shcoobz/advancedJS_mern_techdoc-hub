@@ -9,15 +9,28 @@ import {
   welcomeUIPropTypes,
 } from '../../../config/propTypes';
 
+/**
+ * @function DateDisplay
+ * @description Component for displaying the current date.
+ */
 function DateDisplay({ date }) {
   return <p>{formatDate(date)}</p>;
 }
 
+/**
+ * @function Greeting
+ * @description Component for displaying a greeting message with the username.
+ */
 function Greeting({ username }) {
   const greetingMessage = replaceUsername(UI.DASH.greeting, username);
+
   return <h1>{greetingMessage}</h1>;
 }
 
+/**
+ * @function GreetingText
+ * @description Component for displaying additional welcome text.
+ */
 function GreetingText() {
   return (
     <div>
@@ -28,6 +41,10 @@ function GreetingText() {
   );
 }
 
+/**
+ * @function NavigationLinks
+ * @description Component for displaying navigation links based on user roles.
+ */
 function NavigationLinks({ isManager, isAdmin }) {
   return (
     <>
@@ -51,6 +68,10 @@ function NavigationLinks({ isManager, isAdmin }) {
   );
 }
 
+/**
+ * @function WelcomeUI
+ * @description Main UI component for the welcome page, combining date display, greeting, and navigation links.
+ */
 function WelcomeUI({ date, username, isManager, isAdmin }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.DASH.welcome}`);
 
@@ -64,6 +85,10 @@ function WelcomeUI({ date, username, isManager, isAdmin }) {
   );
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the DateDisplay, Greeting, NavigationLinks, and WelcomeUI components.
+ */
 DateDisplay.propTypes = dateDisplayPropTypes;
 Greeting.propTypes = greetingPropTypes;
 NavigationLinks.propTypes = navigationLinksPropTypes;

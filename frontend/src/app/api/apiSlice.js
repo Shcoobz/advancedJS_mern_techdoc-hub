@@ -6,6 +6,10 @@ import {
   refreshToken,
 } from '../../service/tokenService.js';
 
+/**
+ * @function baseQuery
+ * @description Configures the base query with base URL, credentials, and headers.
+ */
 export const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
   credentials: CONFIG.credentials,
@@ -16,6 +20,10 @@ export const baseQuery = fetchBaseQuery({
   },
 });
 
+/**
+ * @function baseQueryWithReauth
+ * @description Handles token reauthorization if the initial request is forbidden.
+ */
 async function baseQueryWithReauth(args, api, extraOptions) {
   let result = await baseQuery(args, api, extraOptions);
 
@@ -32,6 +40,10 @@ async function baseQueryWithReauth(args, api, extraOptions) {
   return result;
 }
 
+/**
+ * @constant apiSlice
+ * @description Creates an API slice with reauthorization and predefined endpoints.
+ */
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: CONFIG.tagTypes,

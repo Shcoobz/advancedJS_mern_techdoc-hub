@@ -18,6 +18,10 @@ import RequireAuth from './features/auth/components/RequireAuth';
 import useTitle from './hooks/useTitle';
 import { CONFIG, ROUTE, TITLE } from './config/constants.js';
 
+/**
+ * @function App
+ * @desc Defines the application routes and components with access control and layout.
+ */
 function App() {
   useTitle(TITLE.PUBLIC.companyName);
 

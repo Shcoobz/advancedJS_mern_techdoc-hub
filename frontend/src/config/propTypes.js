@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 
-// Buttons
+/**
+ * @constant propTypes
+ * @description Prop types for various components including buttons, headers, forms, and lists.
+ */
 
+// Buttons
 export const homeButtonPropTypes = {
   onClick: PropTypes.func.isRequired,
 };

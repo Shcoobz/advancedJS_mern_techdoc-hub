@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
 import { selectCurrentToken } from '../features/auth/state/authSlice';
-
 import { jwtDecode } from 'jwt-decode';
 import { CONFIG, REPLACEMENT } from '../config/constants';
 
+/**
+ * @function useAuth
+ * @desc Custom hook that extracts and decodes the JWT token to determine user roles and status from the Redux store.
+ */
 function useAuth() {
   const token = useSelector(selectCurrentToken);
   let isManager = false;

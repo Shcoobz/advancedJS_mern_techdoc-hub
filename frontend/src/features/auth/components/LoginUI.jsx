@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { FORM_FIELDS, PATH, TITLE, UI } from '../../../config/constants';
 import useTitle from '../../../hooks/useTitle';
 
+/**
+ * @function LoginHeader
+ * @description Header component for the login page.
+ */
 function LoginHeader() {
   return (
     <header>
@@ -11,6 +15,10 @@ function LoginHeader() {
   );
 }
 
+/**
+ * @function LoginForm
+ * @description Form component for user login, including inputs for username, password, and persistence.
+ */
 function LoginForm({
   username,
   password,
@@ -66,6 +74,10 @@ function LoginForm({
   );
 }
 
+/**
+ * @function LoginFooter
+ * @description Footer component for the login page, including a link to the home page.
+ */
 function LoginFooter() {
   return (
     <footer>
@@ -74,6 +86,10 @@ function LoginFooter() {
   );
 }
 
+/**
+ * @function LoginUI
+ * @description Main UI component for the login page, combining header, form, and footer components.
+ */
 function LoginUI({
   username,
   password,
@@ -112,6 +128,10 @@ function LoginUI({
   );
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the LoginForm and LoginUI components.
+ */
 LoginForm.propTypes = loginFormPropTypes;
 LoginUI.propTypes = loginUIPropTypes;
 

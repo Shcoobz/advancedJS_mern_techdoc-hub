@@ -11,6 +11,10 @@ import {
 } from '../../utils/noteEventHandlers';
 import { editNoteFormUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function EditNoteFormUI
+ * @description UI component for editing a note, including form elements and event handlers.
+ */
 function EditNoteFormUI({ editNoteFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.NOTE.edit}`);
 
@@ -43,6 +47,10 @@ function EditNoteFormUI({ editNoteFormProps }) {
     note.ticket
   );
 
+  /**
+   * @function saveNoteHandler
+   * @description Handles the save note action by invoking the onSaveNoteClicked utility function.
+   */
   async function saveNoteHandler() {
     await onSaveNoteClicked(updateNote, canSave, {
       id: note.id,
@@ -53,6 +61,10 @@ function EditNoteFormUI({ editNoteFormProps }) {
     });
   }
 
+  /**
+   * @function deleteNoteHandler
+   * @description Handles the delete note action by invoking the onDeleteNoteClicked utility function.
+   */
   async function deleteNoteHandler() {
     return onDeleteNoteClicked(deleteNote, note.id);
   }
@@ -154,6 +166,10 @@ function EditNoteFormUI({ editNoteFormProps }) {
   return content;
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the EditNoteFormUI component.
+ */
 EditNoteFormUI.propTypes = editNoteFormUIPropTypes;
 
 export default EditNoteFormUI;

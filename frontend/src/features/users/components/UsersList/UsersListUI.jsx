@@ -7,6 +7,10 @@ import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 import SearchInput from '../../../../components/common/SearchInput';
 import { usersListUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function UsersListUI
+ * @desc Displays the users list with sorting, search, and handling loading or error states.
+ */
 function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
     items: sortedItems,
@@ -60,6 +64,10 @@ function UsersListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
   );
 }
 
+/**
+ * @function UsersListUI.propTypes
+ * @desc Validates the props for the UsersListUI component, ensuring correct data types and required fields.
+ */
 UsersListUI.propTypes = usersListUIPropTypes;
 
 export default UsersListUI;

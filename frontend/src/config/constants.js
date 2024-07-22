@@ -1,3 +1,7 @@
+/**
+ * @constant CONFIG
+ * @description Configuration constants for various application settings.
+ */
 export const CONFIG = {
   root: 'root',
   credentials: 'include' /* !important: always send cookie */,
@@ -64,6 +68,10 @@ export const CONFIG = {
   },
 };
 
+/**
+ * @constant TITLE
+ * @description Title constants for different sections of the application.
+ */
 export const TITLE = {
   placeholder: ' - ',
   PUBLIC: {
@@ -86,6 +94,10 @@ export const TITLE = {
   },
 };
 
+/**
+ * @constant REGEX
+ * @description Regular expressions for validation and routing.
+ */
 export const REGEX = {
   dash: /^\/dash(\/)?$/,
   notes: /^\/dash\/notes(\/)?$/,
@@ -95,11 +107,19 @@ export const REGEX = {
   passwordCheck: /^[A-z0-9!@#$%]{4,12}$/,
 };
 
+/**
+ * @constant INDEX
+ * @description Index-related constants.
+ */
 export const INDEX = {
   emptyArrayLength: 0,
   first: 0,
 };
 
+/**
+ * @constant SORTING
+ * @description Constants for sorting functionality.
+ */
 export const SORTING = {
   ORDER: {
     ascending: 1,
@@ -121,6 +141,10 @@ export const SORTING = {
   },
 };
 
+/**
+ * @constant CLASS_NAME
+ * @description CSS class names used in the application.
+ */
 export const CLASS_NAME = {
   errorMsg: 'errmsg',
   offscreen: 'offscreen',
@@ -135,6 +159,10 @@ export const CLASS_NAME = {
   },
 };
 
+/**
+ * @constant REPLACEMENT
+ * @description Constants for common replacement values.
+ */
 export const REPLACEMENT = {
   emptyString: '',
   emptyArray: [],
@@ -144,6 +172,10 @@ export const REPLACEMENT = {
   commaSpace: ', ',
 };
 
+/**
+ * @constant PATH
+ * @description Path constants for routing.
+ */
 export const PATH = {
   placeholder: '/placeholder',
   root: '/',
@@ -170,6 +202,10 @@ export const PATH = {
   },
 };
 
+/**
+ * @constant ROUTE
+ * @description Route constants for application navigation.
+ */
 export const ROUTE = {
   root: '/',
   login: 'login',
@@ -187,6 +223,10 @@ export const ROUTE = {
   },
 };
 
+/**
+ * @constant HTTP_STATUS_CODES
+ * @description HTTP status codes for client and server responses.
+ */
 export const HTTP_STATUS_CODES = {
   CLIENT: {
     ERROR: {
@@ -209,6 +249,10 @@ export const HTTP_STATUS_CODES = {
   },
 };
 
+/**
+ * @constant MSG
+ * @description Message constants for API and user interactions.
+ */
 export const MSG = {
   API: {
     ERROR: {
@@ -249,6 +293,10 @@ export const MSG = {
   },
 };
 
+/**
+ * @constant FORM_FIELDS
+ * @description Form field labels and button text.
+ */
 export const FORM_FIELDS = {
   LOGIN: {
     username: 'Username:',
@@ -258,6 +306,10 @@ export const FORM_FIELDS = {
   },
 };
 
+/**
+ * @constant UI
+ * @description UI text and labels for public and dashboard sections.
+ */
 export const UI = {
   PUBLIC: {
     login: 'Employee Login',

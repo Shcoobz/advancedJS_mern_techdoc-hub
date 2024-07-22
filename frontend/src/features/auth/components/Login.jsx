@@ -10,6 +10,10 @@ import getErrorMessage from '../utils/handleLoginErr';
 import Spinner from '../../../components/common/Spinner';
 import LoginUI from './LoginUI';
 
+/**
+ * @function Login
+ * @description Component for handling user login, including form data management and authentication.
+ */
 function Login() {
   const { username, password, persist, handleUserInput, handlePwdInput, handleToggle } =
     useFormData();
@@ -21,14 +25,26 @@ function Login() {
   const dispatch = useDispatch();
   const errClass = errMsg ? CLASS_NAME.errorMsg : CLASS_NAME.offscreen;
 
+  /**
+   * @function useEffect
+   * @description Focuses on the user input field on component mount.
+   */
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
+  /**
+   * @function useEffect
+   * @description Clears the error message when username or password changes.
+   */
   useEffect(() => {
     setErrMsg(REPLACEMENT.emptyString);
   }, [username, password]);
 
+  /**
+   * @function handleSubmit
+   * @description Handles the form submission for login, authenticating the user and handling errors.
+   */
   async function handleSubmit(e) {
     e.preventDefault();
 

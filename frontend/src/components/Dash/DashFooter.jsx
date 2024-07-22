@@ -4,6 +4,10 @@ import { HomeButton } from '../common/Buttons';
 import { goHome } from '../../service/navigationService';
 import useAuth from '../../hooks/useAuth';
 
+/**
+ * @function DashFooter
+ * @description Footer component for the dashboard, displaying user info and navigation.
+ */
 function DashFooter() {
   const { username, status } = useAuth();
   const { pathname } = useLocation();

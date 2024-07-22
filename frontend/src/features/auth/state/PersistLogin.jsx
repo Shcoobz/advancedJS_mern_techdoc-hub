@@ -7,6 +7,10 @@ import { CONFIG, PATH, UI } from '../../../config/constants.js';
 import usePersist from '../../../hooks/usePersist.js';
 import Spinner from '../../../components/common/Spinner.jsx';
 
+/**
+ * @function PersistLogin
+ * @description Component to handle persistent login, verifying and refreshing tokens as needed.
+ */
 function PersistLogin() {
   const [persist] = usePersist();
   const [trueSuccess, setTrueSuccess] = useState(false);
@@ -15,6 +19,10 @@ function PersistLogin() {
   const token = useSelector(selectCurrentToken);
   const effectRan = useRef(false);
 
+  /**
+   * @function useEffect
+   * @description Effect hook to verify refresh token on component mount or when conditions change.
+   */
   useEffect(() => {
     if (effectRan.current === true || import.meta.env.VITE_NODE_ENV !== CONFIG.NODE.env) {
       // React 18 Strict Mode
@@ -28,6 +36,10 @@ function PersistLogin() {
     // eslint-disable-next-line
   }, []);
 
+  /**
+   * @function verifyRefreshToken
+   * @description Async function to refresh authentication token and set success state.
+   */
   async function verifyRefreshToken() {
     try {
       await refresh();
@@ -37,6 +49,10 @@ function PersistLogin() {
     }
   }
 
+  /**
+   * @function cleanup
+   * @description Cleanup function to update effectRan reference.
+   */
   function cleanup() {
     effectRan.current = true;
   }

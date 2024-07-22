@@ -5,8 +5,16 @@ import { usersApiSlice } from '../../users/api/usersApiSlice.js';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
+/**
+ * @function Prefetch
+ * @description Component to prefetch data when mounted.
+ */
 function Prefetch() {
   useEffect(() => {
+    /**
+     * @function store.dispatch
+     * @description Dispatches a prefetch action for notes data.
+     */
     store.dispatch(
       notesApiSlice.util.prefetch(
         CONFIG.API_METHOD.getNotes,
@@ -16,6 +24,11 @@ function Prefetch() {
         }
       )
     );
+
+    /**
+     * @function store.dispatch
+     * @description Dispatches a prefetch action for users data.
+     */
     store.dispatch(
       usersApiSlice.util.prefetch(
         CONFIG.API_METHOD.getUsers,

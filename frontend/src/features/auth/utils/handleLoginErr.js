@@ -1,5 +1,9 @@
 import { HTTP_STATUS_CODES, MSG } from '../../../config/constants';
 
+/**
+ * @function getErrorMessage
+ * @description Returns appropriate error message based on the HTTP status code of the error.
+ */
 function getErrorMessage(err) {
   if (!err.status) {
     return MSG.SERVER.noResponse;

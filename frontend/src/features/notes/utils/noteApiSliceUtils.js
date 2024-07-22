@@ -2,6 +2,10 @@ import { createEntityAdapter } from '@reduxjs/toolkit';
 import { HTTP_STATUS_CODES, CONFIG, PATH, SORTING } from '../../../config/constants';
 import { initialState } from '../api/notesApiSlice';
 
+/**
+ * @function notesAdapter
+ * @description Creates an entity adapter for notes with sorting by completion status.
+ */
 export const notesAdapter = createEntityAdapter({
   sortComparer: (a, b) =>
     a.completed === b.completed
@@ -11,6 +15,10 @@ export const notesAdapter = createEntityAdapter({
       : SORTING.ORDER.descending,
 });
 
+/**
+ * @function getNoteQuery
+ * @description Returns query configuration for fetching notes, including URL and status validation.
+ */
 export function getNoteQuery() {
   return {
     url: PATH.DASH.NOTE.notes,
@@ -18,10 +26,18 @@ export function getNoteQuery() {
   };
 }
 
+/**
+ * @function validateNoteResponseStatus
+ * @description Validates if the HTTP response is successful and the result is not an error.
+ */
 function validateNoteResponseStatus(response, result) {
   return response.status === HTTP_STATUS_CODES.CLIENT.SUCCESS.ok && !result.isError;
 }
 
+/**
+ * @function transformNoteResponse
+ * @description Transforms API response data to match the entity adapter format and initializes the state.
+ */
 export function transformNoteResponse(responseData) {
   const loadedNotes = responseData.map((note) => {
     return { ...note, id: note._id };
@@ -30,6 +46,10 @@ export function transformNoteResponse(responseData) {
   return notesAdapter.setAll(initialState, loadedNotes);
 }
 
+/**
+ * @function provideNotesTags
+ * @description Provides tags for caching and invalidation based on the result of a notes query.
+ */
 export function provideNotesTags(result) {
   if (result?.ids) {
     return [
@@ -41,6 +61,10 @@ export function provideNotesTags(result) {
   }
 }
 
+/**
+ * @function addNewNoteQuery
+ * @description Returns query configuration for adding a new note, including URL, method, and request body.
+ */
 export function addNewNoteQuery(initialNote) {
   return {
     url: PATH.DASH.NOTE.notes,
@@ -49,6 +73,10 @@ export function addNewNoteQuery(initialNote) {
   };
 }
 
+/**
+ * @function updateNoteQuery
+ * @description Returns query configuration for updating an existing note, including URL, method, and request body.
+ */
 export function updateNoteQuery(initialNote) {
   return {
     url: PATH.DASH.NOTE.notes,
@@ -57,6 +85,10 @@ export function updateNoteQuery(initialNote) {
   };
 }
 
+/**
+ * @function deleteNoteQuery
+ * @description Returns query configuration for deleting a note, including URL, method, and request body.
+ */
 export function deleteNoteQuery({ id }) {
   return {
     url: PATH.DASH.NOTE.notes,
@@ -65,10 +97,18 @@ export function deleteNoteQuery({ id }) {
   };
 }
 
+/**
+ * @function invalidateNotesTags
+ * @description Returns tags to invalidate the cache for notes.
+ */
 export function invalidateNotesTags() {
   return [{ type: CONFIG.TAG_TYPE.NOTE.type, id: CONFIG.TAG_TYPE.NOTE.id }];
 }
 
+/**
+ * @function invalidateNoteTag
+ * @description Returns tags to invalidate the cache for a specific note based on its ID.
+ */
 export function invalidateNoteTag(result, error, arg) {
   return [{ type: CONFIG.TAG_TYPE.NOTE.type, id: arg.id }];
 }

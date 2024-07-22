@@ -3,6 +3,10 @@ import { EditButton } from '../../../../components/common/Buttons';
 import { UI } from '../../../../config/constants';
 import { noteUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function NoteUI
+ * @description Displays a note's details.
+ */
 function NoteUI({ status, createdAt, updatedAt, title, user, onEdit }) {
   const created = formatDateSimple(createdAt);
   const updated = formatDateSimple(updatedAt);
@@ -28,6 +32,10 @@ function NoteUI({ status, createdAt, updatedAt, title, user, onEdit }) {
   );
 }
 
+/**
+ * @constant propTypes
+ * @description Defines the types for the props used in the NoteUI component.
+ */
 NoteUI.propTypes = noteUIPropTypes;
 
 export default NoteUI;

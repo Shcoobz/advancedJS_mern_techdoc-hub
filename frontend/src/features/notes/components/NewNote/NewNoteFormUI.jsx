@@ -8,6 +8,10 @@ import {
   onUserIdChanged,
 } from '../../utils/noteEventHandlers';
 
+/**
+ * @function NewNoteFormUI
+ * @description UI component for creating a new note. It includes form fields for title, text, and user assignment, and handles form submission.
+ */
 function NewNoteFormUI({ newNoteFormProps }) {
   const {
     title,
@@ -83,6 +87,10 @@ function NewNoteFormUI({ newNoteFormProps }) {
   );
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the NewNoteFormUI component.
+ */
 NewNoteFormUI.propTypes = newNoteFormUIPropTypes;
 
 export default NewNoteFormUI;

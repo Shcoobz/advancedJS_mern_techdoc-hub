@@ -3,6 +3,10 @@ import { INDEX, PATH } from '../../../config/constants.js';
 import { requireAuthPropTypes } from '../../../config/propTypes.js';
 import useAuth from '../../../hooks/useAuth.js';
 
+/**
+ * @function RequireAuth
+ * @description Component for protecting routes based on user roles.
+ */
 function RequireAuth({ allowedRoles }) {
   const location = useLocation();
   const { roles } = useAuth();
@@ -20,6 +24,10 @@ function RequireAuth({ allowedRoles }) {
   return content;
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the RequireAuth component.
+ */
 RequireAuth.propTypes = requireAuthPropTypes;
 
 export default RequireAuth;

@@ -1,6 +1,10 @@
 import { EditButton } from '../../../../components/common/Buttons';
 import { userComponentUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function UserComponentUI
+ * @description Renders a table row for a user with editable information.
+ */
 function UserComponentUI({ username, userRolesString, cellStatus, onEdit }) {
   return (
     <tr className={`table__row user ${cellStatus}`}>
@@ -13,6 +17,10 @@ function UserComponentUI({ username, userRolesString, cellStatus, onEdit }) {
   );
 }
 
+/**
+ * @function UserComponentUI.propTypes
+ * @desc Displays user details in a table row with an edit button.
+ */
 UserComponentUI.propTypes = userComponentUIPropTypes;
 
 export default UserComponentUI;

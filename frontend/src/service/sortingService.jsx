@@ -3,6 +3,10 @@ import Note from '../features/notes/components/Note/Note';
 import User from '../features/users/components/User/User';
 import { goToNoteId, goToUserId } from './navigationService';
 
+/**
+ * @function getFilteredIds
+ * @desc Filters a list of IDs based on user permissions (manager or admin) or username.
+ */
 export function getFilteredIds(ids, entities, username, isManager, isAdmin) {
   if (isManager || isAdmin) {
     return [...ids];
@@ -11,10 +15,18 @@ export function getFilteredIds(ids, entities, username, isManager, isAdmin) {
   return ids.filter((id) => entities[id].user === username);
 }
 
+/**
+ * @function getStatus
+ * @desc Returns the status label based on whether a note is completed or not.
+ */
 export function getStatus(completed) {
   return completed ? UI.DASH.NOTE.LABEL.completed : UI.DASH.NOTE.LABEL.open;
 }
 
+/**
+ * @function renderTableContent
+ * @desc Renders table content based on filtered IDs, entities, and type (user or note).
+ */
 export function renderTableContent(filteredIds, entities, navigate, type) {
   return filteredIds.map((id) => {
     const entity = entities[id];
@@ -53,6 +65,10 @@ export function renderTableContent(filteredIds, entities, navigate, type) {
   });
 }
 
+/**
+ * @function getSortDirectionSymbol
+ * @desc Returns sorting direction symbols and reset sorting button if the key matches the sort configuration.
+ */
 export function getSortDirectionSymbol(key, sortConfig, resetSort) {
   if (sortConfig.key === key) {
     return (

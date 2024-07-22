@@ -13,6 +13,10 @@ import {
 
 import NewUserFormUI from '../NewUser/NewUserFormUI';
 
+/**
+ * @function NewUserForm
+ * @description Manages the form for creating a new user, including input validation, state management, and submission logic. Handles form submission and navigation on success.
+ */
 function NewUserForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState(REPLACEMENT.emptyString);
@@ -43,14 +47,26 @@ function NewUserForm() {
     REPLACEMENT.emptyString
   );
 
+  /**
+   * @function useEffect
+   * @description Updates username validity state based on the `username` value using a regex check.
+   */
   useEffect(() => {
     setValidUsername(REGEX.usernameCheck.test(username));
   }, [username]);
 
+  /**
+   * @function useEffect
+   * @description Updates password validity state based on the `password` value using a regex check.
+   */
   useEffect(() => {
     setValidPassword(REGEX.passwordCheck.test(password));
   }, [password]);
 
+  /**
+   * @function useEffect
+   * @description Resets form fields and navigates to the user overview page upon successful user creation.
+   */
   useEffect(() => {
     if (isSuccess) {
       setUsername(REPLACEMENT.emptyString);
@@ -60,6 +76,10 @@ function NewUserForm() {
     }
   }, [isSuccess, navigate, setUsername, setPassword, setRoles]);
 
+  /**
+   * @function saveUserClicked
+   * @description Prevents default form submission and triggers user creation if the form is valid and ready to save.
+   */
   async function saveUserClicked(e) {
     e.preventDefault();
 

@@ -7,6 +7,10 @@ import { CLASS_NAME, PATH, UI } from '../../config/constants.js';
 import useAuth from '../../hooks/useAuth.js';
 import Spinner from '../common/Spinner.jsx';
 
+/**
+ * @function DashHeader
+ * @description Header component for the dashboard, including navigation and user actions.
+ */
 function DashHeader() {
   const { isManager, isAdmin } = useAuth();
   const { pathname } = useLocation();

@@ -7,6 +7,10 @@ import NotesListUI from './NotesListUI';
 import { useState } from 'react';
 import { filterBySearchTerm } from '../../../../service/searchService';
 
+/**
+ * @function NotesList
+ * @description Fetches and displays a list of notes, applying filtering based on search terms, user permissions, and status. Handles loading, error states, and renders table content using `NotesListUI`.
+ */
 function NotesList() {
   const { username, isManager, isAdmin } = useAuth();
   const navigate = useNavigate;

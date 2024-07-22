@@ -8,6 +8,10 @@ import { onSaveNoteClicked } from '../../utils/noteEventHandlers';
 import NewNoteFormUI from './NewNoteFormUI';
 import { newNoteFormPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function NewNoteForm
+ * @description Component for rendering the form to create a new note, including state management and form submission.
+ */
 function NewNoteForm({ users }) {
   const navigate = useNavigate();
 
@@ -33,6 +37,10 @@ function NewNoteForm({ users }) {
     REPLACEMENT.emptyString
   );
 
+  /**
+   * @function useEffect
+   * @description Effect hook that resets the form and navigates to the note overview page upon successful note creation.
+   */
   useEffect(() => {
     if (isSuccess) {
       setTitle(REPLACEMENT.emptyString);
@@ -42,6 +50,10 @@ function NewNoteForm({ users }) {
     }
   }, [isSuccess, navigate]);
 
+  /**
+   * @function saveNoteHandler
+   * @description Handler function for form submission that prevents default form action and triggers the note creation process.
+   */
   async function saveNoteHandler(e) {
     e.preventDefault();
 
@@ -67,6 +79,10 @@ function NewNoteForm({ users }) {
   return <NewNoteFormUI newNoteFormProps={newNoteFormProps} />;
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the NewNoteForm component.
+ */
 NewNoteForm.propTypes = newNoteFormPropTypes;
 
 export default NewNoteForm;

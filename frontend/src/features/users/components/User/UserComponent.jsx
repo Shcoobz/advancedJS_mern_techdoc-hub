@@ -5,9 +5,17 @@ import { CLASS_NAME, CONFIG, REPLACEMENT } from '../../../../config/constants';
 import UserUI from './UserUI';
 import { userComponentPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function UserComponent
+ * @description Displays user details and provides navigation to edit the user. Retrieves user data from the API and formats user roles and status.
+ */
 function UserComponent({ userId }) {
   const navigate = useNavigate();
 
+  /**
+   * @function useGetUsersQuery
+   * @description Retrieves a specific user from the API and selects user data based on `userId`.
+   */
   const { user } = useGetUsersQuery(CONFIG.CACHE_KEY.usersList, {
     selectFromResult: ({ data }) => ({
       user: data?.entities[userId],
@@ -35,6 +43,10 @@ function UserComponent({ userId }) {
   );
 }
 
+/**
+ * @function UserComponent.propTypes
+ * @description Specifies the expected prop types for the `UserComponent` component.
+ */
 UserComponent.propTypes = userComponentPropTypes;
 
 export default UserComponent;

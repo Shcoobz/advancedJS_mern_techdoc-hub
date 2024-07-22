@@ -1,6 +1,11 @@
+import { REPLACEMENT } from '../../config/constants';
 import { searchableTableHeaderPropTypes } from '../../config/propTypes';
 import { getSortDirectionSymbol } from '../../service/sortingService';
 
+/**
+ * @function SortableTableHeader
+ * @description Table header component that supports sorting functionality.
+ */
 function SortableTableHeader({
   columnKey,
   title,
@@ -8,7 +13,7 @@ function SortableTableHeader({
   sortConfig,
   requestSort,
   resetSort,
-  additionalClass = '',
+  additionalClass = REPLACEMENT.emptyString,
 }) {
   return (
     <th
@@ -22,6 +27,10 @@ function SortableTableHeader({
   );
 }
 
+/**
+ * @constant SortableTableHeader.propTypes
+ * @description Prop types for SortableTableHeader component.
+ */
 SortableTableHeader.propTypes = searchableTableHeaderPropTypes;
 
 export default SortableTableHeader;

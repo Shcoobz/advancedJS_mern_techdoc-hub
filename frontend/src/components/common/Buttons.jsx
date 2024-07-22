@@ -22,6 +22,10 @@ import {
   userButtonPropTypes,
 } from '../../config/propTypes';
 
+/**
+ * @function HomeButton
+ * @description Button component for navigating to the home page.
+ */
 export function HomeButton({ onClick }) {
   return (
     <button className='dash-footer__button icon-button' title='Home' onClick={onClick}>
@@ -30,6 +34,10 @@ export function HomeButton({ onClick }) {
   );
 }
 
+/**
+ * @function NewNoteButton
+ * @description Button component for creating a new note.
+ */
 export function NewNoteButton({ onClick }) {
   return (
     <button className='icon-button' title='New Note' onClick={onClick}>
@@ -38,6 +46,10 @@ export function NewNoteButton({ onClick }) {
   );
 }
 
+/**
+ * @function NewUserButton
+ * @description Button component for creating a new user.
+ */
 export function NewUserButton({ onClick }) {
   return (
     <button className='icon-button' title='New User' onClick={onClick}>
@@ -46,6 +58,10 @@ export function NewUserButton({ onClick }) {
   );
 }
 
+/**
+ * @function UserButton
+ * @description Button component for navigating to the users page.
+ */
 export function UserButton({ onClick }) {
   return (
     <button className='icon-button' title='Users' onClick={onClick}>
@@ -54,6 +70,10 @@ export function UserButton({ onClick }) {
   );
 }
 
+/**
+ * @function NotesButton
+ * @description Button component for navigating to the notes page.
+ */
 export function NotesButton({ onClick }) {
   return (
     <button className='icon-button' title='Notes' onClick={onClick}>
@@ -62,6 +82,10 @@ export function NotesButton({ onClick }) {
   );
 }
 
+/**
+ * @function LogoutButton
+ * @description Button component for logging out.
+ */
 export function LogoutButton({ onClick }) {
   return (
     <button className='icon-button' title='Logout' onClick={onClick}>
@@ -70,6 +94,10 @@ export function LogoutButton({ onClick }) {
   );
 }
 
+/**
+ * @function DeleteButton
+ * @description Button component for deleting an item.
+ */
 export function DeleteButton({ onClick }) {
   return (
     <button className='icon-button' title='Delete' onClick={onClick}>
@@ -78,6 +106,10 @@ export function DeleteButton({ onClick }) {
   );
 }
 
+/**
+ * @function SaveButton
+ * @description Button component for saving changes.
+ */
 export function SaveButton({ onClick, disabled }) {
   return (
     <button className='icon-button' title='Save' onClick={onClick} disabled={disabled}>
@@ -86,6 +118,10 @@ export function SaveButton({ onClick, disabled }) {
   );
 }
 
+/**
+ * @function EditButton
+ * @description Button component for editing an item.
+ */
 export function EditButton({ onClick }) {
   return (
     <button className='icon-button table__button' title='Edit' onClick={onClick}>
@@ -94,6 +130,10 @@ export function EditButton({ onClick }) {
   );
 }
 
+/**
+ * @constant ButtonPropTypes
+ * @description Prop types for various button components.
+ */
 HomeButton.propTypes = homeButtonPropTypes;
 NewNoteButton.propTypes = newNoteButtonPropTypes;
 NewUserButton.propTypes = newUserButtonPropTypes;

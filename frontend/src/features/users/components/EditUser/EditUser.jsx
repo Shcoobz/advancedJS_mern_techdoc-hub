@@ -4,6 +4,10 @@ import { CONFIG } from '../../../../config/constants';
 import Spinner from '../../../../components/common/Spinner';
 import EditUserForm from './EditUserForm';
 
+/**
+ * @function EditUser
+ * @description Fetches a user by ID and renders the `EditUserForm` if the user is found, otherwise shows a loading spinner.
+ */
 function EditUser() {
   const { id } = useParams();
 

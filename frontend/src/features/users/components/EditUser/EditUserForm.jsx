@@ -17,6 +17,10 @@ import {
 } from '../../../../service/formUtils.js';
 import EditUserFormUI from './EditUserFormUI.jsx';
 
+/**
+ * @function EditUserForm
+ * @description Manages the state and logic for editing a user's details, including validation, update, and deletion. It handles form input, validation, and navigates on success.
+ */
 function EditUserForm({ user }) {
   const navigate = useNavigate();
 
@@ -56,14 +60,26 @@ function EditUserForm({ user }) {
     REPLACEMENT.emptyString
   );
 
+  /**
+   * @function useEffect
+   * @description Validates the username using a regex pattern whenever the `username` state changes.
+   */
   useEffect(() => {
     setValidUsername(REGEX.usernameCheck.test(username));
   }, [username]);
 
+  /**
+   * @function useEffect
+   * @description Validates the password using a regex pattern whenever the `password` state changes.
+   */
   useEffect(() => {
     setValidPassword(REGEX.passwordCheck.test(password));
   }, [password]);
 
+  /**
+   * @function useEffect
+   * @description Clears form fields and navigates to the user overview page when either update or delete operations are successful.
+   */
   useEffect(() => {
     if (isSuccess || isDelSuccess) {
       setUsername(REPLACEMENT.emptyString);
@@ -97,6 +113,10 @@ function EditUserForm({ user }) {
   return <EditUserFormUI editUserFormProps={editUserFormProps} />;
 }
 
+/**
+ * @constant propTypes
+ * @description Defines the prop types for the `EditUserForm` component, specifying the expected structure and types of props.
+ */
 EditUserForm.propTypes = editUserFormPropTypes;
 
 export default EditUserForm;

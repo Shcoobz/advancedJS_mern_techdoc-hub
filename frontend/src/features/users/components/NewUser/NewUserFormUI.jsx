@@ -8,6 +8,10 @@ import {
 } from '../../utils/userEventHandlers';
 import { newUserFormUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function NewUserFormUI
+ * @description Displays the form for creating a new user, including input fields for username, password, and roles, with validation and error handling.
+ */
 function NewUserFormUI({ newUserFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.new}`);
 
@@ -84,6 +88,10 @@ function NewUserFormUI({ newUserFormProps }) {
   );
 }
 
+/**
+ * @function NewUserFormUI.propTypes
+ * @description Defines the prop types for the `NewUserFormUI` component.
+ */
 NewUserFormUI.propTypes = newUserFormUIPropTypes;
 
 export default NewUserFormUI;

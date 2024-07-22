@@ -7,6 +7,10 @@ import CustomTableHeader from '../../../../components/common/CustomTableHeader';
 import SearchInput from '../../../../components/common/SearchInput';
 import { notesListUIPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function NotesListUI
+ * @description Renders a sortable table of notes with search functionality and handles loading and error states.
+ */
 function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMessage }) {
   const {
     items: sortedItems,
@@ -88,6 +92,10 @@ function NotesListUI({ tableContent, setSearchTerm, isLoading, isError, errorMes
   );
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for `NotesListUI`, defining expected types for table content, search term, and UI states.
+ */
 NotesListUI.propTypes = notesListUIPropTypes;
 
 export default NotesListUI;

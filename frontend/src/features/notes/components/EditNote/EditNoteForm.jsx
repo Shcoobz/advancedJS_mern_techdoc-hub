@@ -8,6 +8,10 @@ import useAuth from '../../../../hooks/useAuth';
 import EditNoteFormUI from './EditNoteFormUI';
 import { editNoteFormPropTypes } from '../../../../config/propTypes';
 
+/**
+ * @function EditNoteForm
+ * @description Component for rendering the form to edit a note, including state management and form submission.
+ */
 function EditNoteForm({ note, users }) {
   const { isManager, isAdmin } = useAuth();
   const navigate = useNavigate();
@@ -76,6 +80,10 @@ function EditNoteForm({ note, users }) {
   return <EditNoteFormUI editNoteFormProps={editNoteFormProps} />;
 }
 
+/**
+ * @constant propTypes
+ * @description Prop types for the EditNoteForm component.
+ */
 EditNoteForm.propTypes = editNoteFormPropTypes;
 
 export default EditNoteForm;

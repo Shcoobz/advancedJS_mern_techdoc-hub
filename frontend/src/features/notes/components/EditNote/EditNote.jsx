@@ -6,16 +6,28 @@ import useAuth from '../../../../hooks/useAuth';
 import Spinner from '../../../../components/common/Spinner';
 import EditNoteForm from './EditNoteForm';
 
+/**
+ * @function EditNote
+ * @description Component for editing a note, including fetching note and user data and authorization check.
+ */
 function EditNote() {
   const { id } = useParams();
   const { username, isManager, isAdmin } = useAuth();
 
+  /**
+   * @function useGetNotesQuery
+   * @description Hook to fetch a specific note by its ID from the cache.
+   */
   const { note } = useGetNotesQuery(CONFIG.CACHE_KEY.notesList, {
     selectFromResult: ({ data }) => ({
       note: data?.entities[id],
     }),
   });
 
+  /**
+   * @function useGetUsersQuery
+   * @description Hook to fetch all users from the cache.
+   */
   const { users } = useGetUsersQuery(CONFIG.CACHE_KEY.usersList, {
     selectFromResult: ({ data }) => ({
       users: data?.ids.map((id) => data?.entities[id]),

@@ -1,12 +1,20 @@
 import { useState, useMemo } from 'react';
 import { REPLACEMENT, SORTING } from '../config/constants';
 
+/**
+ * @function useSortableData
+ * @desc A custom hook that provides sorting functionality for a list of items. It manages the sort configuration and returns sorted items based on the current sort settings. It also provides functions to request sorting by a specific key and to reset the sorting configuration.
+ */
 export const useSortableData = (
   items,
   config = { key: null, direction: SORTING.DIRECTION.ascending }
 ) => {
   const [sortConfig, setSortConfig] = useState(config);
 
+  /**
+   * @function useMemo
+   * @desc Returns a memoized version of the sorted items based on the current sort configuration.
+   */
   const sortedItems = useMemo(() => {
     if (!items) return REPLACEMENT.emptyArray;
 
@@ -28,13 +36,17 @@ export const useSortableData = (
             : SORTING.ORDER.descending;
         }
 
-        return 0;
+        return SORTING.ORDER.equal;
       });
     }
 
     return sortableItems;
   }, [items, sortConfig]);
 
+  /**
+   * @function requestSort
+   * @desc Updates the sort configuration to sort items by the specified key in ascending or descending order.
+   */
   function requestSort(key) {
     let direction = SORTING.DIRECTION.ascending;
 
@@ -45,6 +57,10 @@ export const useSortableData = (
     setSortConfig({ key, direction });
   }
 
+  /**
+   * @function resetSort
+   * @desc Resets the sort configuration to default (ascending order) with no sorting key.
+   */
   function resetSort() {
     setSortConfig({ key: null, direction: SORTING.DIRECTION.ascending });
   }

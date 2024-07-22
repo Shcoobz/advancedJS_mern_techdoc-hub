@@ -11,6 +11,10 @@ import {
 } from '../../utils/userEventHandlers.js';
 import { editUserFormUIPropTypes } from '../../../../config/propTypes.js';
 
+/**
+ * @function EditUserFormUI
+ * @description Renders the user edit form with inputs for username, password, roles, and active status, and includes save and delete buttons.
+ */
 function EditUserFormUI({ editUserFormProps }) {
   useTitle(`${TITLE.PUBLIC.companyInitials} ${TITLE.placeholder} ${TITLE.USER.edit}`);
 
@@ -35,10 +39,18 @@ function EditUserFormUI({ editUserFormProps }) {
     userDetails,
   } = editUserFormProps;
 
+  /**
+   * @function saveUserHandler
+   * @description Handles saving user details by invoking `onSaveUserClicked`.
+   */
   async function saveUserHandler(e) {
     return onSaveUserClicked(e, updateUser, userDetails);
   }
 
+  /**
+   * @function deleteUserHandler
+   * @description Handles deleting the user by invoking `onDeleteUserClicked`.
+   */
   async function deleteUserHandler(e) {
     return onDeleteUserClicked(e, deleteUser, userDetails.id);
   }
@@ -113,6 +125,10 @@ function EditUserFormUI({ editUserFormProps }) {
   );
 }
 
+/**
+ * @function EditUserFormUI
+ * @description Defines the prop types for the `EditUserFormUI` component.
+ */
 EditUserFormUI.propTypes = editUserFormUIPropTypes;
 
 export default EditUserFormUI;
