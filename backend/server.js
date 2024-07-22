@@ -27,6 +27,8 @@ import {
   handleMongoReconnected,
 } from './config/database/mongoEventHandler.js';
 
+const PORT = process.env.PORT || 3500;
+
 /**
  * @constant LOCAL_URL
  * @description Constructs the local URL using the host and port from configuration.
@@ -58,7 +60,7 @@ app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 
 app.use(errorHandler);
 
-handleMongoOpen(app, CONFIG.PORT, LOCAL_URL);
+handleMongoOpen(app, PORT, LOCAL_URL);
 handleMongoError();
 handleMongoDisconnected();
 handleMongoReconnected();
