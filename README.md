@@ -1,6 +1,6 @@
-# advancedJS_mern_TechDoc - Hub: [LIVE DEMO](https://advancedjs-mern-techdoc-hub.onrender.com)
+# advancedJS_mern_TechDoc-Hub: [LIVE DEMO](https://advancedjs-mern-techdoc-hub.onrender.com)
 
-![advancedJS_mern_TechDoc - Hub](frontend/public/img/advancedJS_mern_techdoc-hub.png)
+![advancedJS_mern_TechDoc-Hub](frontend/public/img/advancedJS_mern_techdoc-hub.png)
 
 <br>
 
@@ -172,4 +172,4 @@ Sort and filter data dynamically in tables based on user preferences. The applic
 
 ---
 
-_Note: This document provides an overview of **advancedJS_mern_TechDoc - Hub**. For detailed instructions and more information, please refer to the source code documentation._
+_Note: This document provides an overview of **advancedJS_mern_TechDoc-Hub**. For detailed instructions and more information, please refer to the source code documentation._
