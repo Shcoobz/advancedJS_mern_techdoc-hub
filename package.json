@@ -13,7 +13,7 @@
     "build-frontend": "cd frontend && npx vite build --config vite.config.js",
     "prepare-backend": "echo 'Backend prepared'",
     "debug": "ls -la && cd frontend && ls -la && npx vite --version",
-    "render-build": "npm install && npm run debug && npm run build-frontend && npm run prepare-backend",
+    "render-build": "npm install --production=false && npm run debug && npm run build-frontend && npm run prepare-backend",
     "render-start": "node backend/server.js"
   },
   "keywords": [],
