@@ -56,6 +56,12 @@ app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, ...CONFIG.PATH.FRONTEND_DIR, CONFIG.PATH.INDEX_HTML)
+  );
+});
+
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
 
 app.use(errorHandler);
