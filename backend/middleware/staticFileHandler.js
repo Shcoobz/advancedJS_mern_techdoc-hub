@@ -10,8 +10,9 @@ import { CONFIG } from '../config/common/constants.js';
 export function servePublicStaticFiles() {
   // return express.static(path.join(__dirname, ...CONFIG.PATH.PUBLIC_DIR));
 
-  const publicPath = path.join(__dirname, ...CONFIG.PATH.PUBLIC_DIR);
-
+  const publicPath = path.join(__dirname, ...CONFIG.PATH.STATIC_PUBLIC_DIR);
+  console.log('__dirname in servePublicStaticFiles:', __dirname);
+  console.log('Constructed public path:', publicPath);
   console.log('Serving public static files from:', publicPath);
 
   return express.static(publicPath);
@@ -24,8 +25,9 @@ export function servePublicStaticFiles() {
 export function serveFrontendStaticFiles() {
   // return express.static(path.join(__dirname, ...CONFIG.PATH.FRONTEND_DIR));
 
-  const frontendPath = path.join(__dirname, ...CONFIG.PATH.FRONTEND_DIR);
-
+  const frontendPath = path.join(__dirname, ...CONFIG.PATH.STATIC_FRONTEND_DIR);
+  console.log('__dirname in serveFrontendStaticFiles:', __dirname);
+  console.log('Constructed frontend path:', frontendPath);
   console.log('Serving frontend static files from:', frontendPath);
 
   return express.static(frontendPath);
@@ -40,12 +42,9 @@ export const serveIndexHtml = (req, res) => {
   //   path.resolve(__dirname, ...CONFIG.PATH.FRONTEND_DIR, CONFIG.PATH.INDEX_HTML)
   // );
 
-  const indexPath = path.resolve(
-    __dirname,
-    ...CONFIG.PATH.FRONTEND_DIR,
-    CONFIG.PATH.INDEX_HTML
-  );
-
+  const indexPath = path.resolve(__dirname, ...CONFIG.PATH.STATIC_INDEX_PATH);
+  console.log('__dirname in serveIndexHtml:', __dirname);
+  console.log('Constructed index path:', indexPath);
   console.log('Serving index.html from:', indexPath);
 
   res.sendFile(indexPath);

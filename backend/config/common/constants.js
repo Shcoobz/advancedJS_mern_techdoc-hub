@@ -114,6 +114,7 @@ export const CONFIG = {
     FRONTEND_DIR: ['..', '..', 'frontend', 'dist'],
     STATIC_FRONTEND_DIR: '../frontend/dist',
     STATIC_PUBLIC_DIR: '../public',
+    STATIC_INDEX_PATH: '../frontend/dist/index.html',
     INDEX_HTML: 'index.html',
     ERROR_HTML: '404.html',
   },

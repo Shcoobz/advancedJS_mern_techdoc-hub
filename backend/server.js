@@ -53,10 +53,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 console.log('Setting up static file serving middleware...');
-// app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
-// app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
-app.use(express.static(FRONTEND_DIR));
-app.use(express.static(PUBLIC_DIR));
+app.use(ROUTE.SERVER.ROOT, serveFrontendStaticFiles());
+app.use(ROUTE.SERVER.ROOT, servePublicStaticFiles());
 
 console.log('Setting up API routes...');
 app.use(ROUTE.SERVER.ROOT, rootRouter);
@@ -65,10 +63,7 @@ app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
 
 console.log('Setting up catch-all route for client-side routing...');
-// app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
-});
+app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
 
 console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);
