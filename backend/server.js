@@ -14,7 +14,6 @@ import { __dirname } from './config/common/utils.js';
 import { logger } from './middleware/logging/logger.js';
 import {
   serveFrontendStaticFiles,
-  serveIndexHtml,
   servePublicStaticFiles,
 } from './middleware/staticFileHandler.js';
 import {
@@ -54,9 +53,6 @@ app.use(ROUTE.SERVER.ROOT, rootRouter);
 app.use(ROUTE.SERVER.AUTH, authRouter);
 app.use(ROUTE.SERVER.USERS, userRouter);
 app.use(ROUTE.SERVER.NOTES, noteRouter);
-
-// console.log('Setting up catch-all route for client-side routing...');
-// app.get(ROUTE.SERVER.WILDCARD, serveIndexHtml);
 
 console.log('Setting up wildcard route for undefined routes...');
 app.all(ROUTE.SERVER.WILDCARD, handleWildcardRoute);

@@ -110,7 +110,7 @@ export const CONFIG = {
   PATH: {
     LOGS_DIR: ['..', '..', 'logs'],
     VIEWS_DIR: ['..', '..', 'views'],
-    PUBLIC_DIR: ['..', '..', '..', 'frontend', 'public'],
+    PUBLIC_DIR_CSS: ['..', '..', 'public', 'css'],
     FRONTEND_DIR: ['..', '..', '..', 'frontend', 'dist'],
     INDEX_DIR: ['..', '..', '..', 'frontend', 'dist', 'index.html'],
     ERROR_HTML: '404.html',

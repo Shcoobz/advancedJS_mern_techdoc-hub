@@ -20,6 +20,8 @@ async function logEvents(message, logFileName) {
 
   try {
     if (!fs.existsSync(logDirPath)) {
+      console.log('dirname: ', __dirname);
+      console.log('logEvents: ', logDirPath);
       await fsPromises.mkdir(logDirPath);
     }
 

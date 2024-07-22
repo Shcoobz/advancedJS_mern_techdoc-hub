@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { logEvents } from '../logging/logger.js';
 import {
   CONFIG,
@@ -6,8 +7,6 @@ import {
   HTTP_STATUS_CODES,
   MSG,
 } from '../../config/common/constants.js';
-
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
